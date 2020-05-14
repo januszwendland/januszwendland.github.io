@@ -1,4 +1,4 @@
-/*global Vue, axios, moment*/
+/* global Vue, axios, moment */
 
 Vue.component('member', {
    template:
@@ -6,7 +6,7 @@ Vue.component('member', {
         <div v-html="rank" class="col-3"></div>
         <div v-html="member.name" class="col-3"></div>
         <div v-html="last" class="col-3"></div>
-        <div v-html="days" class="col-3"></div>
+        <div v-html="days" class="col-3" v-bind:class="{ 'text-success': green, 'text-warning': orange, 'text-danger': red }"></div>
     </div>`,
     
     props: ['member', 'rank'],
@@ -16,7 +16,10 @@ Vue.component('member', {
             last: null,
             name: null,
             days: null,
-            today: null
+            today: null,
+            red: false,
+            green: false,
+            orange: false
         }
     },
     
@@ -47,6 +50,14 @@ Vue.component('member', {
             .then(response => {
                 this.last = response.data.characters.data.last_login[0].date.substring(0, 10);
                 this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
+
+                if (this.days > 13) {
+                    this.red = true;
+                } else if (this.days > 6) {
+                    this.orange = true;
+                } else {
+                    this.green = true;
+                }
             })
     }
 });
