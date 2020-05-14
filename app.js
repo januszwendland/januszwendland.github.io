@@ -4,7 +4,9 @@ Vue.component('member', {
     template:
         `<div v-bind:class="{ 'text-success': green, 'text-warning': orange, 'text-danger': red }" class="row border-bottom pb-1 mb-1">
             <div v-html="rank" class="col-3"></div>
-            <div v-html="member.name" class="col-3"></div>
+            <div class="col-3">
+                <a v-bind:href="href" v-html="member.name" target="_blank"></a>
+            </div>
             <div v-html="last" class="col-3"></div>
             <div v-html="days" class="col-3"></div>
         </div>`,
@@ -17,6 +19,7 @@ Vue.component('member', {
             name: null,
             days: null,
             today: null,
+            href: null,
             red: false,
             green: false,
             orange: false
@@ -25,6 +28,7 @@ Vue.component('member', {
 
     mounted: function () {
         this.name = this.member.name;
+        this.href = "https://www.tibia.com/community/?subtopic=characters&name=" + this.name.replace(' ', '+');
 
         function formatDate(date) {
             let d = new Date(date),
