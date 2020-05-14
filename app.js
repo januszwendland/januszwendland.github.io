@@ -3,11 +3,12 @@
 Vue.component('member', {
    template:
     `<div class="row border-bottom pb-1 mb-1">
-        <div v-html="member.name" class="col-6"></div>
-        <div v-html="last" class="col-6"></div>
+        <div v-html="rank" class="col-4"></div>
+        <div v-html="member.name" class="col-4"></div>
+        <div v-html="last" class="col-4"></div>
     </div>`,
     
-    props: ['member'],
+    props: ['member', 'rank'],
     
     data: function () {
         return {

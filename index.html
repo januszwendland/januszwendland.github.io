@@ -19,7 +19,7 @@
             <div class="mt-3 mb-3">
                 <template v-for="(rank, index) in guild">
                     <template v-for="(character, index) in rank.characters">
-                        <member :member="character"></member>
+                        <member :member="character" :rank="rank.rank_title"></member>
                     </template>
                 </template>
             </div>
