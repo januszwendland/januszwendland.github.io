@@ -1,4 +1,4 @@
-/* global Vue, axios, moment */
+/* global Vue, axios */
 
 Vue.component('member', {
    template:
