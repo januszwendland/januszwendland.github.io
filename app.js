@@ -76,6 +76,7 @@ var app = new Vue({
                 <div class="row">
                     <div class="col-md-9">
                         <input v-model="guildName" placeholder="Guild name" class="form-control form-control-lg">
+                        <small>Case sensitivity.</small>
                     </div>
                     <div class="col-md-3">
                         <button v-on:click="check" type="button" class="btn btn-lg btn-outline-primary btn-block mt-3 mt-md-0">Submit</button>
