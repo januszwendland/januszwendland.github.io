@@ -43,7 +43,7 @@
 
 <script>
     import axios from 'axios';
-    import member from '../src/member.vue';
+    import member from './member';
 
     export default {
         name: 'guild',

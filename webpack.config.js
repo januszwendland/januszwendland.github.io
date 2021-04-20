@@ -16,14 +16,22 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
-            }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader",
+                ],
+            },
         ]
     },
     plugins: [
         new VueLoaderPlugin()
     ],
     entry: {
-        'app': './src/app.js'
+        'app': './src/js/app.js'
     },
     output: {
         filename: '[name].js'
