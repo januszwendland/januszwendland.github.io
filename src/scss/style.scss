@@ -7,7 +7,10 @@
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/card";
 @import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
 @import "bootstrap/scss/utilities";
 
 .text-danger {
@@ -27,4 +30,12 @@
     color: white;
     padding: .4em 1em;
     cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .navbar {
+        .btn {
+            width: 100%;;
+        }
+    }
 }

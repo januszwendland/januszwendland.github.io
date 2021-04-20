@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 class="mt-3 mb-3">Check guild!</h1>
+        <h2 class="mt-3 mt-md-5 mb-3">Check guild</h2>
         <form v-on:submit.prevent="check" class="d-block">
             <div class="row">
                 <div class="col-md-9">
@@ -12,24 +12,29 @@
                 </div>
             </div>
         </form>
-        <div v-show="guild">
+        <div v-if="guild">
             <div class="mt-3 mb-3">
                 <strong>Filter:</strong>
                 <span class="badge bg-secondary" v-bind:class="{ 'bg-success': ed }" v-on:click="filter('ed')">Druid</span>
                 <span class="badge bg-secondary" v-bind:class="{ 'bg-info': ek }" v-on:click="filter('ek')">Knight</span>
                 <span class="badge bg-secondary" v-bind:class="{ 'bg-warning': rp }" v-on:click="filter('rp')">Paladin</span>
                 <span class="badge bg-secondary" v-bind:class="{ 'bg-danger': ms }" v-on:click="filter('ms')">Sorcerer</span>
-                <strong class="ml-3">Share:</strong>
-                <input type="number" v-model="share">
+                <div class="d-block d-md-inline mt-3 mt-md-0 ml-md-3">
+                    <strong>Share:</strong>
+                    <input type="number" v-model="share">
+                </div>
             </div>
             <div class="mt-3 mb-3">
                 <div class="row">
-                    <div class="col-2"><strong>Rank</strong></div>
-                    <div class="col-3"><strong>Name</strong></div>
-                    <div class="col-2"><strong>Vocation</strong></div>
-                    <div class="col-1"><strong>Lvl</strong></div>
-                    <div class="col-2"><strong>Last login</strong></div>
-                    <div class="col-2"><strong>Days from last login</strong></div>
+                    <div class="col-2 d-none d-md-block"><strong>Rank</strong></div>
+                    <div class="col-4 col-md-3"><strong>Name</strong></div>
+                    <div class="col-2">
+                        <strong class="d-none d-md-inline">Vocation</strong>
+                        <strong class="d-md-none">Voc</strong>
+                    </div>
+                    <div class="col-2 col-md-1"><strong>Lvl</strong></div>
+                    <div class="col-4 col-md-2"><strong>Last login</strong></div>
+                    <div class="col-2 d-none d-md-block"><strong>Days from last login</strong></div>
                 </div>
                 <template v-for="rank in guild">
                     <template v-for="character in rank.characters">
