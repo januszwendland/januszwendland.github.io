@@ -26,15 +26,25 @@
             </div>
             <div class="mt-3 mb-3">
                 <div class="row">
-                    <div class="col-2 d-none d-md-block"><strong>Rank</strong></div>
-                    <div class="col-4 col-md-3"><strong>Name</strong></div>
+                    <div class="col-2 d-none d-md-block">
+                        <strong>Rank</strong>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <strong>Name</strong>
+                    </div>
                     <div class="col-2">
                         <strong class="d-none d-md-inline">Vocation</strong>
                         <strong class="d-md-none">Voc</strong>
                     </div>
-                    <div class="col-2 col-md-1"><strong>Lvl</strong></div>
-                    <div class="col-4 col-md-2"><strong>Last login</strong></div>
-                    <div class="col-2 d-none d-md-block"><strong>Days from last login</strong></div>
+                    <div class="col-2 col-md-1">
+                        <strong>Lvl</strong>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <strong>Last login</strong>
+                    </div>
+                    <div class="col-2 d-none d-md-block">
+                        <strong>Days from last login</strong>
+                    </div>
                 </div>
                 <template v-for="rank in guild">
                     <template v-for="character in rank.characters">

@@ -14,11 +14,15 @@
 @import "bootstrap/scss/alert";
 @import "bootstrap/scss/utilities";
 
+.badge {
+    color: white;
+    padding: .4em 1em;
+}
+
 .guild {
     .text-danger {
         font-weight: bold;
     }
-    
     .text-danger,
     .text-success,
     .text-warning {
@@ -27,10 +31,7 @@
         }
         
     }
-    
     .badge {
-        color: white;
-        padding: .4em 1em;
         cursor: pointer;
     }
 }
@@ -39,6 +40,13 @@
     .input-group {
         .form-control {
             height: 46px;
+        }
+    }
+    .badge {
+        font-size: 100%;
+        font-weight: normal;
+        .badge {
+            font-size: 125%;
         }
     }
 }
