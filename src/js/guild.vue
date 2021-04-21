@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container guild">
         <h2 class="mt-3 mt-md-5 mb-3">Check guild</h2>
         <form v-on:submit.prevent="check" class="d-block">
             <div class="row">

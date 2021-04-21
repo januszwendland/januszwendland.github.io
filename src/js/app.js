@@ -28,16 +28,15 @@ var app = new Vue({
                     </div>
                 </div>
                 <nav class="navbar mt-md-3">
-                    <button type="button" class="btn btn-lg mr-3 mt-3 mt-md-0"
+                    <button type="button" class="btn btn-lg mt-3 mt-md-0 mr-md-3"
                         v-for="tool in tools"
-                        v-bind:key="tool.component"
                         v-on:click="selected = tool.component;"
                         v-bind:class="{ 'btn-success' : selected === tool.component, 'btn-outline-success' : selected !== tool.component }">
                         {{ tool.button }}
                     </button>
                 </nav>
             </div>
-            <component :is="selected"></component>
+            <component v-bind:is="selected"></component>
         </div>`,
   
     data: {

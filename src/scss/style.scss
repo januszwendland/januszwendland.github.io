@@ -7,29 +7,40 @@
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
+@import "bootstrap/scss/input-group";
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/card";
 @import "bootstrap/scss/badge";
 @import "bootstrap/scss/alert";
 @import "bootstrap/scss/utilities";
 
-.text-danger {
-    font-weight: bold;
-}
-
-.text-danger,
-.text-success,
-.text-warning {
-    a {
-        color: inherit;
+.guild {
+    .text-danger {
+        font-weight: bold;
     }
     
+    .text-danger,
+    .text-success,
+    .text-warning {
+        a {
+            color: inherit;
+        }
+        
+    }
+    
+    .badge {
+        color: white;
+        padding: .4em 1em;
+        cursor: pointer;
+    }
 }
 
-.badge {
-    color: white;
-    padding: .4em 1em;
-    cursor: pointer;
+.imbuing {
+    .input-group {
+        .form-control {
+            height: 46px;
+        }
+    }
 }
 
 @media (max-width: 767px) {
