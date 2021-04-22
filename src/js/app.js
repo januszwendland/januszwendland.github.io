@@ -46,7 +46,7 @@ var app = new Vue({
                     Find me on Discord:
                     <span class="text-dark">Czit#6666</span>
                 </small>
-                <img src="img/skull.webp" width="50px" height="50px">
+                <img src="img/skull-small.webp" width="50px" height="50px">
             </div>
         </div>`,
   
