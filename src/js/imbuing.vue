@@ -32,8 +32,13 @@
             </div>
         </div>
         <small class="mt-3 mb-3">Calculate based on gold token price.</small>
-        <div class="mt-2">
-            <img class="mt-2 mr-2" v-for="(imbuement, index) in imbuements" v-bind:src="imbuement.img" v-bind:title="imbuement.name" v-on:click="showImbuement(index)">
+        <div class="mt-2 imbuing-img">
+            <img class="mt-2 mr-2"
+                 v-for="(imbuement, index) in imbuements"
+                 v-bind:src="imbuement.img"
+                 v-bind:title="imbuement.name"
+                 v-bind:class="{ 'active': selectedIndex === index }"
+                 v-on:click="showImbuement(index)">
         </div>
         <small>Calculate price for specific imbuement.</small>
         <div v-if="selected">
