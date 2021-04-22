@@ -35,7 +35,7 @@ var app = new Vue({
                             v-for="tool in tools"
                             v-on:click="selected = tool.component;"
                             v-bind:class="{ 'btn-success' : selected === tool.component, 'btn-outline-success' : selected !== tool.component }">
-                            {{ tool.button }}
+                            <strong>{{ tool.button }}</strong>
                         </button>
                     </nav>
                 </div>
@@ -46,7 +46,7 @@ var app = new Vue({
                     Find me on Discord:
                     <span class="text-dark">Czit#6666</span>
                 </small>
-                <img src="img/skull-small.webp" width="50px" height="50px">
+                <img srcset="img/skull.webp, img/skull@2x.webp 2x" src="img/skull.webp" width="50px" height="50px" alt="">
             </div>
         </div>`,
   
