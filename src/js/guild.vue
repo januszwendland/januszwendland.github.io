@@ -2,26 +2,32 @@
     <div class="container guild">
         <h2 class="mt-3 mt-md-5 mb-3">Check guild</h2>
         <form v-on:submit.prevent="check" class="d-block">
-            <div class="row">
-                <div class="col-md-9">
-                    <input v-model="guildName" placeholder="Guild name" class="form-control form-control-lg">
-                    <small>Case sensitivity.</small>
-                </div>
-                <div class="col-md-3">
-                    <button v-on:click="check" type="button" class="btn btn-lg btn-outline-primary btn-block mt-3 mt-md-0">Submit</button>
+            <div class="input-group">
+                <input v-model="guildName" placeholder="Guild name" class="form-control form-control-lg">
+                <div class="input-group-append">
+                    <button v-on:click="check" type="button" class="btn btn-lg btn-primary">Check</button>
                 </div>
             </div>
         </form>
         <div v-if="guild">
-            <div class="mt-3 mb-3">
-                <strong>Filter:</strong>
-                <span class="badge bg-secondary" v-bind:class="{ 'bg-success': ed }" v-on:click="filter('ed')">Druid</span>
-                <span class="badge bg-secondary" v-bind:class="{ 'bg-info': ek }" v-on:click="filter('ek')">Knight</span>
-                <span class="badge bg-secondary" v-bind:class="{ 'bg-warning': rp }" v-on:click="filter('rp')">Paladin</span>
-                <span class="badge bg-secondary" v-bind:class="{ 'bg-danger': ms }" v-on:click="filter('ms')">Sorcerer</span>
-                <div class="d-block d-md-inline mt-3 mt-md-0 ml-md-3">
-                    <strong>Share:</strong>
-                    <input type="number" v-model="share">
+            <div class="mt-2 mt-md-3">
+                <div class="d-md-inline-block">
+                    <div class="d-flex d-md-block flex-wrap">
+                        <span class="badge bg-secondary mt-2 mr-2 m-md-0" v-bind:class="{ 'bg-success': ed }" v-on:click="filter('ed')">Druid</span>
+                        <span class="badge bg-secondary mt-2 mr-2 m-md-0" v-bind:class="{ 'bg-info': ek }" v-on:click="filter('ek')">Knight</span>
+                        <span class="badge bg-secondary mt-2 mr-2 m-md-0" v-bind:class="{ 'bg-warning': rp }" v-on:click="filter('rp')">Paladin</span>
+                        <span class="badge bg-secondary mt-2 mr-2 m-md-0" v-bind:class="{ 'bg-danger': ms }" v-on:click="filter('ms')">Sorcerer</span>
+                    </div>
+                    <small>Filter by vocation.</small>
+                </div>
+                <div class="d-md-inline-block mt-3 mt-md-0 ml-md-3">
+                    <div class="input-group">
+                        <div class="input-group-prepend w-50">
+                            <label for="share" class="input-group-text w-100">Share</label>
+                        </div>
+                        <input type="number" v-model="share" class="form-control" id="share">
+                    </div>
+                    <small>Find who can share exp with given lvl.</small>
                 </div>
             </div>
             <div class="mt-3 mb-3">

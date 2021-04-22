@@ -17,12 +17,14 @@
 .badge {
     color: white;
     padding: .4em 1em;
+    font-weight: normal;
+}
+
+.wrapper {
+    min-height: 100vh;
 }
 
 .guild {
-    .text-danger {
-        font-weight: bold;
-    }
     .text-danger,
     .text-success,
     .text-warning {
@@ -33,6 +35,8 @@
     }
     .badge {
         cursor: pointer;
+        font-size: 1rem;
+        padding: 0.7em 1em;
     }
 }
 
@@ -44,7 +48,7 @@
     }
     .badge {
         font-size: 100%;
-        font-weight: normal;
+
         .badge {
             font-size: 125%;
         }
