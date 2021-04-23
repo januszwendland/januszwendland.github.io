@@ -1,6 +1,8 @@
 import Vue from 'vue';
+
 import guild from './guild';
 import imbuing from './imbuing';
+import healing from './healing';
 
 import '../scss/style.scss';
 
@@ -9,7 +11,8 @@ var app = new Vue({
 
     components: {
         guild,
-        imbuing
+        imbuing,
+        healing
     },
 
     template:
@@ -22,10 +25,16 @@ var app = new Vue({
                             <p class="mb-0">My Tibia Tools, doing it when I need it.</p>
                             <div class="d-none d-md-block">
                                 <hr class="mt-3 mb-3">
-                                <p class="mb-0">For now there are only 2 tools:</p>
-                                <ul>
-                                    <li><strong>Check guild</strong> - check specific guild, filter members by vocation and find players who can share exp with you.</li>
-                                    <li><strong>Imbuing calculator</strong> - calculate cost of imbuing.</li>
+                                <ul class="m-0 pl-4">
+                                    <li>
+                                        <strong>Check guild</strong> - check specific guild, filter members by vocation and find players who can share exp with you.
+                                    </li>
+                                    <li>
+                                        <strong>Imbuing calculator</strong> - calculate cost of imbuing.
+                                    </li>
+                                    <li>
+                                        <strong>Healing calculator</strong> - soon!
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -53,7 +62,8 @@ var app = new Vue({
     data: {
         tools: [
             { component: 'guild', button: 'Check guild' },
-            { component: 'imbuing', button: 'Imbuing calculator' }
+            { component: 'imbuing', button: 'Imbuing calculator' },
+            { component: 'healing', button: 'Healing calculator' }
         ],
         selected: null
     }

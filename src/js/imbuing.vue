@@ -6,7 +6,7 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <label for="tokenPrice" class="input-group-text">
-                            <img src="img/gold-token.webp" title="Gold Token">
+                            <img src="img/gold-token.webp" title="Gold Token" width="32px" height="32px">
                         </label>
                     </div>
                     <input type="number" v-model="token" class="form-control" id="tokenPrice">
@@ -62,7 +62,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="basicPrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].basic.img" v-bind:title="imbuements[selectedIndex].basic.name">
+                                <img v-bind:src="imbuements[selectedIndex].basic.img" v-bind:title="imbuements[selectedIndex].basic.name" width="32px" height="32px">
                                 * {{ imbuements[selectedIndex].basic.amount }}
                             </label>
                         </div>
@@ -83,7 +83,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="intricatePrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].intricate.img" v-bind:title="imbuements[selectedIndex].intricate.name">
+                                <img v-bind:src="imbuements[selectedIndex].intricate.img" v-bind:title="imbuements[selectedIndex].intricate.name" width="32px" height="32px">
                                 * {{ imbuements[selectedIndex].intricate.amount }}
                             </label>
                         </div>
@@ -104,7 +104,7 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="powerfulPrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].powerful.img" v-bind:title="imbuements[selectedIndex].powerful.name">
+                                <img v-bind:src="imbuements[selectedIndex].powerful.img" v-bind:title="imbuements[selectedIndex].powerful.name" width="32px" height="32px">
                                 * {{ imbuements[selectedIndex].powerful.amount }}
                             </label>
                         </div>
