@@ -9,7 +9,7 @@
                             <img src="img/gold-token.webp" title="Gold Token" width="32px" height="32px">
                         </label>
                     </div>
-                    <input type="number" v-model="token" class="form-control" id="tokenPrice">
+                    <input type="number" class="form-control" id="tokenPrice" v-model="token">
                 </div>
             </div>
             <div class="col-12 col-lg mt-1 mt-lg-0">
@@ -34,11 +34,11 @@
         <small class="mt-3 mb-3">Calculate based on gold token price.</small>
         <div class="mt-2 imbuing-img">
             <img class="mt-2 mr-2"
-                 v-for="(imbuement, index) in imbuements"
-                 v-bind:src="imbuement.img"
-                 v-bind:title="imbuement.name"
-                 v-bind:class="{ 'active': selectedIndex === index }"
-                 v-on:click="showImbuement(index)">
+                v-for="(imbuement, index) in imbuements"
+                v-bind:src="imbuement.img"
+                v-bind:title="imbuement.name"
+                v-bind:class="{ 'active': selectedIndex === index }"
+                v-on:click="showImbuement(index)">
         </div>
         <small>Calculate price for specific imbuement.</small>
         <div v-if="selected">
@@ -62,11 +62,13 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="basicPrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].basic.img" v-bind:title="imbuements[selectedIndex].basic.name" width="32px" height="32px">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].basic.img"
+                                    v-bind:title="imbuements[selectedIndex].basic.name">
                                 * {{ imbuements[selectedIndex].basic.amount }}
                             </label>
                         </div>
-                        <input type="number" v-model="basic" class="form-control" id="basicPrice">
+                        <input type="number" class="form-control" id="basicPrice" v-model="basic">
                     </div>
                 </div>
                 <div class="col-4 d-md-none"></div>
@@ -83,11 +85,13 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="intricatePrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].intricate.img" v-bind:title="imbuements[selectedIndex].intricate.name" width="32px" height="32px">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].intricate.img"
+                                    v-bind:title="imbuements[selectedIndex].intricate.name">
                                 * {{ imbuements[selectedIndex].intricate.amount }}
                             </label>
                         </div>
-                        <input type="number" v-model="intricate" class="form-control" id="intricatePrice">
+                        <input type="number" class="form-control" id="intricatePrice" v-model="intricate">
                     </div>
                 </div>
                 <div class="col-4 d-md-none"></div>
@@ -104,11 +108,13 @@
                     <div class="input-group">
                         <div class="input-group-prepend w-50">
                             <label for="powerfulPrice" class="input-group-text w-100">
-                                <img v-bind:src="imbuements[selectedIndex].powerful.img" v-bind:title="imbuements[selectedIndex].powerful.name" width="32px" height="32px">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].powerful.img"
+                                    v-bind:title="imbuements[selectedIndex].powerful.name">
                                 * {{ imbuements[selectedIndex].powerful.amount }}
                             </label>
                         </div>
-                        <input type="number" v-model="powerful" class="form-control" id="powerfulPrice">
+                        <input type="number" class="form-control" id="powerfulPrice" v-model="powerful">
                     </div>
                 </div>
                 <div class="col-4 d-md-none"></div>

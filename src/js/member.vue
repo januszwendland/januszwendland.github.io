@@ -1,13 +1,15 @@
 <template>
-    <div v-bind:class="{ 'text-success': green, 'text-warning': orange, 'text-danger': red }" class="row border-bottom pb-1 mb-1">
-        <div v-html="rank" class="col-2 d-none d-md-block"></div>
+    <div class="row border-bottom pb-1 mb-1" v-bind:class="{ 'text-success': green, 'text-warning': orange, 'text-danger': red }">
+        <div class="col-2 d-none d-md-block" v-html="rank"></div>
         <div class="col-4 col-md-3">
-            <a v-bind:href="href" v-html="member.name" target="_blank"></a>
+            <a target="_blank"
+                v-bind:href="href"
+                v-html="member.name"></a>
         </div>
-        <div v-html="vocation" class="col-2"></div>
-        <div v-html="level" class="col-2 col-md-1"></div>
-        <div v-html="last" class="col-4 col-md-2"></div>
-        <div v-html="days" class="col-2 d-none d-md-block"></div>
+        <div class="col-2" v-html="vocation"></div>
+        <div class="col-2 col-md-1" v-html="level"></div>
+        <div class="col-4 col-md-2" v-html="last"></div>
+        <div class="col-2 d-none d-md-block" v-html="days"></div>
     </div>
 </template>
 
