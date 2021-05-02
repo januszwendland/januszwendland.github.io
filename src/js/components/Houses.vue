@@ -93,6 +93,7 @@
         methods: {
             checkServer: function() {
                 let server = this.server;
+                this.filterByTown = null;
 
                 if (this.selectedServer) {
                     this.towns.forEach(town => { 
