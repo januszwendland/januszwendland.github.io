@@ -17,7 +17,7 @@
     import axios from 'axios';
 
     export default {
-        name: 'member',
+        name: 'Member',
 
         props: ['member', 'rank'],
 

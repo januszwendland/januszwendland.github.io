@@ -1,12 +1,12 @@
 <template>
-    <div class="container healing">
+    <div class="container houses">
         <h2 class="mt-3 mt-md-5 mb-3">Soon!</h2>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'healing',
+        name: 'Healing',
 
         data: function () {
             return {

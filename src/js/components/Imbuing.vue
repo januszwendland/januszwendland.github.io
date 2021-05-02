@@ -138,7 +138,7 @@
 
 <script>
     export default {
-        name: 'imbuing',
+        name: 'Imbuing',
 
         data: function () {
             return {

@@ -31,7 +31,7 @@ module.exports = {
         new VueLoaderPlugin()
     ],
     entry: {
-        'app': './src/js/app.js'
+        'app': './src/js/index.js'
     },
     output: {
         filename: '[name].js'

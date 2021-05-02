@@ -65,7 +65,7 @@
                         <member
                             v-bind:member="character"
                             v-bind:rank="rank.rank_title"
-                            v-show="(all || filterMember(character.vocation)) && shareExp(character.level)"></member>
+                            v-show="(all || filterMember(character.vocation)) && shareExp(character.level)" />
                     </template>
                 </template>
             </div>
@@ -75,13 +75,13 @@
 
 <script>
     import axios from 'axios';
-    import member from './member';
+    import Member from './Member';
 
     export default {
-        name: 'guild',
+        name: 'Guild',
 
         components: {
-            member
+            Member
         },
 
         data: function () {
@@ -110,7 +110,7 @@
                             if (response.data.guild.error) {
                                 alert(response.data.guild.error);
                             }
-                        })
+                        });
                 }
             },
             filter: function (vocation) {
