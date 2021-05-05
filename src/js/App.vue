@@ -24,6 +24,9 @@
                                     <strong>Houses</strong> - find free houses.
                                 </li>
                                 <li>
+                                    <strong>Transfer</strong> - where can I transfer?
+                                </li>
+                                <li>
                                     <strong>Healing calculator</strong> - soon!
                                 </li>
                             </ul>
@@ -55,6 +58,7 @@
     import Guild from './components/Guild';
     import Imbuing from './components/Imbuing';
     import Houses from './components/Houses';
+    import Transfer from './components/Transfer';
     import Healing from './components/Healing';
 
     export default {
@@ -64,6 +68,7 @@
             Guild,
             Imbuing,
             Houses,
+            Transfer,
             Healing
         },
 
@@ -73,6 +78,7 @@
                     { component: 'Guild', button: 'Check guild' },
                     { component: 'Imbuing', button: 'Imbuing calculator' },
                     { component: 'Houses', button: 'Houses' },
+                    { component: 'Transfer', button: 'Transfer' },
                     { component: 'Healing', button: 'Healing calculator' }
                 ],
                 selected: null,

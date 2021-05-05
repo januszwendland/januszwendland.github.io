@@ -48,7 +48,10 @@
             <div class="row"
                 v-for="house in town"
                 v-if="house.status !== 'rented'">
-                <div class="col-3">{{ house.name }}</div>
+                <div class="col-3">
+                    <a class="text-success"
+                        v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
+                </div>
                 <div class="col-2">{{ house.rent }}</div>
                 <div class="col-2">{{ house.size }}</div>
                 <div class="col-5">{{ house.status }}</div>
