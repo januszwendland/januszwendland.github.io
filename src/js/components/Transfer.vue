@@ -5,7 +5,7 @@
             <div class="input-group-prepend">
                 <label for="server" class="input-group-text w-100">Current server</label>
             </div>
-            <select class="form-control" id="server"
+            <select class="form-control form-control-lg" id="server"
                 v-model="selectedServer">
                 <option value="" disabled selected>Select...</option>
                 <option
@@ -14,57 +14,75 @@
             </select>
         </div>
         <template v-if="selectedServer">
-
-            <h3>From:</h3>
-            <div class="row">
-                <div class="col-3">
+            <div class="row mt-3 mb-3">
+                <div class="col-6 col-md-3">
                     <strong>Name</strong>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-md-3">
                     <strong>Type</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>BattlEye</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>Blocked</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>Locked</strong>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-3">{{ selectedServer }}</div>
-                <div class="col-3">{{ servers[selectedServer].type }}</div>
-                <div class="col-2">{{ servers[selectedServer].green }}</div>
-                <div class="col-2">{{ servers[selectedServer].blocked }}</div>
-                <div class="col-2">{{ servers[selectedServer].locked }}</div>
+            <div class="row pb-1 mb-1">
+                <div class="col-6 col-md-3">{{ selectedServer }}</div>
+                <div class="col-6 col-md-3">{{ servers[selectedServer].type }}</div>
+                <div class="d-none d-md-block col-2">
+                    <span class="badge"
+                        v-bind:class="{ 'badge-success': servers[selectedServer].green, 'badge-warning': !servers[selectedServer].green }">{{ servers[selectedServer].green }}</span>
+                </div>
+                <div class="d-none d-md-block col-2">
+                    <span class="badge"
+                        v-bind:class="{ 'badge-primary' : servers[selectedServer].blocked, 'badge-secondary': !servers[selectedServer].blocked }">{{ servers[selectedServer].blocked }}</span>
+                </div>
+                <div class="d-none d-md-block col-2">
+                    <span class="badge"
+                        v-bind:class="{ 'badge-dark': servers[selectedServer].locked, 'badge-secondary': !servers[selectedServer].locked }">{{ servers[selectedServer].locked }}</span>
+                </div>
             </div>
-            <h3>To:</h3>
-            <div class="row">
-                <div class="col-3">
+            <h3 class="mt-3 mb-3">
+                <span class="badge bg-info">You can transfer to:</span>
+            </h3>
+            <div class="row mt-3 mb-3">
+                <div class="col-6 col-md-3">
                     <strong>Name</strong>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-md-3">
                     <strong>Type</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>BattlEye</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>Blocked</strong>
                 </div>
-                <div class="col-2">
+                <div class="d-none d-md-block col-2">
                     <strong>Locked</strong>
                 </div>
             </div>
             <template v-for="server, key in servers" v-if="checkServer(key, server)">
-                <div class="row">
-                    <div class="col-3">{{ key }}</div>
-                    <div class="col-3">{{ server.type }}</div>
-                    <div class="col-2">{{ server.green }}</div>
-                    <div class="col-2">{{ server.blocked }}</div>
-                    <div class="col-2">{{ server.locked }}</div>
+                <div class="row border-bottom pb-1 mb-1">
+                    <div class="col-6 col-md-3">{{ key }}</div>
+                    <div class="col-6 col-md-3">{{ server.type }}</div>
+                    <div class="d-none d-md-block col-2">
+                        <span class="badge"
+                            v-bind:class="{ 'badge-success': server.green, 'badge-warning': !server.green }">{{ server.green }}</span>
+                    </div>
+                    <div class="d-none d-md-block col-2">
+                        <span class="badge"
+                            v-bind:class="{ 'badge-primary': server.blocked, 'badge-secondary': !server.blocked }">{{ server.blocked }}</span>
+                    </div>
+                    <div class="d-none d-md-block col-2">
+                        <span class="badge"
+                            v-bind:class="{ 'badge-dark': server.locked, 'badge-secondary': !server.locked }">{{ server.locked }}</span>
+                    </div>
                 </div>
             </template>
         </template>
@@ -177,7 +195,7 @@
 
                 if (props.type === 'retro hardcore pvp') return false;
 
-                if (fromProps.type === 'retro open pvp' || fromProps.type ===  'open pvp') {
+                if (fromProps.type === 'retro open pvp' || fromProps.type === 'open pvp') {
                     if (!fromProps.green) return !props.green;
                 } else {
                     if (props.type === 'retro open pvp' || props.type ===  'open pvp') return false;

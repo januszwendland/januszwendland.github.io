@@ -5,7 +5,7 @@
             <div class="input-group-prepend">
                 <label for="server" class="input-group-text w-100">Select server</label>
             </div>
-            <select class="form-control" id="server"
+            <select class="form-control form-control-lg" id="server"
                 v-model="selectedServer"
                 v-on:change="checkServer()">
                 <option value="" disabled selected>Select...</option>
@@ -31,7 +31,7 @@
             <h3>
                 <span class="badge bg-info">{{ name }}</span>
             </h3>
-            <div class="row">
+            <div class="row mt-3 mb-3">
                 <div class="col-3">
                     <strong>Name</strong>
                 </div>
@@ -45,7 +45,7 @@
                     <strong>Status</strong>
                 </div>
             </div>
-            <div class="row"
+            <div class="row border-bottom pb-1 mb-1"
                 v-for="house in town"
                 v-if="house.status !== 'rented'">
                 <div class="col-3">
