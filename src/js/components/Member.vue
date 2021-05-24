@@ -76,6 +76,8 @@
 
             this.today = formatDate(new Date());
 
+            this.$emit('spinner', true);
+
             axios
                 .get('https://api.tibiadata.com/v2/characters/' + this.name.replace(' ', '+') + '.json')
                 .then(response => {
@@ -89,7 +91,9 @@
                     } else {
                         this.green = true;
                     }
-                })
+
+                    this.$emit('spinner', false);
+                });
         }
     }
 </script>

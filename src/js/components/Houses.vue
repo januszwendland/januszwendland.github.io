@@ -1,5 +1,5 @@
 <template>
-    <div class="container healing">
+    <div class="container houses">
         <h2 class="mt-3 mt-md-5 mb-3">Find free houses</h2>
         <div class="input-group">
             <div class="input-group-prepend">
@@ -16,7 +16,7 @@
         </div>
         <div class="d-md-inline-block"
             v-if="selectedServer">
-            <div class="healing-filter-by-town">
+            <div class="houses-filter-by-town">
                 <span class="badge bg-secondary mt-2 mr-2"
                     v-for="town in towns"
                     v-on:click="filterByTown = town"
@@ -57,6 +57,11 @@
                 <div class="col-5">{{ house.status }}</div>
             </div>
         </div>
+        <div class="d-flex align-items-center justify-content-center spinner" v-if="spinner > 0">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -89,7 +94,8 @@
                     'Venore': null,
                     'Yalahar' : null
                 },
-                filterByTown: null
+                filterByTown: null,
+                spinner: 0
             }
         },
 
@@ -100,6 +106,7 @@
 
                 if (this.selectedServer) {
                     this.towns.forEach(town => { 
+                        this.spinner++;
                         axios
                             .get('https://api.tibiadata.com/v2/houses/' + this.selectedServer + '/' + town + '.json')
                             .then(response => {
@@ -108,6 +115,8 @@
                                 if (response.data.houses.error) {
                                     alert(response.data.houses.error);
                                 }
+
+                                this.spinner--;
                             })
                     });
                 }

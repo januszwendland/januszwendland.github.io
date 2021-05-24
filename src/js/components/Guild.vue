@@ -65,9 +65,15 @@
                         <member
                             v-bind:member="character"
                             v-bind:rank="rank.rank_title"
-                            v-show="(all || filterMember(character.vocation)) && shareExp(character.level)" />
+                            v-show="(all || filterMember(character.vocation)) && shareExp(character.level)"
+                            v-on:spinner="setSpinner" />
                     </template>
                 </template>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center spinner" v-if="spinner > 0">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>
@@ -93,14 +99,24 @@
                 rp: false,
                 ms: false,
                 all: true,
-                share: 0
+                share: 0,
+                spinner: 0
             }
         },
 
         methods: {
+            setSpinner: function(value) {
+                if (value) {
+                    this.spinner++;
+                } else {
+                    this.spinner--;
+                }
+            },
             check: function () {
                 this.guild = null;
-                
+                this.spinner++;
+
+
                 if (this.guildName.length > 2) {
                     axios
                         .get('https://api.tibiadata.com/v2/guild/' + this.guildName.replace(' ', '+') + '.json')
@@ -110,6 +126,8 @@
                             if (response.data.guild.error) {
                                 alert(response.data.guild.error);
                             }
+
+                            this.spinner--;
                         });
                 }
             },

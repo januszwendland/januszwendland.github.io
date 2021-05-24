@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <h1 class="card-title">Tibia tools!</h1>
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="mb-0">My Tibia Tools, doing it when I need it.</p>
+                            <p class="mb-0">Few useful tools.</p>
                             <button class="d-none d-md-block collapse-list" title="Collapse list"
                                 v-on:click="collapsed = !collapsed"
                                 v-bind:class="{ 'collapsed' : collapsed }"></button>
@@ -44,13 +44,20 @@
             </div>
             <component v-bind:is="selected" />
         </div>
-        <div class="pt-3 pb-3 pl-1 pr-1 d-flex align-items-center justify-content-end">
-            <small class="text-muted">
-                Find me on Discord:
-                <span class="text-dark">Czit#6666</span>
-            </small>
-            <img srcset="img/skull.webp, img/skull@2x.webp 2x" src="img/skull.webp" width="50px" height="50px" alt="">
-        </div>
+        <footer class="container text-center pt-3 pb-3 text-muted footer">
+            <button class="btn btn-link" v-on:click="showContact = !showContact">Contact</button> |
+            <button class="btn btn-link" v-on:click="showAbout = !showAbout">About</button> |
+            <button class="btn btn-link" v-on:click="showChangelog = !showChangelog">Changelog</button> |
+            <button class="btn btn-link" v-on:click="showPrivacyPolicy = !showPrivacyPolicy">Privacy Policy</button>
+            <div class="pt-2">
+                Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/">CipSoft GmbH</a>.<br>
+                tibia.tools © All rights reserved.
+            </div>
+        </footer>
+        <contact v-if="showContact" />
+        <about v-if="showAbout" />
+        <changelog v-if="showChangelog" />
+        <privacy-policy v-if="showPrivacyPolicy" />
     </div>
 </template>
 
@@ -60,6 +67,10 @@
     import Houses from './components/Houses';
     import Transfer from './components/Transfer';
     import Healing from './components/Healing';
+    import Contact from './components/Contact';
+    import About from './components/About';
+    import Changelog from './components/Changelog';
+    import PrivacyPolicy from './components/PrivacyPolicy';
 
     export default {
         name: 'App',
@@ -69,7 +80,11 @@
             Imbuing,
             Houses,
             Transfer,
-            Healing
+            Healing,
+            Contact,
+            About,
+            Changelog,
+            PrivacyPolicy
         },
 
         data: function () {
@@ -82,7 +97,11 @@
                     { component: 'Healing', button: 'Healing calculator' }
                 ],
                 selected: null,
-                collapsed: false
+                collapsed: false,
+                showContact: false,
+                showAbout: false,
+                showChangelog: false,
+                showPrivacyPolicy: false
             }
         }
     }

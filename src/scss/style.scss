@@ -12,6 +12,7 @@
 @import "bootstrap/scss/card";
 @import "bootstrap/scss/badge";
 @import "bootstrap/scss/alert";
+@import "bootstrap/scss/spinners";
 @import "bootstrap/scss/utilities";
 
 .badge {
@@ -22,6 +23,40 @@
 
 .wrapper {
     min-height: 100vh;
+}
+
+.spinner {
+    background: rgba(white, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    .spinner-border {
+        animation-duration: 1s;
+    }
+}
+
+.footer {
+    font-size: 80%;
+    .btn {
+        padding: 0;
+        font-size: 100%;
+    }
+}
+
+.contact,
+.about,
+.changelog,
+.privacy-policy {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
 }
 
 .collapse-list {
@@ -97,7 +132,7 @@
     }
 }
 
-.healing-filter-by-town {
+.houses-filter-by-town {
     .badge {
         cursor: pointer;
     }
