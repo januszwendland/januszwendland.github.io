@@ -1,5 +1,7 @@
 <template>
     <div class="about">
+        <button class="close-popup" title="Hide contact"
+            v-on:click="$emit('close')"></button>
         <div class="container">
             <h2 class="mt-3 mt-md-5 mb-3">Soon!</h2>
         </div>

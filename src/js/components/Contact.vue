@@ -1,23 +1,16 @@
 <template>
-    <div class="contact">
-        <div class="container">
-            <h2 class="mt-3 mt-md-5 mb-3">Soon!</h2>
+    <div class="contact d-flex align-items-center justify-content-center p-3">
+        <button class="close-popup" title="Hide contact"
+            v-on:click="$emit('close')"></button>
+        <div class="text-center text-muted">
+            Find me on Discord: <span class="text-dark">Czit#6666</span><br>
+            Find me in Tibia: <span class="text-dark">Nienienie</span>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Contact',
-
-        data: function () {
-            return {
-
-            }
-        },
-
-        methods: {
-
-        }
+        name: 'Contact'
     }
 </script>

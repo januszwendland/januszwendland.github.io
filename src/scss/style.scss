@@ -32,7 +32,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 1001;
     .spinner-border {
         animation-duration: 1s;
     }
@@ -51,15 +51,22 @@
 .changelog,
 .privacy-policy {
     background: white;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-y: scroll;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: 1000;
 }
 
-.collapse-list {
+.contact {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.collapse-list,
+.close-popup {
     width: 24px;
     height: 24px;
     position: relative;
@@ -75,7 +82,7 @@
         height: 2px;
         content: '';
         display: block;
-        background: white;
+        background: #343a40;
         transition: transform 0.3s;
     }
     &.collapsed {
@@ -83,6 +90,35 @@
             transform: rotate(90deg);
         }
     }
+}
+
+.close-popup {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    &::after {
+        transform: rotate(45deg);
+    }
+    &::before {
+        transform: rotate(-45deg);
+    }
+    &:hover {
+        &::after {
+            transform: rotate(0);
+        }
+        &::before {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+.card-body {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    font-weight: 300;
 }
 
 .guild {
@@ -143,5 +179,8 @@
         .btn {
             width: 100%;;
         }
+    }
+    .contact {
+        font-size: 1.5rem;
     }
 }
