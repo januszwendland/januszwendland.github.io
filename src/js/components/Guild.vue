@@ -1,79 +1,67 @@
 <template>
-    <div class="container guild">
-        <h2 class="mt-3 mt-md-5 mb-3">Check guild</h2>
-        <form class="d-block" v-on:submit.prevent="check">
-            <div class="input-group">
-                <input placeholder="Guild name" class="form-control form-control-lg" v-model="guildName">
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-lg btn-primary" v-on:click="check">Check</button>
-                </div>
-            </div>
-        </form>
-        <div v-if="guild">
-            <div class="mt-2 mt-md-3">
-                <div class="d-md-inline-block">
-                    <div class="d-flex d-md-block flex-wrap">
-                        <span class="badge bg-secondary mt-2 mr-2 m-md-0"
-                            v-bind:class="{ 'bg-success': ed }"
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <img src="icons/guild.svg" alt="" width="18px" height="18px">
+                Check guild
+            </h2>
+        </div>
+        <div class="card-content">
+            <form v-on:submit.prevent="check">
+                <input placeholder="Guild name" v-model="guildName">
+                <button v-on:click="check">Check</button>
+            </form>
+            <div v-if="guild">
+                <div>
+                    <div>
+                        <span
+                            v-bind:class="{ 'selected': ed }"
                             v-on:click="filter('ed')">Druid</span>
-                        <span class="badge bg-secondary mt-2 mr-2 m-md-0"
-                            v-bind:class="{ 'bg-info': ek }"
+                        <span
+                            v-bind:class="{ 'selected': ek }"
                             v-on:click="filter('ek')">Knight</span>
-                        <span class="badge bg-secondary mt-2 mr-2 m-md-0"
-                            v-bind:class="{ 'bg-warning': rp }"
+                        <span
+                            v-bind:class="{ 'selected': rp }"
                             v-on:click="filter('rp')">Paladin</span>
-                        <span class="badge bg-secondary mt-2 mr-2 m-md-0"
-                            v-bind:class="{ 'bg-danger': ms }"
+                        <span
+                            v-bind:class="{ 'selected': ms }"
                             v-on:click="filter('ms')">Sorcerer</span>
                     </div>
                     <small>Filter by vocation.</small>
                 </div>
-                <div class="d-md-inline-block mt-3 mt-md-0 ml-md-3">
-                    <div class="input-group">
-                        <div class="input-group-prepend w-50">
-                            <label for="share" class="input-group-text w-100">Share</label>
-                        </div>
-                        <input type="number" class="form-control" id="share" v-model="share">
+                <div>
+                    <div>
+                        <label for="share">Share</label>
+                        <input type="number" id="share" v-model="share">
                     </div>
                     <small>Find who can share exp with given lvl.</small>
                 </div>
-            </div>
-            <div class="mt-3 mb-3">
-                <div class="row">
-                    <div class="col-2 d-none d-md-block">
-                        <strong>Rank</strong>
-                    </div>
-                    <div class="col-4 col-md-3">
-                        <strong>Name</strong>
-                    </div>
-                    <div class="col-2">
-                        <strong class="d-none d-md-inline">Vocation</strong>
-                        <strong class="d-md-none">Voc</strong>
-                    </div>
-                    <div class="col-2 col-md-1">
-                        <strong>Lvl</strong>
-                    </div>
-                    <div class="col-4 col-md-2">
-                        <strong>Last login</strong>
-                    </div>
-                    <div class="col-2 d-none d-md-block">
-                        <strong>Days from last login</strong>
-                    </div>
-                </div>
-                <template v-for="rank in guild">
-                    <template v-for="character in rank.characters">
-                        <member
-                            v-bind:member="character"
-                            v-bind:rank="rank.rank_title"
-                            v-show="(all || filterMember(character.vocation)) && shareExp(character.level)"
-                            v-on:spinner="setSpinner" />
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Vocation</th>
+                        <th>Lvl</th>
+                        <th>Last login</th>
+                        <th>Days from last login</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template v-for="rank in guild">
+                        <template v-for="character in rank.characters">
+                            <member
+                                v-bind:member="character"
+                                v-bind:rank="rank.rank_title"
+                                v-show="(all || filterMember(character.vocation)) && shareExp(character.level)"
+                                v-on:loader="setLoader" />
+                        </template>
                     </template>
-                </template>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center spinner" v-if="spinner > 0">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+            <div class="loader-wrapper" v-if="loader > 0">
+                <div class="loader" role="status"></div>
             </div>
         </div>
     </div>
@@ -100,21 +88,21 @@
                 ms: false,
                 all: true,
                 share: 0,
-                spinner: 0
+                loader: 0
             }
         },
 
         methods: {
-            setSpinner: function(value) {
+            setLoader: function(value) {
                 if (value) {
-                    this.spinner++;
+                    this.loader++;
                 } else {
-                    this.spinner--;
+                    this.loader--;
                 }
             },
             check: function () {
                 this.guild = null;
-                this.spinner++;
+                this.loader++;
 
 
                 if (this.guildName.length > 2) {
@@ -127,7 +115,7 @@
                                 alert(response.data.guild.error);
                             }
 
-                            this.spinner--;
+                            this.loader--;
                         });
                 }
             },

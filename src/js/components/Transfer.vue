@@ -1,91 +1,84 @@
 <template>
-    <div class="container transfer">
-        <h2 class="mt-3 mt-md-5 mb-3">Where can I transfer?</h2>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label for="server" class="input-group-text w-100">Current server</label>
-            </div>
-            <select class="form-control form-control-lg" id="server"
-                v-model="selectedServer">
-                <option value="" disabled selected>Select...</option>
-                <option
-                    v-for="server, key in servers"
-                    v-bind:value="key">{{ key }}</option>
-            </select>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <img src="icons/transfer.svg" alt="" width="18px" height="18px">
+                Where can I transfer?
+            </h2>
         </div>
-        <template v-if="selectedServer">
-            <div class="row mt-3 mb-3">
-                <div class="col-6 col-md-3">
-                    <strong>Name</strong>
-                </div>
-                <div class="col-6 col-md-3">
-                    <strong>Type</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>BattlEye</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>Blocked</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>Locked</strong>
-                </div>
+        <div class="card-content">
+            <div class="input-group input-group-with-label">
+                <label for="server">Current server</label>
+                <select id="server"
+                    v-model="selectedServer">
+                    <option value="" disabled selected>Select...</option>
+                    <option
+                        v-for="server, key in servers"
+                        v-bind:value="key">{{ key }}</option>
+                </select>
             </div>
-            <div class="row pb-1 mb-1">
-                <div class="col-6 col-md-3">{{ selectedServer }}</div>
-                <div class="col-6 col-md-3">{{ servers[selectedServer].type }}</div>
-                <div class="d-none d-md-block col-2">
-                    <span class="badge"
-                        v-bind:class="{ 'badge-success': servers[selectedServer].green, 'badge-warning': !servers[selectedServer].green }">{{ servers[selectedServer].green }}</span>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <span class="badge"
-                        v-bind:class="{ 'badge-primary' : servers[selectedServer].blocked, 'badge-secondary': !servers[selectedServer].blocked }">{{ servers[selectedServer].blocked }}</span>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <span class="badge"
-                        v-bind:class="{ 'badge-dark': servers[selectedServer].locked, 'badge-secondary': !servers[selectedServer].locked }">{{ servers[selectedServer].locked }}</span>
-                </div>
-            </div>
-            <h3 class="mt-3 mb-3">
-                <span class="badge bg-info">You can transfer to:</span>
-            </h3>
-            <div class="row mt-3 mb-3">
-                <div class="col-6 col-md-3">
-                    <strong>Name</strong>
-                </div>
-                <div class="col-6 col-md-3">
-                    <strong>Type</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>BattlEye</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>Blocked</strong>
-                </div>
-                <div class="d-none d-md-block col-2">
-                    <strong>Locked</strong>
-                </div>
-            </div>
-            <template v-for="server, key in servers" v-if="checkServer(key, server)">
-                <div class="row border-bottom pb-1 mb-1">
-                    <div class="col-6 col-md-3">{{ key }}</div>
-                    <div class="col-6 col-md-3">{{ server.type }}</div>
-                    <div class="d-none d-md-block col-2">
-                        <span class="badge"
-                            v-bind:class="{ 'badge-success': server.green, 'badge-warning': !server.green }">{{ server.green }}</span>
-                    </div>
-                    <div class="d-none d-md-block col-2">
-                        <span class="badge"
-                            v-bind:class="{ 'badge-primary': server.blocked, 'badge-secondary': !server.blocked }">{{ server.blocked }}</span>
-                    </div>
-                    <div class="d-none d-md-block col-2">
-                        <span class="badge"
-                            v-bind:class="{ 'badge-dark': server.locked, 'badge-secondary': !server.locked }">{{ server.locked }}</span>
-                    </div>
-                </div>
+            <template v-if="selectedServer">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>BattlEye</th>
+                        <th>Blocked</th>
+                        <th>Locked</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ selectedServer }}</td>
+                        <td>{{ servers[selectedServer].type }}</td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'green': servers[selectedServer].green, 'yellow': !servers[selectedServer].green }">{{ servers[selectedServer].green }}</span>
+                        </td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'blocked': servers[selectedServer].blocked, 'not-blocked': !servers[selectedServer].blocked }">{{ servers[selectedServer].blocked }}</span>
+                        </td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'locked': servers[selectedServer].locked, 'not-locked': !servers[selectedServer].locked }">{{ servers[selectedServer].locked }}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3>You can transfer to:</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>BattlEye</th>
+                        <th>Blocked</th>
+                        <th>Locked</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="server, key in servers" v-if="checkServer(key, server)">
+                        <td>{{ key }}</td>
+                        <td>{{ server.type }}</td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'green': server.green, 'yellow': !server.green }">{{ server.green }}</span>
+                        </td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'blocked': server.blocked, 'not-blocked': !server.blocked }">{{ server.blocked }}</span>
+                        </td>
+                        <td>
+                            <span
+                                v-bind:class="{ 'locked': server.locked, 'not-locked': !server.locked }">{{ server.locked }}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </template>
-        </template>
+        </div>
     </div>
 </template>
 

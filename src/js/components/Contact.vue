@@ -1,11 +1,11 @@
 <template>
-    <div class="contact d-flex align-items-center justify-content-center p-3">
-        <button class="close-popup" title="Hide contact"
+    <div class="popup">
+        <button class="popup-close" title="Close popup"
             v-on:click="$emit('close')"></button>
-        <div class="text-center text-muted">
-            Find me on Discord: <span class="text-dark">Czit#6666</span><br>
-            Find me in Tibia: <span class="text-dark">Nienienie</span>
-        </div>
+        <p>
+            Find me on Discord: <strong>Czit#6666</strong><br>
+            Find me in Tibia: <strong>Nienienie</strong>
+        </p>
     </div>
 </template>
 

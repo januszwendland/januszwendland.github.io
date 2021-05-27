@@ -1,25 +1,13 @@
 <template>
-    <div class="changelog">
-        <button class="close-popup" title="Hide contact"
+    <div class="popup">
+        <button class="popup-close" title="Close popup"
             v-on:click="$emit('close')"></button>
-        <div class="container">
-            <h2 class="mt-3 mt-md-5 mb-3">Soon!</h2>
-        </div>
+        <p>In progress...</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Changelog',
-
-        data: function () {
-            return {
-
-            }
-        },
-
-        methods: {
-
-        }
+        name: 'Changelog'
     }
 </script>

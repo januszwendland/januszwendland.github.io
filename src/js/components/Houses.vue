@@ -1,65 +1,62 @@
 <template>
-    <div class="container houses">
-        <h2 class="mt-3 mt-md-5 mb-3">Find free houses</h2>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <label for="server" class="input-group-text w-100">Select server</label>
-            </div>
-            <select class="form-control form-control-lg" id="server"
-                v-model="selectedServer"
-                v-on:change="checkServer()">
-                <option value="" disabled selected>Select...</option>
-                <option
-                    v-for="server in servers"
-                    v-bind:value="server">{{ server }}</option>
-            </select>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <img src="icons/houses.svg" alt="" width="18px" height="18px">
+                Find free houses
+            </h2>
         </div>
-        <div class="d-md-inline-block"
-            v-if="selectedServer">
-            <div class="houses-filter-by-town">
-                <span class="badge bg-secondary mt-2 mr-2"
-                    v-for="town in towns"
-                    v-on:click="filterByTown = town"
-                    v-bind:class="{ 'bg-success': filterByTown === town }">{{ town }}</span>
+        <div class="card-content">
+            <div class="input-group input-group-with-label">
+                <label for="server">Select server</label>
+                <select id="server"
+                    v-model="selectedServer"
+                    v-on:change="checkServer()">
+                    <option value="" disabled selected>Select...</option>
+                    <option
+                        v-for="server in servers"
+                        v-bind:value="server">{{ server }}</option>
+                </select>
             </div>
-            <small>Filter by town.</small>
-        </div>
-        <div class="mt-3"
-            v-for="town, name in server"
-            v-if="selectedServer && (town != null && town.length)"
-            v-show="!filterByTown || filterByTown === name">
-            <h3>
-                <span class="badge bg-info">{{ name }}</span>
-            </h3>
-            <div class="row mt-3 mb-3">
-                <div class="col-3">
-                    <strong>Name</strong>
+            <div v-if="selectedServer">
+                <div>
+                    <span
+                        v-for="town in towns"
+                        v-on:click="filterByTown = town"
+                        v-bind:class="{ 'selected': filterByTown === town }">{{ town }}</span>
                 </div>
-                <div class="col-2">
-                    <strong>Rent</strong>
-                </div>
-                <div class="col-2">
-                    <strong>Size</strong>
-                </div>
-                <div class="col-5">
-                    <strong>Status</strong>
-                </div>
+                <small>Filter by town.</small>
             </div>
-            <div class="row border-bottom pb-1 mb-1"
-                v-for="house in town"
-                v-if="house.status !== 'rented'">
-                <div class="col-3">
-                    <a class="text-success"
-                        v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
-                </div>
-                <div class="col-2">{{ house.rent }}</div>
-                <div class="col-2">{{ house.size }}</div>
-                <div class="col-5">{{ house.status }}</div>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-center spinner" v-if="spinner > 0">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+            <template
+                v-for="town, name in server"
+                v-if="selectedServer && (town != null && town.length)"
+                v-show="!filterByTown || filterByTown === name">
+                <h3>{{ name }}</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rent</th>
+                        <th>Size</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr
+                        v-for="house in town"
+                        v-if="house.status !== 'rented'">
+                        <td>
+                            <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
+                        </td>
+                        <td>{{ house.rent }}</td>
+                        <td>{{ house.size }}</td>
+                        <td>{{ house.status }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </template>
+            <div class="loader-wrapper" v-if="loader > 0">
+                <div class="loader" role="status"></div>
             </div>
         </div>
     </div>
@@ -95,7 +92,7 @@
                     'Yalahar' : null
                 },
                 filterByTown: null,
-                spinner: 0
+                loader: 0
             }
         },
 
@@ -106,7 +103,7 @@
 
                 if (this.selectedServer) {
                     this.towns.forEach(town => { 
-                        this.spinner++;
+                        this.loader++;
                         axios
                             .get('https://api.tibiadata.com/v2/houses/' + this.selectedServer + '/' + town + '.json')
                             .then(response => {
@@ -116,7 +113,7 @@
                                     alert(response.data.houses.error);
                                 }
 
-                                this.spinner--;
+                                this.loader--;
                             })
                     });
                 }

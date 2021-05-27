@@ -1,55 +1,61 @@
 <template>
-    <div class="d-flex flex-column justify-content-between wrapper">
-        <div v-if="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
-            <div class="container pt-3">
-                <div class="card text-dark bg-light">
-                    <div class="card-header">
-                        <h1 class="card-title display-4">Tibia tools!</h1>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="mb-0 lead">Few useful tools.</p>
-                            <button class="collapse-list" title="Collapse list"
-                                v-on:click="collapsed = !collapsed"
-                                v-bind:class="{ 'collapsed' : collapsed }"></button>
-                        </div>
-                    </div>
-                    <div class="card-body" v-if="!collapsed">
-                        <ul class="m-0 pl-4">
-                            <li>
-                                <strong>Check guild</strong> - check specific guild, filter members by vocation and find players who can share exp with you.
-                            </li>
-                            <li>
-                                <strong>Imbuing calculator</strong> - calculate cost of imbuing.
-                            </li>
-                            <li>
-                                <strong>Houses</strong> - find free houses.
-                            </li>
-                            <li>
-                                <strong>Transfer</strong> - where can I transfer?
-                            </li>
-                            <li>
-                                <strong>Healing calculator</strong> - soon!
-                            </li>
-                        </ul>
-                    </div>
+    <div class="wrapper">
+        <nav class="top-nav">
+            <h1>Tibia Tools</h1>
+        </nav>
+        <main class="main" v-if="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
+            <article class="card" v-bind:class="{ 'collapsed' : collapsed }">
+                <div class="card-header">
+                    <h2 class="card-title">Tools Description</h2>
+                    <button class="card-collapse-btn" title="Collapse card"
+                        v-on:click="collapsed = !collapsed"
+                        v-bind:class="{ 'collapsed' : collapsed }">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-                <nav class="navbar">
-                    <button type="button" class="btn btn-lg mt-3 mr-md-3"
-                        v-for="tool in tools"
-                        v-on:click="selected = tool.component; collapsed = true"
-                        v-bind:class="{ 'btn-primary' : selected === tool.component, 'btn-outline-primary' : selected !== tool.component }">{{ tool.button }}</button>
-                </nav>
-            </div>
-            <component v-bind:is="selected" />
-        </div>
-        <footer class="container text-center pt-3 pb-3 text-muted footer">
-            <button class="btn btn-link" v-on:click="showContact = true">Contact</button> |
-            <button class="btn btn-link" v-on:click="showAbout = true">About</button> |
-            <button class="btn btn-link" v-on:click="showChangelog = true">Changelog</button> |
-            <button class="btn btn-link" v-on:click="showPrivacyPolicy = true">Privacy Policy</button>
-            <div class="pt-2">
+                <div class="card-content" v-if="!collapsed">
+                    <ul class="tools">
+                        <li v-for="tool in tools">
+                            <img v-bind:src="tool.icon" alt="" width="18px" height="18px">
+                            <span>
+                                <strong>{{ tool.name }}</strong>: {{ tool.description }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+            <nav class="tools-nav">
+                <button type="button"
+                    v-for="tool in tools"
+                    v-on:click="selectedTool = tool.component; collapsed = true"
+                    v-bind:class="{ 'selected' : selectedTool === tool.component, 'not-selected' : selectedTool !== tool.component }">
+                    <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
+                    <span>{{ tool.name }}</span>
+                </button>
+            </nav>
+            <component v-bind:is="selectedTool" />
+        </main>
+        <footer class="footer">
+            <ul class="footer-btns">
+                <li>
+                    <button v-on:click="showContact = true">Contact</button>
+                </li>
+                <li>
+                    <button v-on:click="showAbout = true">About</button>
+                </li>
+                <li>
+                    <button v-on:click="showChangelog = true">Changelog</button>
+                </li>
+                <li>
+                    <button v-on:click="showPrivacyPolicy = true">Privacy Policy</button>
+                </li>
+            </ul>
+            <p>
                 Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/">CipSoft GmbH</a>.<br>
                 tibia.tools © All rights reserved.
-            </div>
+            </p>
         </footer>
         <contact v-if="showContact" v-on:close="closePopup" />
         <about v-if="showAbout" v-on:close="closePopup" />
@@ -87,13 +93,43 @@
         data: function () {
             return {
                 tools: [
-                    { component: 'Guild', button: 'Check guild' },
-                    { component: 'Imbuing', button: 'Imbuing calculator' },
-                    { component: 'Houses', button: 'Houses' },
-                    { component: 'Transfer', button: 'Transfer' },
-                    { component: 'Healing', button: 'Healing calculator' }
+                    { 
+                        component: 'Guild',
+                        name: 'Check guild',
+                        description: 'Check specific guild, filter members by vocation and find players who can share exp with you.',
+                        icon: 'icons/guild.svg',
+                        icon_white: 'icons/guild_white.svg'
+                    },
+                    {
+                        component: 'Imbuing',
+                        name: 'Imbuing calculator',
+                        description: 'Calculate cost of imbuing.',
+                        icon: 'icons/imbuing.svg',
+                        icon_white: 'icons/imbuing_white.svg'
+                    },
+                    {
+                        component: 'Houses',
+                        name: 'Houses',
+                        description: 'Find free houses.',
+                        icon: 'icons/houses.svg',
+                        icon_white: 'icons/houses_white.svg'
+                    },
+                    {
+                        component: 'Transfer',
+                        name: 'Transfer',
+                        description: 'Where can I transfer?',
+                        icon: 'icons/transfer.svg',
+                        icon_white: 'icons/transfer_white.svg'
+                    },
+                    {
+                        component: 'Healing',
+                        name: 'Healing calculator',
+                        description: 'In progress...',
+                        icon: 'icons/healing.svg',
+                        icon_white: 'icons/healing_white.svg'
+                    }
                 ],
-                selected: null,
+                selectedTool: null,
                 collapsed: false,
                 showContact: false,
                 showAbout: false,
