@@ -1,10 +1,9 @@
 $bg: #f5f7fa;
-$text: #404e67;
-$focus: #00b5b8;
-$green: #16d39a;
-$pink: #ff7588;
-$gray: #90a4ae;
-$border: #babfc7;
+$text: #212529;
+$blue: #0d6efd;
+$green: #198754;
+$gray: #6c757d;
+$red: #dc3545;
 
 * {
     box-sizing: border-box;
@@ -59,14 +58,14 @@ input {
         font-size: 1.25rem;
         line-height: 1.25;
         border-radius: 0.25rem;
-        border: 1px solid $border;
+        border: 1px solid $gray;
         cursor: pointer;
         -moz-appearance: none;
         -webkit-appearance: none;
         &:focus {
             outline: 0;
             box-shadow: none;
-            border-color: $focus;
+            border-color: $blue;
         }
     }
 }
@@ -81,7 +80,7 @@ input {
         font-size: 1.25rem;
         line-height: 1.25;
         background-color: $bg;
-        border-color: $border;
+        border-color: $gray;
         border-style: solid;
         border-width: 1px 0 1px 1px;
         border-radius: 0.25rem 0 0 0.25rem;
@@ -103,7 +102,7 @@ input {
 .loader,
 .loader:before,
 .loader:after {
-  background: $focus;
+  background: $blue;
   -webkit-animation: loader 1s infinite ease-in-out;
   animation: loader 1s infinite ease-in-out;
   width: 1rem;
@@ -111,7 +110,7 @@ input {
 }
 .loader {
     position: relative;
-    color: $focus;
+    color: $blue;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
@@ -183,7 +182,7 @@ input {
         line-height: 1;
         display: inline-block;
         padding: 0 5px;
-        border-right: 1px solid $gray;
+        border-right: 1px solid $text;
         &:last-child {
             border-right: none;
         }
@@ -217,7 +216,7 @@ input {
         font-weight: 300;
     }
     strong {
-        color: $focus;
+        color: $red;
     }
 }
 .popup-close {
@@ -356,7 +355,7 @@ input {
         cursor: pointer;
         margin: 0 0.875rem 0.875rem 0;
         box-shadow: 0 10px 40px 0 rgb(62 57 107 / 7%), 0 2px 9px 0 rgb(62 57 107 / 6%);
-        background-color: $pink;
+        background-color: $text;
         padding: 0.75rem 1.5rem;
         border: none;
         color: white;
@@ -364,17 +363,16 @@ input {
         align-items: center;
         font-size: 1.3rem;
         border-radius: 2rem;
-        opacity: 0.7;
-        transition: opacity 0.3s;
-        &.selected {
-            background-color: $green;
-            opacity: 1;
-        }
+        transition: background-color 0.3s;
         &:hover {
-            opacity: 1;
+            background-color: lighten($color: $text, $amount: 10%);
             img {
                 transform: scale(1.1);
             }
+        }
+        &.selected {
+            background-color: $green;
+            opacity: 1;
         }
     }
     img {
