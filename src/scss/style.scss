@@ -1,12 +1,10 @@
 $bg: #f5f7fa;
 $text: #404e67;
-$link: #009c9f;
-$link-hover: #008385;
+$focus: #00b5b8;
 $green: #16d39a;
 $pink: #ff7588;
 $gray: #90a4ae;
 $border: #babfc7;
-$focus: #00b5b8;
 
 * {
     box-sizing: border-box;
@@ -41,12 +39,7 @@ h6 {
 }
 
 a {
-    color: $link;
-    text-decoration: none;
-    transition: color 0.3s;
-    &:hover {
-        color: $link-hover;
-    }
+    color: $text;
 }
 
 strong {
@@ -175,7 +168,7 @@ input {
 .footer {
     text-align: center;
     padding: 1.8rem;
-    color: $gray;
+    color: $text;
     p {
         margin: 0;
     }
@@ -200,11 +193,9 @@ input {
         border: none;
         cursor: pointer;
         padding: 0;
-        color: $link;
+        color: $text;
+        text-decoration: underline;
         transition: color 0.3s;
-        &:hover {
-            color: $link-hover;
-        }
     }
 }
 
@@ -226,7 +217,7 @@ input {
         font-weight: 300;
     }
     strong {
-        color: $link;
+        color: $focus;
     }
 }
 .popup-close {
