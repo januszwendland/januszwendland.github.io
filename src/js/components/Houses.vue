@@ -11,28 +11,29 @@
                 <label for="server">Select server</label>
                 <select id="server"
                     v-model="selectedServer"
-                    v-on:change="checkServer()">
+                    v-on:change="checkServer">
                     <option value="" disabled selected>Select...</option>
                     <option
                         v-for="server in servers"
                         v-bind:value="server">{{ server }}</option>
                 </select>
             </div>
-            <div v-if="selectedServer">
-                <div>
-                    <span
+            <div class="mt"
+                v-if="selectedServer">
+                <div class="filters-pills">
+                    <span class="filters-pill"
                         v-for="town in towns"
-                        v-on:click="filterByTown = town"
+                        v-on:click="filter(town)"
                         v-bind:class="{ 'selected': filterByTown === town }">{{ town }}</span>
                 </div>
                 <small>Filter by town.</small>
             </div>
-            <template
+            <div
                 v-for="town, name in server"
                 v-if="selectedServer && (town != null && town.length)"
                 v-show="!filterByTown || filterByTown === name">
-                <h3>{{ name }}</h3>
-                <table>
+                <h3 class="mt">{{ name }}:</h3>
+                <table class="mt">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -54,7 +55,7 @@
                     </tr>
                     </tbody>
                 </table>
-            </template>
+            </div>
             <div class="loader-wrapper" v-if="loader > 0">
                 <div class="loader" role="status"></div>
             </div>
@@ -116,6 +117,13 @@
                                 this.loader--;
                             })
                     });
+                }
+            },
+            filter: function(town) {
+                if (town === this.filterByTown) {
+                    this.filterByTown = null;
+                } else {
+                    this.filterByTown = town;
                 }
             }
         }

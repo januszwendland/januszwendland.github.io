@@ -7,36 +7,39 @@
             </h2>
         </div>
         <div class="card-content">
-            <form v-on:submit.prevent="check">
+            <form class="input-group input-group-with-label"
+                v-on:submit.prevent="check">
                 <input placeholder="Guild name" v-model="guildName">
-                <button v-on:click="check">Check</button>
+                <button>Check</button>
             </form>
-            <div v-if="guild">
-                <div>
+            <template v-if="guild">
+                <div class="filters mt">
                     <div>
-                        <span
-                            v-bind:class="{ 'selected': ed }"
-                            v-on:click="filter('ed')">Druid</span>
-                        <span
-                            v-bind:class="{ 'selected': ek }"
-                            v-on:click="filter('ek')">Knight</span>
-                        <span
-                            v-bind:class="{ 'selected': rp }"
-                            v-on:click="filter('rp')">Paladin</span>
-                        <span
-                            v-bind:class="{ 'selected': ms }"
-                            v-on:click="filter('ms')">Sorcerer</span>
+                        <div class="filters-pills">
+                            <span class="filters-pill"
+                                v-bind:class="{ 'selected': ed }"
+                                v-on:click="filter('ed')">Druid</span>
+                            <span class="filters-pill"
+                                v-bind:class="{ 'selected': ek }"
+                                v-on:click="filter('ek')">Knight</span>
+                            <span class="filters-pill"
+                                v-bind:class="{ 'selected': rp }"
+                                v-on:click="filter('rp')">Paladin</span>
+                            <span class="filters-pill"
+                                v-bind:class="{ 'selected': ms }"
+                                v-on:click="filter('ms')">Sorcerer</span>
+                        </div>
+                        <small>Filter by vocation.</small>
                     </div>
-                    <small>Filter by vocation.</small>
-                </div>
-                <div>
                     <div>
-                        <label for="share">Share</label>
-                        <input type="number" id="share" v-model="share">
+                        <div>
+                            <label for="share">Share</label>
+                            <input type="number" id="share" v-model="share">
+                        </div>
+                        <small>Find who can share exp with given lvl.</small>
                     </div>
-                    <small>Find who can share exp with given lvl.</small>
                 </div>
-                <table>
+                <table class="mt">
                     <thead>
                     <tr>
                         <th>Rank</th>
@@ -59,7 +62,7 @@
                     </template>
                     </tbody>
                 </table>
-            </div>
+            </template>
             <div class="loader-wrapper" v-if="loader > 0">
                 <div class="loader" role="status"></div>
             </div>
@@ -102,10 +105,10 @@
             },
             check: function () {
                 this.guild = null;
-                this.loader++;
-
 
                 if (this.guildName.length > 2) {
+                    this.loader++;
+
                     axios
                         .get('https://api.tibiadata.com/v2/guild/' + this.guildName.replace(' ', '+') + '.json')
                         .then(response => {
