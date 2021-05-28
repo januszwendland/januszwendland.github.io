@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="card-content">
-            <div class="input-group input-group-with-label">
+            <div class="input-group large left">
                 <label for="server">Select server</label>
                 <select id="server"
                     v-model="selectedServer"
@@ -26,7 +26,7 @@
                         v-on:click="filter(town)"
                         v-bind:class="{ 'selected': filterByTown === town }">{{ town }}</span>
                 </div>
-                <small>Filter by town.</small>
+                <small class="filters-info">Filter by town.</small>
             </div>
             <div
                 v-for="town, name in server"

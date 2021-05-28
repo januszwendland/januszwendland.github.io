@@ -1,14 +1,15 @@
 <template>
-    <tr v-bind:class="{ 'green': green, 'orange': orange, 'red': red }">
-        <td>{{ rank }}</td>
+    <tr class="member"
+        v-bind:class="{ 'green': green, 'orange': orange, 'red': red }">
+        <td class="hide-on-mobile">{{ rank }}</td>
         <td>
             <a target="_blank"
                 v-bind:href="href">{{ member.name }}</a>
         </td>
         <td>{{ vocation }}</td>
         <td>{{ level }}</td>
-        <td>{{ last }}</td>
-        <td>{{ days }}</td>
+        <td class="hide-on-mobile">{{ last }}</td>
+        <td class="hide-on-mobile">{{ days }}</td>
     </tr>
 </template>
 

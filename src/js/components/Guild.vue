@@ -7,14 +7,21 @@
             </h2>
         </div>
         <div class="card-content">
-            <form class="input-group input-group-with-label"
+            <form class="input-group large right"
                 v-on:submit.prevent="check">
                 <input placeholder="Guild name" v-model="guildName">
                 <button>Check</button>
             </form>
             <template v-if="guild">
-                <div class="filters mt">
-                    <div>
+                <div class="mt">
+                    <small>
+                        <strong class="green">Green</strong> - loged in recently.<br>
+                        <strong class="orange">Orange</strong> - didn't log in lately.<br>
+                        <strong class="red">Red</strong> - didn't log in for long time.
+                    </small>
+                </div>
+                <div class="filters">
+                    <div class="mt">
                         <div class="filters-pills">
                             <span class="filters-pill"
                                 v-bind:class="{ 'selected': ed }"
@@ -29,25 +36,28 @@
                                 v-bind:class="{ 'selected': ms }"
                                 v-on:click="filter('ms')">Sorcerer</span>
                         </div>
-                        <small>Filter by vocation.</small>
+                        <small class="filters-info">Filter by vocation.</small>
                     </div>
-                    <div>
-                        <div>
+                    <div class="mt">
+                        <div class="input-group small left">
                             <label for="share">Share</label>
                             <input type="number" id="share" v-model="share">
                         </div>
-                        <small>Find who can share exp with given lvl.</small>
+                        <small class="filters-info">Find who can share exp with given lvl.</small>
                     </div>
                 </div>
                 <table class="mt">
                     <thead>
                     <tr>
-                        <th>Rank</th>
+                        <th class="hide-on-mobile">Rank</th>
                         <th>Name</th>
-                        <th>Vocation</th>
+                        <th>
+                            <span class="hide-on-mobile">Vocation</span>
+                            <span class="show-on-mobile">Voc</span>
+                        </th>
                         <th>Lvl</th>
-                        <th>Last login</th>
-                        <th>Days from last login</th>
+                        <th class="hide-on-mobile">Last login</th>
+                        <th class="hide-on-mobile">Days from last login</th>
                     </tr>
                     </thead>
                     <tbody>

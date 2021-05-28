@@ -13,6 +13,10 @@ $cyan:      #0dcaf0;
 $gray:      #adb5bd;
 $gray-dark: #6c757d;
 
+.green { color: $green; }
+.orange { color: $orange; }
+.red { color: $red; }
+
 * {
     box-sizing: border-box;
 }
@@ -66,15 +70,15 @@ input {
 }
 
 .input-group {
+    display: flex;
     select,
     input {
         width: 100%;
-        padding: 1rem 1.25rem;
-        font-size: 1.25rem;
-        line-height: 1.25;
-        border-radius: 0.25rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.3rem;
+        line-height: 1.5;
         border: 1px solid $gray;
-        cursor: pointer;
         -moz-appearance: none;
         -webkit-appearance: none;
         &:focus {
@@ -83,33 +87,61 @@ input {
             border-color: $green;
         }
     }
-}
-.input-group-with-label {
-    display: flex;
-    select {
-        border-radius: 0 0.25rem 0.25rem 0;
-    }
-    input {
-        border-radius: 0.25rem 0 0 0.25rem;
-    }
     label,
     button {
         white-space: nowrap;
-        padding: 1rem 1.25rem;
-        font-size: 1.25rem;
-        line-height: 1.25;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.3rem;
+        line-height: 1.5;
         background-color: $bg;
         border-color: $gray;
         border-style: solid;
         cursor: pointer;
+        display: inline-block;
     }
-    label {
-        border-radius: 0.25rem 0 0 0.25rem;
-        border-width: 1px 0 1px 1px;
+    select {
+        cursor: pointer;
     }
-    button {
-        border-radius: 0 0.25rem 0.25rem 0;
-        border-width: 1px 1px 1px 0;
+    &.large {
+        select,
+        input,
+        label,
+        button {
+            padding: 1rem;
+            font-size: 1.25rem;
+        }
+    }
+    &.small {
+        select,
+        input,
+        label,
+        button {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.875rem;
+        }
+    }
+    &.left {
+        label,
+        button {
+            border-radius: 0.3rem 0 0 0.3rem;
+            border-width: 1px 0 1px 1px;
+        }
+        select,
+        input {
+            border-radius: 0 0.3rem 0.3em 0;
+        }
+    }
+    &.right {
+        label,
+        button {
+            border-radius: 0 0.3rem 0.3rem 0;
+            border-width: 1px 1px 1px 0;
+        }
+        select,
+        input {
+            border-radius: 0.3rem 0 0 0.3rem;
+        }
     }
 }
 
@@ -191,27 +223,39 @@ input {
 }
 
 .filters {
-    display: flex;;
+    display: flex;
+    .input-group {
+        margin: 0 0 0.5rem;
+    }
 }
 .filters-pills {
-    display: flex;;
+    display: flex;
+    flex-wrap: wrap;
 }
 .filters-pill {
-    padding: 0.35rem 0.65rem;
+    padding: 0.3rem 0.6rem;
     background-color: $gray-dark;
     border-radius: 0.25rem;
-    margin: 0 0.25rem 0 0;
+    margin: 0 0.5rem 0.5rem 0;
     cursor: pointer;
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    transition: background-colo 0.3s;
+    line-height: 1.5;
+    transition: background-color 0.3s, border-color 0.3s;
+    border: 1px solid $gray-dark;
     &:hover {
         background-color: $gray;
+        border-color: $gray;
     }
     &.selected {
         background-color: $orange;
+        border-color: $orange;
     }
+}
+.filters-info {
+    display: block;
+    margin: -0.3rem 0 0;
 }
 
 .wrapper {
@@ -456,7 +500,13 @@ th {
 }
 td {
     border-bottom: 1px solid $gray;
-    padding: 5px 0;
+    padding: 0.3rem;
+    &:first-child {
+        padding: 0.3rem 0.3rem 0.3rem 0;
+    }
+    &:last-child {
+        padding: 0.3rem 0 0.3rem 0.3rem;
+    }
 }
 tr {
     padding: 5px 0;
@@ -467,7 +517,35 @@ tr {
     }
 }
 
+.member {
+    a {
+        color: inherit;
+        font-weight: 700;
+    }
+}
+
+@media (min-width: 1000px) {
+    .show-on-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 999.98px) {
+    table {
+        table-layout: auto;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
 @media (max-width: 767.98px) {
+    .mb {
+        margin-bottom: 1rem;
+    }
+    .mt {
+        margin-top: 1rem;
+    }
     .main,
     .footer {
         padding: 1rem;
@@ -488,5 +566,8 @@ tr {
         img {
             margin: 0;
         }
+    }
+    .filters {
+        display: block;
     }
 }

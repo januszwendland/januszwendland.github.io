@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="card-content">
-            <div class="input-group input-group-with-label">
+            <div class="input-group large left">
                 <label for="server">Current server</label>
                 <select id="server"
                     v-model="selectedServer">
