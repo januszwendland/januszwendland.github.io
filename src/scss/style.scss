@@ -81,6 +81,8 @@ input {
         border: 1px solid $gray;
         -moz-appearance: none;
         -webkit-appearance: none;
+        display: block;
+        margin: 0;
         &:focus {
             outline: 0;
             box-shadow: none;
@@ -98,7 +100,8 @@ input {
         border-color: $gray;
         border-style: solid;
         cursor: pointer;
-        display: inline-block;
+        display: block;
+        margin: 0;
     }
     select {
         cursor: pointer;
@@ -497,16 +500,11 @@ table {
 }
 th {
     text-align: left;
+    padding: 0.3rem;
 }
 td {
     border-bottom: 1px solid $gray;
     padding: 0.3rem;
-    &:first-child {
-        padding: 0.3rem 0.3rem 0.3rem 0;
-    }
-    &:last-child {
-        padding: 0.3rem 0 0.3rem 0.3rem;
-    }
 }
 tr {
     padding: 5px 0;

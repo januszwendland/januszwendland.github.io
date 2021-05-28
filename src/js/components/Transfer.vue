@@ -23,24 +23,24 @@
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
-                        <th>BattlEye</th>
-                        <th>Blocked</th>
-                        <th>Locked</th>
+                        <th class="hide-on-mobile">BattlEye</th>
+                        <th class="hide-on-mobile">Blocked</th>
+                        <th class="hide-on-mobile">Locked</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{ selectedServer }}</td>
                         <td>{{ servers[selectedServer].type }}</td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'green': servers[selectedServer].green, 'yellow': !servers[selectedServer].green }">{{ servers[selectedServer].green }}</span>
                         </td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'blocked': servers[selectedServer].blocked, 'not-blocked': !servers[selectedServer].blocked }">{{ servers[selectedServer].blocked }}</span>
                         </td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'locked': servers[selectedServer].locked, 'not-locked': !servers[selectedServer].locked }">{{ servers[selectedServer].locked }}</span>
                         </td>
@@ -53,24 +53,24 @@
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
-                        <th>BattlEye</th>
-                        <th>Blocked</th>
-                        <th>Locked</th>
+                        <th class="hide-on-mobile">BattlEye</th>
+                        <th class="hide-on-mobile">Blocked</th>
+                        <th class="hide-on-mobile">Locked</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="server, key in servers" v-if="checkServer(key, server)">
                         <td>{{ key }}</td>
                         <td>{{ server.type }}</td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'green': server.green, 'yellow': !server.green }">{{ server.green }}</span>
                         </td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'blocked': server.blocked, 'not-blocked': !server.blocked }">{{ server.blocked }}</span>
                         </td>
-                        <td>
+                        <td class="hide-on-mobile">
                             <span
                                 v-bind:class="{ 'locked': server.locked, 'not-locked': !server.locked }">{{ server.locked }}</span>
                         </td>

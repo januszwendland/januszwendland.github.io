@@ -37,8 +37,8 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Rent</th>
-                        <th>Size</th>
+                        <th class="hide-on-mobile">Rent</th>
+                        <th class="hide-on-mobile">Size</th>
                         <th>Status</th>
                     </tr>
                     </thead>
@@ -49,8 +49,8 @@
                         <td>
                             <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
                         </td>
-                        <td>{{ house.rent }}</td>
-                        <td>{{ house.size }}</td>
+                        <td class="hide-on-mobile">{{ house.rent }}</td>
+                        <td class="hide-on-mobile">{{ house.size }}</td>
                         <td>{{ house.status }}</td>
                     </tr>
                     </tbody>
