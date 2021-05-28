@@ -514,7 +514,6 @@ input {
 
 table {
     width: 100%;
-    table-layout: fixed;
     border-collapse: collapse;
     a {
         text-decoration: none;
@@ -540,6 +539,9 @@ tr {
             border-bottom: none;
         }
     }
+}
+.table-fixed {
+    table-layout: fixed;
 }
 
 .member {
@@ -590,9 +592,6 @@ tr {
         &:last-child {
             margin: 0;
         }
-    }
-    table {
-        table-layout: auto;
     }
     .hide-on-mobile {
         display: none;

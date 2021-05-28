@@ -18,7 +18,7 @@
                 </select>
             </div>
             <template v-if="selectedServer">
-                <table class="mt">
+                <table class="mt table-fixed">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -48,7 +48,7 @@
                     </tbody>
                 </table>
                 <h3 class="mt">You can transfer to:</h3>
-                <table class="mt">
+                <table class="mt table-fixed">
                     <thead>
                     <tr>
                         <th>Name</th>

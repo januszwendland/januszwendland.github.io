@@ -33,7 +33,7 @@
                 v-if="selectedServer && (town != null && town.length)"
                 v-show="!filterByTown || filterByTown === name">
                 <h3 class="mt">{{ name }}:</h3>
-                <table class="mt">
+                <table class="mt table-fixed">
                     <thead>
                     <tr>
                         <th>Name</th>
