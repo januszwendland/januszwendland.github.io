@@ -100,7 +100,8 @@ input {
         border-color: $gray;
         border-style: solid;
         cursor: pointer;
-        display: block;
+        display: flex;
+        align-items: center;
         margin: 0;
     }
     select {
@@ -146,6 +147,15 @@ input {
             border-radius: 0.3rem 0 0 0.3rem;
         }
     }
+}
+
+.row {
+    display: flex;
+    margin: 0 -0.375rem;
+}
+.col {
+    width: 100%;
+    padding: 0 0.375rem;
 }
 
 .loader-wrapper {
@@ -254,6 +264,23 @@ input {
     &.selected {
         background-color: $orange;
         border-color: $orange;
+    }
+}
+.filters-imgs {
+    display: flex;
+    flex-wrap: wrap;
+    img {
+        margin: 0 0.5rem 0.5rem 0;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        &.selected {
+            opacity: 1;
+            outline: 0.25rem solid $orange;
+        }
+        &:hover {
+            opacity: 1;
+        }
     }
 }
 .filters-info {
@@ -522,6 +549,32 @@ tr {
     }
 }
 
+.imbuing {
+    padding: 0.75rem;
+    color: white;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    &.basic {
+        background-color: $green;
+    }
+    &.intricate {
+        background-color: $orange;
+    }
+    &.powerful {
+        background-color: $red;
+    }
+    span {
+        display: block;
+        background-color: white;
+        padding: 0.3rem 1rem;
+        border-radius: 0.3rem;
+        color: $text;
+    }
+}
+
 @media (min-width: 1000px) {
     .show-on-mobile {
         display: none;
@@ -529,6 +582,15 @@ tr {
 }
 
 @media (max-width: 999.98px) {
+    .row {
+        flex-wrap: wrap;
+    }
+    .col {
+        margin: 0 0 0.75rem;
+        &:last-child {
+            margin: 0;
+        }
+    }
     table {
         table-layout: auto;
     }

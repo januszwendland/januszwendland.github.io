@@ -15,7 +15,7 @@
             <template v-if="guild">
                 <div class="mt">
                     <small>
-                        <strong class="green">Green</strong> - loged in recently.<br>
+                        <strong class="green">Green</strong> - logged in recently.<br>
                         <strong class="orange">Orange</strong> - didn't log in lately.<br>
                         <strong class="red">Red</strong> - didn't log in for long time.
                     </small>

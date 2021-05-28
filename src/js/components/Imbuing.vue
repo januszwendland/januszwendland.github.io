@@ -7,31 +7,37 @@
             </h2>
         </div>
         <div class="card-content">
-            <div>
-                <div>
-                    <div>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group left">
                         <label for="tokenPrice">
                             <img src="img/gold-token.webp" title="Gold Token" width="32px" height="32px">
                         </label>
                         <input type="number" id="tokenPrice" v-model="token">
                     </div>
-                    <div>
+                </div>
+                <div class="col">
+                    <div class="imbuing basic">
                         Basic
                         <span>{{ formatPrice(parseFloat((token * 2).toFixed(3))) }}</span>
                     </div>
-                    <div>
+                </div>
+                <div class="col">
+                    <div class="imbuing intricate">
                         Intricate
                         <span>{{ formatPrice(parseFloat((token * 4).toFixed(3))) }}</span>
                     </div>
-                    <div>
+                </div>
+                <div class="col">
+                    <div class="imbuing powerful">
                         Powerful
                         <span>{{ formatPrice(parseFloat((token * 6).toFixed(3))) }}</span>
                     </div>
                 </div>
-                <small>Calculate based on gold token price.</small>
             </div>
-            <div>
-                <div>
+            <small>Calculate based on gold token price.</small>
+            <div class="mt">
+                <div class="filters-imgs">
                     <img
                         v-for="(imbuement, index) in imbuements"
                         v-bind:src="imbuement.img"
@@ -39,69 +45,77 @@
                         v-bind:class="{ 'selected': selectedIndex === index }"
                         v-on:click="showImbuement(index)">
                 </div>
-                <small>Calculate price for specific imbuement.</small>
+                <small class="filters-info">Calculate price for specific imbuement.</small>
             </div>
             <div v-if="selected">
-                <h3>{{ imbuements[selectedIndex].name }}</h3>
-                <div>
-                    <strong>Item price:</strong>
-                    <strong>Sum:</strong>
-                </div>
-                <div>
-                    Basic
-                    <div>
-                        <label for="basicPrice">
-                            <img width="32px" height="32px"
-                                v-bind:src="imbuements[selectedIndex].basic.img"
-                                v-bind:title="imbuements[selectedIndex].basic.name">
-                            * {{ imbuements[selectedIndex].basic.amount }}
-                        </label>
-                        <input type="number" id="basicPrice" v-model="basic">
+                <h3 class="mt">{{ imbuements[selectedIndex].name }}</h3>
+                <div class="row mt">
+                    <div class="col">
+                        <div class="input-group left">
+                            <label for="basicPrice">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].basic.img"
+                                    v-bind:title="imbuements[selectedIndex].basic.name">
+                                * {{ imbuements[selectedIndex].basic.amount }}
+                            </label>
+                            <input type="number" id="basicPrice" v-model="basic">
+                        </div>
                     </div>
-                    <div>
-                        <strong>Sum:</strong>
-                        {{ formatPrice(parseFloat((imbuements[selectedIndex].basic.amount * basic).toFixed(3))) }}
-                    </div>
-                </div>
-                <div>
-                    Intricate
-                    <div>
-                        <label for="intricatePrice">
-                            <img width="32px" height="32px"
-                                v-bind:src="imbuements[selectedIndex].intricate.img"
-                                v-bind:title="imbuements[selectedIndex].intricate.name">
-                            * {{ imbuements[selectedIndex].intricate.amount }}
-                        </label>
-                        <input type="number" id="intricatePrice" v-model="intricate">
-                    </div>
-                    <div>
-                        <strong>Sum:</strong>
-                        {{ formatPrice(parseFloat((imbuements[selectedIndex].intricate.amount * intricate).toFixed(3))) }}
+                    <div class="col">
+                        <div class="imbuing basic">
+                            Basic
+                            <span>{{ formatPrice(parseFloat((imbuements[selectedIndex].basic.amount * basic).toFixed(3))) }}</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    Powerful
-                    <div>
-                        <label for="powerfulPrice">
-                            <img width="32px" height="32px"
-                                v-bind:src="imbuements[selectedIndex].powerful.img"
-                                v-bind:title="imbuements[selectedIndex].powerful.name">
-                            * {{ imbuements[selectedIndex].powerful.amount }}
-                        </label>
-                        <input type="number" id="powerfulPrice" v-model="powerful">
+                <div class="row mt">
+                    <div class="col">
+                        <div class="input-group left">
+                            <label for="intricatePrice">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].intricate.img"
+                                    v-bind:title="imbuements[selectedIndex].intricate.name">
+                                * {{ imbuements[selectedIndex].intricate.amount }}
+                            </label>
+                            <input type="number" id="intricatePrice" v-model="intricate">
+                        </div>
                     </div>
-                    <div>
-                        <strong>Sum:</strong>
-                        {{ formatPrice(parseFloat((imbuements[selectedIndex].powerful.amount * powerful).toFixed(3))) }}
+                    <div class="col">
+                        <div class="imbuing intricate">
+                            Intricate
+                            <span>
+                                {{ formatPrice(parseFloat((
+                                    imbuements[selectedIndex].basic.amount * basic +
+                                    imbuements[selectedIndex].intricate.amount * intricate
+                                ).toFixed(3))) }}
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <strong>Total:</strong>
-                    {{ formatPrice(parseFloat((
-                        imbuements[selectedIndex].powerful.amount * powerful +
-                        imbuements[selectedIndex].intricate.amount * intricate +
-                        imbuements[selectedIndex].basic.amount * basic
-                    ).toFixed(3))) }}
+                <div class="row mt">
+                    <div class="col">
+                        <div class="input-group left">
+                            <label for="powerfulPrice">
+                                <img width="32px" height="32px"
+                                    v-bind:src="imbuements[selectedIndex].powerful.img"
+                                    v-bind:title="imbuements[selectedIndex].powerful.name">
+                                * {{ imbuements[selectedIndex].powerful.amount }}
+                            </label>
+                            <input type="number" id="powerfulPrice" v-model="powerful">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="imbuing powerful">
+                            Powerful
+                            <span>
+                                {{ formatPrice(parseFloat((
+                                    imbuements[selectedIndex].basic.amount * basic +
+                                    imbuements[selectedIndex].intricate.amount * intricate +
+                                    imbuements[selectedIndex].powerful.amount * powerful
+                                ).toFixed(3))) }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
