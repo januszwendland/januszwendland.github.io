@@ -90,6 +90,7 @@
             return {
                 servers: {
                     'Adra': { type: 'open pvp', green: true, blocked: true, locked: false },
+                    'Alumbra': { type: 'open pvp', green: true, blocked: true, locked: false },
                     'Antica': { type: 'open pvp', green: false, blocked: false, locked: false },
                     'Astera': { type: 'optional pvp', green: false, blocked: false, locked: false },
                     'Belobra': { type: 'optional pvp', green: false, blocked: false, locked: false },
@@ -105,6 +106,7 @@
                     'Emera': { type: 'retro open pvp', green: true, blocked: false, locked: false },
                     'Epoca': { type: 'retro open pvp', green: false, blocked: false, locked: false },
                     'Estela': { type: 'open pvp', green: false, blocked: false, locked: false },
+                    'Famosa': { type: 'optional pvp', green: true, blocked: true, locked: false },
                     'Fera': { type: 'retro hardcore pvp', green: true, blocked: false, locked: false },
                     'Ferobra': { type: 'open pvp', green: false, blocked: false, locked: false },
                     'Fervora': { type: 'retro open pvp', green: true, blocked: false, locked: false },
@@ -125,6 +127,7 @@
                     'Lobera': { type: 'open pvp', green: false, blocked: false, locked: false },
                     'Luminera': { type: 'optional pvp', green: false, blocked: false, locked: false },
                     'Lutabra': { type: 'retro open pvp', green: false, blocked: false, locked: false },
+                    'Marcia': { type: 'open pvp', green: true, blocked: true, locked: false },
                     'Menera': { type: 'optional pvp', green: false, blocked: false, locked: false },
                     'Mercera': { type: 'optional pvp', green: true, blocked: false, locked: false },
                     'Mitigera': { type: 'optional pvp', green: true, blocked: false, locked: false },
@@ -151,6 +154,7 @@
                     'Serenebra': { type: 'optional pvp', green: false, blocked: false, locked: false },
                     'Solidera': { type: 'open pvp', green: false, blocked: false, locked: false },
                     'Talera': { type: 'open pvp', green: false, blocked: false, locked: false },
+                    'Tembra': { type: 'optional pvp', green: true, blocked: true, locked: false },
                     'Unica': { type: 'retro open pvp', green: true, blocked: false, locked: false },
                     'Unisera': { type: 'open pvp', green: true, blocked: false, locked: false },
                     'Utobra': { type: 'open pvp', green: true, blocked: true, locked: false },
