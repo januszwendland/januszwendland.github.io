@@ -31,10 +31,11 @@
                     <tbody>
                     <tr>
                         <td>{{ selectedServer }}</td>
-                        <td>{{ servers[selectedServer].type }}</td>
+                        <td>
+                            <img v-bind:src="types[servers[selectedServer].type]" v-bind:title="servers[selectedServer].type" alt="">
+                        </td>
                         <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'green': servers[selectedServer].green, 'yellow': !servers[selectedServer].green }">{{ servers[selectedServer].green }}</span>
+                            <img v-bind:src="battleEye[servers[selectedServer].green].img" v-bind:title="battleEye[servers[selectedServer].green].title" alt="">
                         </td>
                         <td class="hide-on-mobile">
                             <span
@@ -61,10 +62,11 @@
                     <tbody>
                     <tr v-for="server, key in servers" v-if="checkServer(key, server)">
                         <td>{{ key }}</td>
-                        <td>{{ server.type }}</td>
+                        <td>
+                            <img v-bind:src="types[server.type]" v-bind:title="server.type" alt="">
+                        </td>
                         <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'green': server.green, 'yellow': !server.green }">{{ server.green }}</span>
+                            <img v-bind:src="battleEye[server.green].img" v-bind:title="battleEye[server.green].title" alt="">
                         </td>
                         <td class="hide-on-mobile">
                             <span
@@ -88,6 +90,17 @@
 
         data: function () {
             return {
+                types: {
+                    'optional pvp': 'img/transfer/optional.webp',
+                    'open pvp': 'img/transfer/open.webp',
+                    'retro open pvp': 'img/transfer/retro.webp',
+                    'retro hardcore pvp': 'img/transfer/retro-hardcore.webp',
+                    'hardcore pvp': 'img/transfer/hardcore.webp'
+                },
+                battleEye: {
+                    true: { img: 'img/transfer/green.webp', title: 'Green BattleEye' },
+                    false: { img: 'img/transfer/yellow.webp', title: 'Yellow BattleEye' }
+                },
                 servers: {
                     'Adra': { type: 'open pvp', green: true, blocked: true, locked: false },
                     'Alumbra': { type: 'open pvp', green: true, blocked: true, locked: false },
