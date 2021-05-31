@@ -31,12 +31,18 @@
                     <tr>
                         <td>
                             {{ selectedServer }}
-                            <img alt="" title="Premium" src="icons/premium.svg" class="server-info-icon" width="18px" height="18px"
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].premium">
-                            <img alt="" title="Server blocked" src="icons/blocked.svg" class="server-info-icon" width="18px" height="18px"
+                                <img alt="" title="Premium" src="icons/premium.svg" width="18px" height="18px">
+                            </span>
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].blocked">
-                            <img alt="" title="Server locked" src="icons/locked.svg" class="server-info-icon" width="18px" height="18px"
+                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18px" height="18px">
+                            </span>
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].locked">
+                                <img alt="" title="Server locked" src="icons/locked.svg" width="18px" height="18px">
+                            </span>
                         </td>
                         <td class="center">
                             <img alt=""
@@ -70,12 +76,18 @@
                     <tr v-for="server, key in servers" v-if="checkServer(key, server)">
                         <td>
                             {{ key }}
-                            <img alt="" title="Premium" src="icons/premium.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="server.premium">
-                            <img alt="" title="Server blocked" src="icons/blocked.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                                <img alt="" title="Premium" src="icons/premium.svg" width="18px" height="18px">
+                            </span>
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="server.blocked">
-                            <img alt="" title="Server locked" src="icons/locked.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18px" height="18px">
+                            </span>
+                            <span class="server-info-icon hide-on-mobile"
                                 v-if="server.locked">
+                                <img alt="" title="Server locked" src="icons/locked.svg" width="18px" height="18px">
+                            </span>
                         </td>
                         <td class="center">
                             <img alt=""

@@ -583,8 +583,11 @@ tr {
 
 .server-info-icon {
     vertical-align: middle;
-    display: inline-block;
+    display: inline-flex;
     margin: 0 0 0 5px;
+    padding: 5px;
+    background-color: $text;
+    border-radius: 50%;
 }
 
 @media (min-width: 1000px) {
