@@ -22,28 +22,36 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Type</th>
-                        <th class="hide-on-mobile">BattlEye</th>
-                        <th class="hide-on-mobile">Blocked</th>
-                        <th class="hide-on-mobile">Locked</th>
+                        <th class="center">Location</th>
+                        <th class="center">Type</th>
+                        <th class="center hide-on-mobile">BattlEye</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ selectedServer }}</td>
                         <td>
-                            <img v-bind:src="types[servers[selectedServer].type]" v-bind:title="servers[selectedServer].type" alt="">
+                            {{ selectedServer }}
+                            <img alt="" title="Premium" src="icons/premium.svg" class="server-info-icon" width="18px" height="18px"
+                                v-if="servers[selectedServer].premium">
+                            <img alt="" title="Server blocked" src="icons/blocked.svg" class="server-info-icon" width="18px" height="18px"
+                                v-if="servers[selectedServer].blocked">
+                            <img alt="" title="Server locked" src="icons/locked.svg" class="server-info-icon" width="18px" height="18px"
+                                v-if="servers[selectedServer].locked">
                         </td>
-                        <td class="hide-on-mobile">
-                            <img v-bind:src="battleEye[servers[selectedServer].green].img" v-bind:title="battleEye[servers[selectedServer].green].title" alt="">
+                        <td class="center">
+                            <img alt=""
+                                v-bind:src="location[servers[selectedServer].location]"
+                                v-bind:title="servers[selectedServer].location">
                         </td>
-                        <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'blocked': servers[selectedServer].blocked, 'not-blocked': !servers[selectedServer].blocked }">{{ servers[selectedServer].blocked }}</span>
+                        <td class="center">
+                            <img alt=""
+                                v-bind:src="types[servers[selectedServer].type]"
+                                v-bind:title="servers[selectedServer].type">
                         </td>
-                        <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'locked': servers[selectedServer].locked, 'not-locked': !servers[selectedServer].locked }">{{ servers[selectedServer].locked }}</span>
+                        <td class="center hide-on-mobile">
+                            <img alt=""
+                                v-bind:src="battleEye[servers[selectedServer].green].img"
+                                v-bind:title="battleEye[servers[selectedServer].green].title">
                         </td>
                     </tr>
                     </tbody>
@@ -53,28 +61,36 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Type</th>
-                        <th class="hide-on-mobile">BattlEye</th>
-                        <th class="hide-on-mobile">Blocked</th>
-                        <th class="hide-on-mobile">Locked</th>
+                        <th class="center">Location</th>
+                        <th class="center">Type</th>
+                        <th class="center hide-on-mobile">BattlEye</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="server, key in servers" v-if="checkServer(key, server)">
-                        <td>{{ key }}</td>
                         <td>
-                            <img v-bind:src="types[server.type]" v-bind:title="server.type" alt="">
+                            {{ key }}
+                            <img alt="" title="Premium" src="icons/premium.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                                v-if="server.premium">
+                            <img alt="" title="Server blocked" src="icons/blocked.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                                v-if="server.blocked">
+                            <img alt="" title="Server locked" src="icons/locked.svg" class="server-info-icon hide-on-mobile" width="18px" height="18px"
+                                v-if="server.locked">
                         </td>
-                        <td class="hide-on-mobile">
-                            <img v-bind:src="battleEye[server.green].img" v-bind:title="battleEye[server.green].title" alt="">
+                        <td class="center">
+                            <img alt=""
+                                v-bind:src="location[server.location]"
+                                v-bind:title="server.location">
                         </td>
-                        <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'blocked': server.blocked, 'not-blocked': !server.blocked }">{{ server.blocked }}</span>
+                        <td class="center">
+                            <img alt=""
+                                v-bind:src="types[server.type]"
+                                v-bind:title="server.type">
                         </td>
-                        <td class="hide-on-mobile">
-                            <span
-                                v-bind:class="{ 'locked': server.locked, 'not-locked': !server.locked }">{{ server.locked }}</span>
+                        <td class="center hide-on-mobile">
+                            <img alt=""
+                                v-bind:src="battleEye[server.green].img"
+                                v-bind:title="battleEye[server.green].title">
                         </td>
                     </tr>
                     </tbody>
@@ -90,6 +106,11 @@
 
         data: function () {
             return {
+                location: {
+                    'Europe': 'img/transfer/eu.webp',
+                    'North America': 'img/transfer/na.webp',
+                    'South America': 'img/transfer/sa.webp'
+                },
                 types: {
                     'optional pvp': 'img/transfer/optional.webp',
                     'open pvp': 'img/transfer/open.webp',
@@ -102,87 +123,87 @@
                     false: { img: 'img/transfer/yellow.webp', title: 'Yellow BattleEye' }
                 },
                 servers: {
-                    'Adra': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Alumbra': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Antica': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Astera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Belobra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Bona': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Calmera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Carnera': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Celebra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Celesta': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Concorda': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Damora': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Descubra': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Dibra': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Emera': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Epoca': { type: 'retro open pvp', green: false, blocked: false, locked: false },
-                    'Estela': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Famosa': { type: 'optional pvp', green: true, blocked: true, locked: false },
-                    'Fera': { type: 'retro hardcore pvp', green: true, blocked: false, locked: false },
-                    'Ferobra': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Fervora': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Firmera': { type: 'retro open pvp', green: false, blocked: false, locked: false },
-                    'Garnera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Gentebra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Gladera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Harmonia': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Honbra': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Impera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Inabra': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Javibra': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Juva': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Kalibra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Karna': { type: 'optional pvp', green: true, blocked: true, locked: false },
-                    'Kenora': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Libertabra': { type: 'retro hardcore pvp', green: true, blocked: true, locked: false },
-                    'Lobera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Luminera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Lutabra': { type: 'retro open pvp', green: false, blocked: false, locked: false },
-                    'Marcia': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Menera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Mercera': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Mitigera': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Monza': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Mudabra': { type: 'retro open pvp', green: true, blocked: true, locked: false },
-                    'Nefera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Nexa': { type: 'retro hardcore pvp', green: true, blocked: false, locked: false },
-                    'Nossobra': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Ombra': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Optera': { type: 'optional pvp', green: true, blocked: true, locked: false },
-                    'Pacembra': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Pacera': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Peloria': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Premia': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Quelibra': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Quintera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Ragna': { type: 'retro hardcore pvp', green: true, blocked: true, locked: false },
-                    'Refugia': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Reinobra': { type: 'optional pvp', green: false, blocked: true, locked: false },
-                    'Relania': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Relembra': { type: 'retro open pvp', green: false, blocked: false, locked: false },
-                    'Secura': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Serdebra': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Serenebra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Solidera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Talera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Tembra': { type: 'optional pvp', green: true, blocked: true, locked: false },
-                    'Unica': { type: 'retro open pvp', green: true, blocked: false, locked: false },
-                    'Unisera': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Utobra': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Venebra': { type: 'optional pvp', green: true, blocked: false, locked: false },
-                    'Visabra': { type: 'retro hardcore pvp', green: true, blocked: false, locked: false },
-                    'Vunira': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Wintera': { type: 'open pvp', green: false, blocked: false, locked: false },
-                    'Wizera': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Xandebra': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Xylona': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Yonabra': { type: 'optional pvp', green: false, blocked: false, locked: false },
-                    'Ysolera': { type: 'open pvp', green: true, blocked: false, locked: false },
-                    'Zenobra': { type: 'open pvp', green: true, blocked: true, locked: false },
-                    'Zuna': { type: 'hardcore pvp', green: false, blocked: false, locked: true },
-                    'Zunera': { type: 'hardcore pvp', green: false, blocked: false, locked: true }
+                    'Adra': { location: 'Europe', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Alumbra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Antica': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Astera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Belobra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Bona': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Calmera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Carnera': { location: 'North America', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Celebra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Celesta': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Concorda': { location: 'Europe', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Damora': { location: 'Europe', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Descubra': { location: 'South America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Dibra': { location: 'South America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Emera': { location: 'North America', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Epoca': { location: 'Europe', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Estela': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Famosa': { location: 'Europe', type: 'optional pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Fera': { location: 'North America', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Ferobra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Fervora': { location: 'Europe', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Firmera': { location: 'North America', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Garnera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Gentebra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Gladera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Harmonia': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Honbra': { location: 'South America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Impera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Inabra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Javibra': { location: 'South America', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Juva': { location: 'Europe', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Kalibra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Karna': { location: 'Europe', type: 'optional pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Kenora': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Libertabra': { location: 'South America', type: 'retro hardcore pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Lobera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Luminera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Lutabra': { location: 'South America', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Marcia': { location: 'Europe', type: 'open pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Menera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Mercera': { location: 'North America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Mitigera': { location: 'North America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Monza': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Mudabra': { location: 'South America', type: 'retro open pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Nefera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Nexa': { location: 'Europe', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Nossobra': { location: 'South America', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Ombra': { location: 'South America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Optera': { location: 'North America', type: 'optional pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Pacembra': { location: 'South America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Pacera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Peloria': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Premia': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: true },
+                    'Quelibra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Quintera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Ragna': { location: 'Europe', type: 'retro hardcore pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Refugia': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Reinobra': { location: 'South America', type: 'optional pvp', green: false, blocked: true, locked: false, premium: false },
+                    'Relania': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Relembra': { location: 'South America', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Secura': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Serdebra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Serenebra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Solidera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Talera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Tembra': { location: 'South America', type: 'optional pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Unica': { location: 'Europe', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Unisera': { location: 'North America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Utobra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Venebra': { location: 'South America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Visabra': { location: 'South America', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Vunira': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Wintera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Wizera': { location: 'North America', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Xandebra': { location: 'South America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Xylona': { location: 'Europe', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Yonabra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
+                    'Ysolera': { location: 'North America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
+                    'Zenobra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Zuna': { location: 'Europe', type: 'hardcore pvp', green: false, blocked: false, locked: true },
+                    'Zunera': { location: 'North America', type: 'hardcore pvp', green: false, blocked: false, locked: true }
                 },
                 selectedServer: ''
             }

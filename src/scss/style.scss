@@ -69,6 +69,10 @@ input {
     font-family: inherit;
 }
 
+.center {
+    text-align: center;
+}
+
 .input-group {
     display: flex;
     select,
@@ -575,6 +579,12 @@ tr {
         border-radius: 0.3rem;
         color: $text;
     }
+}
+
+.server-info-icon {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0 0 0 5px;
 }
 
 @media (min-width: 1000px) {
