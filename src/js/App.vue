@@ -1,6 +1,7 @@
 <template>
     <div class="wrapper">
         <nav class="top-nav">
+            <img src="img/logo.webp" alt="" width="32px" height="32px">
             <h1>Tibia Tools</h1>
         </nav>
         <main class="main" v-if="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
@@ -65,29 +66,31 @@
 </template>
 
 <script>
-    import Guild from './components/Guild';
-    import Imbuing from './components/Imbuing';
-    import Houses from './components/Houses';
-    import Transfer from './components/Transfer';
-    import Healing from './components/Healing';
-    import Contact from './components/Contact';
     import About from './components/About';
     import Changelog from './components/Changelog';
+    import Contact from './components/Contact';
+    import Guild from './components/Guild';
+    import Healing from './components/Healing';
+    import Houses from './components/Houses';
+    import Imbuing from './components/Imbuing';
     import PrivacyPolicy from './components/PrivacyPolicy';
+    import Spells from './components/Spells';
+    import Transfer from './components/Transfer';
 
     export default {
         name: 'App',
 
         components: {
-            Guild,
-            Imbuing,
-            Houses,
-            Transfer,
-            Healing,
-            Contact,
             About,
             Changelog,
-            PrivacyPolicy
+            Contact,
+            Guild,
+            Healing,
+            Houses,
+            Imbuing,
+            PrivacyPolicy,
+            Spells,
+            Transfer
         },
 
         data: function () {
@@ -101,11 +104,11 @@
                         icon_white: 'icons/guild_white.svg'
                     },
                     {
-                        component: 'Imbuing',
-                        name: 'Imbuing calculator',
-                        description: 'Calculate cost of imbuing.',
-                        icon: 'icons/imbuing.svg',
-                        icon_white: 'icons/imbuing_white.svg'
+                        component: 'Healing',
+                        name: 'Healing calculator',
+                        description: 'In progress...',
+                        icon: 'icons/healing.svg',
+                        icon_white: 'icons/healing_white.svg'
                     },
                     {
                         component: 'Houses',
@@ -115,34 +118,41 @@
                         icon_white: 'icons/houses_white.svg'
                     },
                     {
+                        component: 'Imbuing',
+                        name: 'Imbuing calculator',
+                        description: 'Calculate cost of imbuing.',
+                        icon: 'icons/imbuing.svg',
+                        icon_white: 'icons/imbuing_white.svg'
+                    },
+                    {
+                        component: 'Spells',
+                        name: 'Spells list',
+                        description: 'Filter list by vocation or level, find where you can buy chosen spell.',
+                        icon: 'icons/spells.svg',
+                        icon_white: 'icons/spells_white.svg'
+                    },
+                    {
                         component: 'Transfer',
                         name: 'Transfer',
                         description: 'Where can I transfer?',
                         icon: 'icons/transfer.svg',
                         icon_white: 'icons/transfer_white.svg'
-                    },
-                    {
-                        component: 'Healing',
-                        name: 'Healing calculator',
-                        description: 'In progress...',
-                        icon: 'icons/healing.svg',
-                        icon_white: 'icons/healing_white.svg'
                     }
                 ],
                 selectedTool: null,
                 collapsed: false,
-                showContact: false,
                 showAbout: false,
                 showChangelog: false,
+                showContact: false,
                 showPrivacyPolicy: false
             }
         },
 
         methods: {
             closePopup: function() {
-                this.showContact = false;
                 this.showAbout = false;
                 this.showChangelog = false;
+                this.showContact = false;
                 this.showPrivacyPolicy = false;
             }
         }
