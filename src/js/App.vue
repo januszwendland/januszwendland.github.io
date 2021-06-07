@@ -30,12 +30,8 @@
             <nav class="tools-nav">
                 <template v-for="tool in tools">
                     <router-link v-bind:to="tool.link">
-                        <button type="button"
-                            v-on:click="selectedTool = tool.link; collapsed = true"
-                            v-bind:class="{ 'selected' : selectedTool === tool.link, 'not-selected' : selectedTool !== tool.component }">
-                            <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
-                            <span>{{ tool.name }}</span>
-                        </button>
+                        <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
+                        <span>{{ tool.name }}</span>
                     </router-link>
                 </template>
             </nav>
@@ -131,7 +127,6 @@
                         link: '/transfer'
                     }
                 ],
-                selectedTool: null,
                 collapsed: false,
                 showAbout: false,
                 showChangelog: false,
@@ -152,7 +147,6 @@
         mounted: function () {
             if (this.$route.path !== '/') {
                 this.collapsed = true;
-                this.selectedTool = this.$route.path;
             }
         }
     }

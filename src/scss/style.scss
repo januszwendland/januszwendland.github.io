@@ -489,26 +489,26 @@ input {
 
 .tools-nav {
     margin: 0 0 1rem;
-    button {
+    a {
         cursor: pointer;
         margin: 0 0.875rem 0.875rem 0;
         box-shadow: 0 10px 40px 0 rgb(62 57 107 / 7%), 0 2px 9px 0 rgb(62 57 107 / 6%);
         background-color: $text;
         padding: 0.75rem 1.5rem;
-        border: none;
         color: white;
         display: inline-flex;
         align-items: center;
         font-size: 1.3rem;
         border-radius: 2rem;
         transition: background-color 0.3s;
+        text-decoration: none;
         &:hover {
             background-color: lighten($color: $text, $amount: 10%);
             img {
                 transform: scale(1.1);
             }
         }
-        &.selected {
+        &.router-link-active {
             background-color: $green;
             opacity: 1;
         }
