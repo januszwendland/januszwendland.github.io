@@ -27,7 +27,7 @@ const router = new VueRouter({
     routes
 });
 
-const DEFAULT_TITLE = 'Some Default Title';
+const DEFAULT_TITLE = 'Tibia Tools';
 
 router.afterEach((to, from) => {
     Vue.nextTick(() => {
