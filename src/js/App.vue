@@ -28,15 +28,18 @@
                 </div>
             </article>
             <nav class="tools-nav">
-                <button type="button"
-                    v-for="tool in tools"
-                    v-on:click="selectedTool = tool.component; collapsed = true"
-                    v-bind:class="{ 'selected' : selectedTool === tool.component, 'not-selected' : selectedTool !== tool.component }">
-                    <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
-                    <span>{{ tool.name }}</span>
-                </button>
+                <template v-for="tool in tools">
+                    <router-link v-bind:to="tool.link">
+                        <button type="button"
+                            v-on:click="selectedTool = tool.link; collapsed = true"
+                            v-bind:class="{ 'selected' : selectedTool === tool.link, 'not-selected' : selectedTool !== tool.component }">
+                            <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
+                            <span>{{ tool.name }}</span>
+                        </button>
+                    </router-link>
+                </template>
             </nav>
-            <component v-bind:is="selectedTool" />
+            <router-view></router-view>
         </main>
         <footer class="footer">
             <ul class="footer-btns">
@@ -69,13 +72,7 @@
     import About from './components/About';
     import Changelog from './components/Changelog';
     import Contact from './components/Contact';
-    import Guild from './components/Guild';
-    import Healing from './components/Healing';
-    import Houses from './components/Houses';
-    import Imbuing from './components/Imbuing';
     import PrivacyPolicy from './components/PrivacyPolicy';
-    import Spells from './components/Spells';
-    import Transfer from './components/Transfer';
 
     export default {
         name: 'App',
@@ -84,59 +81,54 @@
             About,
             Changelog,
             Contact,
-            Guild,
-            Healing,
-            Houses,
-            Imbuing,
-            PrivacyPolicy,
-            Spells,
-            Transfer
+            PrivacyPolicy
         },
 
         data: function () {
             return {
                 tools: [
                     { 
-                        component: 'Guild',
                         name: 'Check guild',
                         description: 'Check specific guild, filter members by vocation and find players who can share exp with you.',
                         icon: 'icons/guild.svg',
-                        icon_white: 'icons/guild_white.svg'
+                        icon_white: 'icons/guild_white.svg',
+                        link: '/guild'
                     },
                     {
-                        component: 'Healing',
                         name: 'Healing calculator',
                         description: 'In progress...',
                         icon: 'icons/healing.svg',
-                        icon_white: 'icons/healing_white.svg'
+                        icon_white: 'icons/healing_white.svg',
+                        link: '/healing'
                     },
                     {
-                        component: 'Houses',
                         name: 'Houses',
                         description: 'Find free houses.',
                         icon: 'icons/houses.svg',
-                        icon_white: 'icons/houses_white.svg'
+                        icon_white: 'icons/houses_white.svg',
+                        link: '/houses'
                     },
                     {
-                        component: 'Imbuing',
+
                         name: 'Imbuing calculator',
                         description: 'Calculate cost of imbuing.',
                         icon: 'icons/imbuing.svg',
-                        icon_white: 'icons/imbuing_white.svg'
+                        icon_white: 'icons/imbuing_white.svg',
+                        link: '/imbuing'
                     },
                     {
-                        component: 'Spells',
                         name: 'Spells list',
                         description: 'Filter list by vocation or level, find where you can buy chosen spell.',
                         icon: 'icons/spells.svg',
-                        icon_white: 'icons/spells_white.svg'
+                        icon_white: 'icons/spells_white.svg',
+                        link: '/spells'
                     },
                     {
-                        component: 'Transfer',
                         name: 'Transfer',
                         description: 'Where can I transfer?',
                         icon: 'icons/transfer.svg',
-                        icon_white: 'icons/transfer_white.svg'
+                        icon_white: 'icons/transfer_white.svg',
+                        link: '/transfer'
                     }
                 ],
                 selectedTool: null,
@@ -154,6 +146,13 @@
                 this.showChangelog = false;
                 this.showContact = false;
                 this.showPrivacyPolicy = false;
+            }
+        },
+
+        mounted: function () {
+            if (this.$route.path !== '') {
+                this.collapsed = true;
+                this.selectedTool = this.$route.path;
             }
         }
     }
