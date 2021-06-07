@@ -150,7 +150,7 @@
         },
 
         mounted: function () {
-            if (this.$route.path !== '') {
+            if (this.$route.path !== '/') {
                 this.collapsed = true;
                 this.selectedTool = this.$route.path;
             }
