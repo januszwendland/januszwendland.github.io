@@ -1,7 +1,6 @@
 <template>
     <div class="wrapper">
         <nav class="top-nav">
-            <img src="img/logo.webp" alt="" width="32px" height="32px">
             <h1>Tibia Tools</h1>
         </nav>
         <main class="main" v-if="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
