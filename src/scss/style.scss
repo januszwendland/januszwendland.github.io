@@ -566,14 +566,18 @@ tr {
     align-items: center;
     justify-content: space-between;
     font-size: 1.2rem;
+    border: 1px solid;
     &.basic {
         background-color: $green;
+        border-color: $green;
     }
     &.intricate {
         background-color: $orange;
+        border-color: $orange;
     }
     &.powerful {
         background-color: $red;
+        border-color: $red;
     }
     span {
         display: block;

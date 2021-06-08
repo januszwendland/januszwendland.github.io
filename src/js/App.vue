@@ -143,9 +143,11 @@
             }
         },
 
-        mounted: function () {
-            if (this.$route.path !== '/') {
-                this.collapsed = true;
+        watch: {
+            $route(to, from) {
+                if (to.path !== '/') {
+                    this.collapsed = true;
+                }
             }
         }
     }
