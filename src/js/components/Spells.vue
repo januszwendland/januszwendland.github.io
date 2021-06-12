@@ -3,7 +3,7 @@
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/spells.svg" alt="" width="18px" height="18px">
-                Spells list
+                In progress...
             </h2>
         </div>
         <div class="card-content">

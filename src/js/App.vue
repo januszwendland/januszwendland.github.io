@@ -3,7 +3,7 @@
         <nav class="top-nav">
             <h1>Tibia Tools</h1>
         </nav>
-        <main class="main" v-if="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
+        <main class="main" v-show="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
             <article class="card" v-bind:class="{ 'collapsed' : collapsed }">
                 <div class="card-header">
                     <h2 class="card-title">Tools Description</h2>
@@ -104,12 +104,18 @@
                         link: '/houses'
                     },
                     {
-
                         name: 'Imbuing calculator',
                         description: 'Calculate cost of imbuing.',
                         icon: 'icons/imbuing.svg',
                         icon_white: 'icons/imbuing_white.svg',
                         link: '/imbuing'
+                    },
+                    {
+                        name: 'Loot',
+                        description: 'Split loot based on party hunt log.',
+                        icon: 'icons/loot.svg',
+                        icon_white: 'icons/imbuing_white.svg',
+                        link: '/loot'
                     },
                     {
                         name: 'Spells list',
