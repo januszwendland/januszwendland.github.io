@@ -114,7 +114,7 @@
                         name: 'Loot',
                         description: 'Split loot based on party hunt log.',
                         icon: 'icons/loot.svg',
-                        icon_white: 'icons/imbuing_white.svg',
+                        icon_white: 'icons/loot_white.svg',
                         link: '/loot'
                     },
                     {
