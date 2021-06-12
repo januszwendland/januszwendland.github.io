@@ -7,22 +7,46 @@
             </h2>
         </div>
         <div class="card-content">
-            <textarea v-model="log"></textarea>
-            <button v-on:click="parseLog">Split loot</button>
+            <form class="input-group large right"
+                v-on:submit.prevent="parseLog">
+                <textarea v-model="log"></textarea>
+                <button>Split loot</button>
+            </form>
             <template v-if="parsed">
-                <div v-for="player in logParsed">
-                    {{ player.name }}<br>
-                    Loot:
-                    <input type="number"
-                        v-model.number="player.loot"
-                        v-on:change="updateResult"><br>
-                    Supplies:
-                    <input type="number"
-                        v-model.number="player.supplies"
-                        v-on:change="updateResult">
+                <div class="row row-wrap">
+                    <div class="col col-25"
+                        v-for="(player, index) in logParsed">
+                        <h3 class="mt ellipsis">{{ player.name }}</h3>
+                        <div class="input-group left mts">
+                            <label v-bind:for="'loot_' + index">Loot</label>
+                            <input type="number" v-bind:id="'loot_' + index"
+                                v-model.number="player.loot"
+                                v-on:change="updateResult">
+                        </div>
+                        <div class="input-group left mts">
+                            <label v-bind:for="'supplies_' + index">Supplies</label>
+                            <input type="number" v-bind:id="'supplies_' + index"
+                                v-model.number="player.supplies"
+                                v-on:change="updateResult">
+                        </div>
+                    </div>
                 </div>
-                Team balance: {{ teamBalance }}<br>
-                Each player balance: {{ playerBalance }}
+                <div class="row mt">
+                    <div class="col">
+                        <div class="badge"
+                            v-bind:class="{ 'green': teamBalance > 0, 'orange': teamBalance === 0, 'red': teamBalance < 0 }">
+                            Team balance
+                            <span>{{ teamBalance }}</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="badge"
+                            v-bind:class="{ 'green': playerBalance > 0, 'orange': playerBalance === 0, 'red': playerBalance < 0 }">
+                            Each player balance
+                            <span>{{ playerBalance }}</span>
+                        </div>
+                    </div>
+                </div>
             </template>
         </div>
     </div>

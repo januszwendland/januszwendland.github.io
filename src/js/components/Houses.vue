@@ -29,7 +29,7 @@
                 <small class="filters-info">Filter by town.</small>
             </div>
             <div
-                v-for="town, name in server"
+                v-for="(town, name) in server"
                 v-if="selectedServer && (town != null && town.length)"
                 v-show="!filterByTown || filterByTown === name">
                 <h3 class="mt">{{ name }}:</h3>

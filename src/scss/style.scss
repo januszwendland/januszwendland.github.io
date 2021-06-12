@@ -69,6 +69,12 @@ input {
     font-family: inherit;
 }
 
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .center {
     text-align: center;
 }
@@ -76,7 +82,8 @@ input {
 .input-group {
     display: flex;
     select,
-    input {
+    input,
+    textarea {
         width: 100%;
         padding: 0.75rem;
         font-size: 1rem;
@@ -111,6 +118,10 @@ input {
     select {
         cursor: pointer;
     }
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
     &.large {
         select,
         input,
@@ -136,7 +147,8 @@ input {
             border-width: 1px 0 1px 1px;
         }
         select,
-        input {
+        input,
+        textarea {
             border-radius: 0 0.3rem 0.3em 0;
         }
     }
@@ -147,7 +159,8 @@ input {
             border-width: 1px 1px 1px 0;
         }
         select,
-        input {
+        input,
+        textarea {
             border-radius: 0.3rem 0 0 0.3rem;
         }
     }
@@ -157,9 +170,15 @@ input {
     display: flex;
     margin: 0 -0.375rem;
 }
+.row-wrap {
+    flex-wrap: wrap;
+}
 .col {
     width: 100%;
     padding: 0 0.375rem;
+}
+.col-25 {
+    width: 25%;
 }
 
 .loader-wrapper {
@@ -235,8 +254,16 @@ input {
     margin-bottom: 1.5rem;
 }
 
+.mbs {
+    margin-bottom: 0.75rem;
+}
+
 .mt {
     margin-top: 1.5rem;
+}
+
+.mts {
+    margin-top: 0.75rem;
 }
 
 .filters {
@@ -558,7 +585,7 @@ tr {
     }
 }
 
-.imbuing {
+.badge {
     padding: 0.75rem;
     color: white;
     border-radius: 0.3rem;
@@ -567,15 +594,15 @@ tr {
     justify-content: space-between;
     font-size: 1.2rem;
     border: 1px solid;
-    &.basic {
+    &.green {
         background-color: $green;
         border-color: $green;
     }
-    &.intricate {
+    &.orange {
         background-color: $orange;
         border-color: $orange;
     }
-    &.powerful {
+    &.red {
         background-color: $red;
         border-color: $red;
     }
@@ -613,6 +640,9 @@ tr {
             margin: 0;
         }
     }
+    .col-25 {
+        width: 100%;
+    }
     .hide-on-mobile {
         display: none;
     }
@@ -622,8 +652,14 @@ tr {
     .mb {
         margin-bottom: 1rem;
     }
+    .mbs {
+        margin-bottom: 0.5rem;
+    }
     .mt {
         margin-top: 1rem;
+    }
+    .mts {
+        margin-top: 0.5rem;
     }
     .main,
     .footer {

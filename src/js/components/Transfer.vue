@@ -73,7 +73,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="server, key in servers" v-if="checkServer(key, server)">
+                    <tr v-for="(server, key) in servers" v-if="checkServer(key, server)">
                         <td>
                             {{ key }}
                             <span class="server-info-icon hide-on-mobile"

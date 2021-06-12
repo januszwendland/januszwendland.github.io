@@ -17,19 +17,19 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="imbuing basic">
+                    <div class="badge green">
                         Basic
                         <span>{{ formatPrice(parseFloat((token * 2).toFixed(3))) }}</span>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="imbuing intricate">
+                    <div class="badge orange">
                         Intricate
                         <span>{{ formatPrice(parseFloat((token * 4).toFixed(3))) }}</span>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="imbuing powerful">
+                    <div class="badge red">
                         Powerful
                         <span>{{ formatPrice(parseFloat((token * 6).toFixed(3))) }}</span>
                     </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="imbuing basic">
+                        <div class="badge green">
                             Basic
                             <span>{{ formatPrice(parseFloat((imbuements[selectedIndex].basic.amount * basic).toFixed(3))) }}</span>
                         </div>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="imbuing intricate">
+                        <div class="badge orange">
                             Intricate
                             <span>
                                 {{ formatPrice(parseFloat((
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="imbuing powerful">
+                        <div class="badge red">
                             Powerful
                             <span>
                                 {{ formatPrice(parseFloat((
