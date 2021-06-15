@@ -3,7 +3,7 @@
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/loot.svg" alt="" width="18px" height="18px">
-                In progress...
+                Party loot spilter
             </h2>
         </div>
         <div class="card-content">
@@ -24,7 +24,8 @@
                 </div>
                 <div class="row row-wrap">
                     <div class="col col-25"
-                        v-for="(player, index) in logParsed">
+                        v-for="(player, index) in logParsed"
+                        v-bind:class="{ 'balance-green': player.loot > player.supplies, 'balance-orange': player.loot === player.supplies, 'balance-red': player.loot < player.supplies }">
                         <h3 class="mt ellipsis">
                             {{ player.name }}
                             <img src="icons/remove.svg" alt="" width="24px" height="24px"

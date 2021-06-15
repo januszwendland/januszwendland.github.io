@@ -629,6 +629,24 @@ tr {
     border-radius: 50%;
 }
 
+.balance-green {
+    input {
+        border-color: $green;
+    }
+}
+
+.balance-orange {
+    input {
+        border-color: $orange;
+    }
+}
+
+.balance-red {
+    input {
+        border-color: $red;
+    }
+}
+
 @media (min-width: 1000px) {
     .show-on-mobile {
         display: none;

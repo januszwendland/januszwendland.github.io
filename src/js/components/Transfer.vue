@@ -45,12 +45,12 @@
                             </span>
                         </td>
                         <td class="center">
-                            <img alt=""
+                            <img alt="" width="30px" height="30px"
                                 v-bind:src="location[servers[selectedServer].location]"
                                 v-bind:title="servers[selectedServer].location">
                         </td>
                         <td class="center">
-                            <img alt=""
+                            <img alt="" width="30px" height="30px"
                                 v-bind:src="types[servers[selectedServer].type]"
                                 v-bind:title="servers[selectedServer].type">
                         </td>
@@ -90,12 +90,12 @@
                             </span>
                         </td>
                         <td class="center">
-                            <img alt=""
+                            <img alt="" width="30px" height="30px"
                                 v-bind:src="location[server.location]"
                                 v-bind:title="server.location">
                         </td>
                         <td class="center">
-                            <img alt=""
+                            <img alt="" width="30px" height="30px"
                                 v-bind:src="types[server.type]"
                                 v-bind:title="server.type">
                         </td>
