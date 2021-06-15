@@ -19,7 +19,8 @@
                 <div class="mt">
                     <small>
                         You can edit values in text fields.<br>
-                        You can remove player by clicking '<strong>x</strong>' icon.
+                        You can remove player by clicking '<strong>x</strong>' icon.<br>
+                        You can copy '<strong>transfer [amount] to [name]</strong>' by click icon after text.
                     </small>
                 </div>
                 <div class="row row-wrap">
@@ -46,8 +47,11 @@
                     </div>
                 </div>
                 <div class="mt">
-                    <p v-for="row in transfer">
-                        <strong>{{ row.from }}</strong> should transfer {{ row.gold }} gp to <strong>{{ row.to }}</strong>.
+                    <p class="loot-transfer"
+                        v-for="row in transfer">
+                        <strong>{{ row.from }}</strong> should transfer <strong>{{ row.gold }}</strong> gp to <strong>{{ row.to }}</strong>.
+                        <img src="icons/copy.svg" alt="" width="24px" height="24px"
+                            v-on:click="copyToClipboard('transfer ' + row.gold + ' to ' + row.to)">
                     </p>
                 </div>
                 <div class="row mt">
@@ -167,6 +171,25 @@
                         });
                     }
                 });
+            },
+            copyToClipboard: function (text) {
+                let textarea = document.createElement('textarea');
+
+                textarea.textContent = text;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                try {
+                    return document.execCommand('copy');
+                }
+                catch (ex) {
+                    console.warn('Copy to clipboard failed.', ex);
+                    return false;
+                }
+                finally {
+                    document.body.removeChild(textarea);
+                }
             }
         }
     }
