@@ -44,6 +44,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt">
+                    <p v-for="row in transfer">
+                        <strong>{{ row.from }}</strong> should transfer {{ row.gold }} gp to <strong>{{ row.to }}</strong>.
+                    </p>
+                </div>
                 <div class="row mt">
                     <div class="col">
                         <div class="badge"
