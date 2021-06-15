@@ -7,16 +7,29 @@
             </h2>
         </div>
         <div class="card-content">
-            <form class="input-group large right"
-                v-on:submit.prevent="parseLog">
-                <textarea v-model="log"></textarea>
-                <button>Split loot</button>
+            <form v-on:submit.prevent="parseLog">
+                <div class="input-group large right">
+                    <textarea v-model="log"></textarea>
+                    <button>Split loot</button>
+                </div>
+                <small>Copy <strong>entire</strong> log from Party Hunt Analyser. Application <strong>do not</strong> store or validate pasted log.</small>
             </form>
+            <small></small>
             <template v-if="parsed">
+                <div class="mt">
+                    <small>
+                        You can edit values in text fields.<br>
+                        You can remove player by clicking '<strong>x</strong>' icon.
+                    </small>
+                </div>
                 <div class="row row-wrap">
                     <div class="col col-25"
                         v-for="(player, index) in logParsed">
-                        <h3 class="mt ellipsis">{{ player.name }}</h3>
+                        <h3 class="mt ellipsis">
+                            {{ player.name }}
+                            <img src="icons/remove.svg" alt="" width="24px" height="24px"
+                                v-on:click="removePlayer(index)">
+                        </h3>
                         <div class="input-group left mts">
                             <label v-bind:for="'loot_' + index">Loot</label>
                             <input type="number" v-bind:id="'loot_' + index"
@@ -64,7 +77,7 @@
                 teamSize: 0,
                 teamBalance: 0,
                 playerBalance: 0,
-                transfer: {}
+                transfer: []
             }
         },
 
@@ -78,9 +91,10 @@
                 this.teamSize = temp.length / 6;
                 this.teamBalance = 0;
                 this.logParsed = [];
+                this.transfer = [];
 
                 for (let i = 0; i < this.teamSize; i++) {
-                    let name = temp[i * 6],
+                    let name = temp[i * 6].replace(" (Leader)", ""),
                         loot = parseInt(temp[i * 6 + 1].replace(',', '').match(regex)),
                         supplies = parseInt(temp[i * 6 + 2].replace(',', '').match(regex)),
                         balance = loot - supplies;
@@ -89,7 +103,12 @@
                     this.teamBalance = this.teamBalance + loot - supplies;
                 }
 
-                this.playerBalance = this.teamBalance / this.teamSize;
+                this.playerBalance = Math.floor(this.teamBalance / this.teamSize);
+
+                if (isNaN(this.playerBalance)) this.playerBalance = 0;
+
+                this.transferFromTo();
+
                 this.parsed = true;
             },
             updateResult: function () {
@@ -100,9 +119,49 @@
                     player.balance = parseInt(player.loot) - parseInt(player.supplies);
                 });
 
-                this.playerBalance = this.teamBalance / this.teamSize;
-            }
+                this.playerBalance = Math.floor(this.teamBalance / this.teamSize);
 
+                if (isNaN(this.playerBalance)) this.playerBalance = 0;
+
+                this.transferFromTo();
+            },
+            removePlayer: function (index) {
+                this.logParsed.splice(index, 1);
+                this.teamSize--;
+                this.updateResult();
+            },
+            transferFromTo: function () {
+                let vm = this;
+
+                vm.transfer = [];
+
+                vm.logParsed.forEach((player, index) => {
+                    if (player.balance > vm.playerBalance) {
+                        let availableFunds = Math.abs(player.balance - vm.playerBalance),
+                            playerIndex = index;
+                
+                        vm.logParsed.forEach((player, index) => {
+                            if (availableFunds > 0 && player.balance < vm.playerBalance) {
+                                let playerNeed = Math.abs(player.balance - vm.playerBalance),
+                                    transferAmount = 0;
+
+                                if (playerNeed < availableFunds) {
+                                    transferAmount = playerNeed;
+                                    availableFunds -= playerNeed;
+                                } else {
+                                    transferAmount = availableFunds;
+                                    availableFunds = 0;
+                                }
+
+                                player.balance += transferAmount;
+                                vm.logParsed[playerIndex].balance -= transferAmount;
+
+                                vm.transfer.push({ from: vm.logParsed[playerIndex].name, to: player.name, gold: transferAmount });
+                            }
+                        });
+                    }
+                });
+            }
         }
     }
 </script>
