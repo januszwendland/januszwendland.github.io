@@ -3,7 +3,7 @@
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/loot.svg" alt="" width="18px" height="18px">
-                Party loot spilter
+                Party loot splitter
             </h2>
         </div>
         <div class="card-content">
