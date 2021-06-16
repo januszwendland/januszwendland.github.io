@@ -7,7 +7,26 @@
             </h2>
         </div>
         <div class="card-content">
-            <table>
+            <div class="filters">
+                <div>
+                    <div class="filters-pills">
+                        <span class="filters-pill"
+                            v-bind:class="{ 'selected': vocation === 'ed' }"
+                            v-on:click="setVocation('ed')">Druid</span>
+                        <span class="filters-pill"
+                            v-bind:class="{ 'selected': vocation === 'ek' }"
+                            v-on:click="setVocation('ek')">Knight</span>
+                        <span class="filters-pill"
+                            v-bind:class="{ 'selected': vocation === 'rp' }"
+                            v-on:click="setVocation('rp')">Paladin</span>
+                        <span class="filters-pill"
+                            v-bind:class="{ 'selected': vocation === 'ms' }"
+                            v-on:click="setVocation('ms')">Sorcerer</span>
+                    </div>
+                    <small class="filters-info">Filter by vocation.</small>
+                </div>
+            </div>
+            <table class="mt">
                 <tbody>
                 <tr v-for="spell in spells">
                     <td>{{ spell.name }}</td>
@@ -173,7 +192,18 @@
                     { name: 'Wild Growth Rune', word: 'adevo grav vita', group: 'support', type: 'rune', lvl: 27, mana: 600, price: 2000, premium: true, druid: true, knight: false, paladin: false, sorcerer: false },
                     { name: 'Wound Cleansing', word: 'exura ico', group: 'healing', type: 'instant', lvl: 8, mana: 40, price: 0, premium: false, druid: false, knight: false, paladin: false, sorcerer: false },
                     { name: 'Wrath of Nature', word: 'exevo gran mas tera', group: 'attack', type: 'instant', lvl: 55, mana: 700, price: 6000, premium: true, druid: true, knight: false, paladin: false, sorcerer: false }
-                ]
+                ],
+                vocation: null
+            }
+        },
+
+        methods: {
+            setVocation: function (vocation) {
+                if (this.vocation === vocation) {
+                    this.vocation = null;
+                } else {
+                    this.vocation = vocation;
+                }
             }
         }
     }

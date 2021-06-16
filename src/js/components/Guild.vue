@@ -24,17 +24,17 @@
                     <div class="mt">
                         <div class="filters-pills">
                             <span class="filters-pill"
-                                v-bind:class="{ 'selected': ed }"
-                                v-on:click="filter('ed')">Druid</span>
+                                v-bind:class="{ 'selected': vocation === 'ed' }"
+                                v-on:click="setVocation('ed')">Druid</span>
                             <span class="filters-pill"
-                                v-bind:class="{ 'selected': ek }"
-                                v-on:click="filter('ek')">Knight</span>
+                                v-bind:class="{ 'selected': vocation === 'ek' }"
+                                v-on:click="setVocation('ek')">Knight</span>
                             <span class="filters-pill"
-                                v-bind:class="{ 'selected': rp }"
-                                v-on:click="filter('rp')">Paladin</span>
+                                v-bind:class="{ 'selected': vocation === 'rp' }"
+                                v-on:click="setVocation('rp')">Paladin</span>
                             <span class="filters-pill"
-                                v-bind:class="{ 'selected': ms }"
-                                v-on:click="filter('ms')">Sorcerer</span>
+                                v-bind:class="{ 'selected': vocation === 'ms' }"
+                                v-on:click="setVocation('ms')">Sorcerer</span>
                         </div>
                         <small class="filters-info">Filter by vocation.</small>
                     </div>
@@ -66,7 +66,7 @@
                             <member
                                 v-bind:member="character"
                                 v-bind:rank="rank.rank_title"
-                                v-show="(all || filterMember(character.vocation)) && shareExp(character.level)"
+                                v-show="(vocation === null || filterMember(character.vocation)) && shareExp(character.level)"
                                 v-on:loader="setLoader" />
                         </template>
                     </template>
@@ -104,11 +104,7 @@
             return {
                 guildName: '',
                 guild: null,
-                ed: false,
-                ek: false,
-                rp: false,
-                ms: false,
-                all: true,
+                vocation: null,
                 share: 0,
                 loader: 0
             }
@@ -141,52 +137,27 @@
                         });
                 }
             },
-            filter: function (vocation) {
-                switch (vocation) {
-                    case 'ed':
-                        this.ed = !this.ed;
-                        this.ek = false;
-                        this.rp = false;
-                        this.ms = false;
-                        this.all = !this.ed;
-                        break;
-                    case 'ek':
-                        this.ed = false;
-                        this.ek = !this.ek;
-                        this.rp = false;
-                        this.ms = false;
-                        this.all = !this.ek;
-                        break;
-                    case 'rp':
-                        this.ed = false;
-                        this.ek = false;
-                        this.rp = !this.rp;
-                        this.ms = false;
-                        this.all = !this.rp;
-                        break;
-                    case 'ms':
-                        this.ed = false;
-                        this.ek = false;
-                        this.rp = false;
-                        this.ms = !this.ms;
-                        this.all = !this.ms;
-                        break;
+            setVocation: function (vocation) {
+                if (this.vocation === vocation) {
+                    this.vocation = null;
+                } else {
+                    this.vocation = vocation;
                 }
             },
             filterMember: function (vocation) {
-                if (this.ed && vocation.indexOf("Druid") != -1) {
+                if (this.vocation === 'ed' && vocation.indexOf("Druid") != -1) {
                     return true;
                 }
 
-                if (this.ek && vocation.indexOf("Knight") != -1) {
+                if (this.vocation === 'ek' && vocation.indexOf("Knight") != -1) {
                     return true;
                 }
 
-                if (this.rp && vocation.indexOf("Paladin") != -1) {
+                if (this.vocation === 'rp' && vocation.indexOf("Paladin") != -1) {
                     return true;
                 }
 
-                if (this.ms && vocation.indexOf("Sorcerer") != -1) {
+                if (this.vocation === 'ms' && vocation.indexOf("Sorcerer") != -1) {
                     return true;
                 }
 
