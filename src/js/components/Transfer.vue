@@ -112,6 +112,19 @@
     </div>
 </template>
 
+<style scoped lang="scss">
+@import '../../scss/style.scss';
+
+.server-info-icon {
+    vertical-align: middle;
+    display: inline-flex;
+    margin: 0 0 0 5px;
+    padding: 5px;
+    background-color: $text;
+    border-radius: 50%;
+}
+</style>
+
 <script>
     export default {
         name: 'Transfer',

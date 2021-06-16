@@ -80,6 +80,15 @@
     </div>
 </template>
 
+<style scoped lang="scss">
+.member {
+    a {
+        color: inherit;
+        font-weight: 700;
+    }
+}
+</style>
+
 <script>
     import axios from 'axios';
     import Member from './Member';

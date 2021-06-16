@@ -1,17 +1,4 @@
-$bg:        #f5f7fa;
-$text:      #212529;
-$blue:      #0d6efd;
-$indigo:    #6610f2;
-$purple:    #6f42c1;
-$pink:      #d63384;
-$red:       #dc3545;
-$orange:    #fd7e14;
-$yellow:    #ffc107;
-$green:     #198754;
-$teal:      #20c997;
-$cyan:      #0dcaf0;
-$gray:      #adb5bd;
-$gray-dark: #6c757d;
+@import 'variables';
 
 .green { color: $green; }
 .orange { color: $orange; }
@@ -53,15 +40,6 @@ h3 {
     font-weight: 800;
     text-transform: uppercase;
     padding: 0 1rem;
-    img {
-        vertical-align: middle;
-        margin: 0 0 0 5px;
-        cursor: pointer;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
 }
 
 a {
@@ -76,12 +54,6 @@ button,
 select,
 input {
     font-family: inherit;
-}
-
-.ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
 }
 
 .center {
@@ -587,13 +559,6 @@ tr {
     table-layout: fixed;
 }
 
-.member {
-    a {
-        color: inherit;
-        font-weight: 700;
-    }
-}
-
 .badge {
     padding: 0.75rem;
     color: white;
@@ -624,44 +589,6 @@ tr {
     }
 }
 
-.server-info-icon {
-    vertical-align: middle;
-    display: inline-flex;
-    margin: 0 0 0 5px;
-    padding: 5px;
-    background-color: $text;
-    border-radius: 50%;
-}
-
-.balance-green {
-    input {
-        border-color: $green;
-    }
-}
-
-.balance-orange {
-    input {
-        border-color: $orange;
-    }
-}
-
-.balance-red {
-    input {
-        border-color: $red;
-    }
-}
-
-.loot-transfer {
-    img {
-        vertical-align: middle;
-        margin: 0 0 0 5px;
-        cursor: pointer;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-}
 
 @media (min-width: 1000px) {
     .show-on-mobile {

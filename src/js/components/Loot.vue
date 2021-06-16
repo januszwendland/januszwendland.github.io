@@ -16,13 +16,6 @@
             </form>
             <small></small>
             <template v-if="parsed">
-                <div class="mt">
-                    <small>
-                        You can edit values in text fields.<br>
-                        You can remove player by clicking '<strong>x</strong>' icon.<br>
-                        You can copy '<strong>transfer [amount] to [name]</strong>' by click icon after text.
-                    </small>
-                </div>
                 <div class="row row-wrap">
                     <div class="col col-25"
                         v-for="(player, index) in logParsed"
@@ -46,6 +39,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="mts">
+                    <small>
+                        You can edit values in text fields.<br>
+                        You can remove player by clicking on '<strong>x</strong>' icon.
+                    </small>
+                </div>
                 <div class="mt">
                     <p class="loot-transfer"
                         v-for="row in transfer">
@@ -53,6 +52,11 @@
                         <img src="icons/copy.svg" alt="" width="24px" height="24px"
                             v-on:click="copyToClipboard('transfer ' + row.gold + ' to ' + row.to)">
                     </p>
+                </div>
+                <div class="mts">
+                    <small>
+                        You can copy '<strong>transfer [amount] to [name]</strong>' by clicking on icon after text.
+                    </small>
                 </div>
                 <div class="row mt">
                     <div class="col">
@@ -74,6 +78,59 @@
         </div>
     </div>
 </template>
+
+<style scoped lang="scss">
+@import '../../scss/style.scss';
+
+h3 {
+    img {
+        vertical-align: middle;
+        margin: 0 0 0 5px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+    
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.balance-green {
+    input {
+        border-color: $green;
+    }
+}
+
+.balance-orange {
+    input {
+        border-color: $orange;
+    }
+}
+
+.balance-red {
+    input {
+        border-color: $red;
+    }
+}
+
+.loot-transfer {
+    margin: 0.5rem 0 0;
+    img {
+        vertical-align: middle;
+        margin: 0 0 0 5px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+</style>
 
 <script>
     export default {
