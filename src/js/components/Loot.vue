@@ -79,7 +79,7 @@
     </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '../../scss/style.scss';
 
 h3 {
