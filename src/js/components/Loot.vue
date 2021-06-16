@@ -80,7 +80,7 @@
 </template>
 
 <style lang="scss">
-@import '../../scss/style.scss';
+@import '../../scss/variables';
 
 h3 {
     img {
