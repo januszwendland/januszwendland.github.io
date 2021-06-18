@@ -37,7 +37,7 @@
             <router-view></router-view>
         </main>
         <footer class="footer">
-            <a href="https://www.tibia.com" target="_blank">
+            <a href="https://www.tibia.com" rel="noopener" target="_blank">
                 <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100px" height="70px">
             </a>
             <ul class="footer-btns">
@@ -55,7 +55,7 @@
                 </li>
             </ul>
             <p>
-                Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/">CipSoft GmbH</a>.<br>
+                Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/" rel="noopener" target="_blank">CipSoft GmbH</a>.<br>
                 tibia.tools © All rights reserved.
             </p>
         </footer>
