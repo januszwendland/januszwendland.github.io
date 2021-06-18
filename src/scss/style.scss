@@ -424,6 +424,9 @@ input {
     padding: 1.5rem;
     margin: 0 0 1.875rem;
     position: relative;
+    &:last-child {
+        margin: 0;
+    }
 }
 .card-header {
     display: flex;
