@@ -37,6 +37,9 @@
             <router-view></router-view>
         </main>
         <footer class="footer">
+            <a href="https://tibia.com" target="_blank">
+                <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100px" height="70px">
+            </a>
             <ul class="footer-btns">
                 <li>
                     <button v-on:click="showContact = true">Contact</button>
