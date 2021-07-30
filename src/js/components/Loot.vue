@@ -162,8 +162,8 @@ h3 {
 
                 for (let i = 0; i < this.teamSize; i++) {
                     let name = temp[i * 6].replace(" (Leader)", ""),
-                        loot = parseInt(temp[i * 6 + 1].replace(',', '').match(regex)),
-                        supplies = parseInt(temp[i * 6 + 2].replace(',', '').match(regex)),
+                        loot = parseInt(temp[i * 6 + 1].replaceAll(',', '').match(regex)),
+                        supplies = parseInt(temp[i * 6 + 2].replaceAll(',', '').match(regex)),
                         balance = loot - supplies;
 
                     this.logParsed.push({ name: name, loot: loot, supplies: supplies, balance: balance });
