@@ -11,6 +11,7 @@ const Houses = () => import(/* webpackChunkName: "houses" */ './components/House
 const Imbuing = () => import(/* webpackChunkName: "imbuing" */ './components/Imbuing');
 const Loot = () => import(/* webpackChunkName: "loot" */ './components/Loot');
 const Spells = () => import(/* webpackChunkName: "spells" */ './components/Spells');
+const Timers = () => import(/* webpackChunkName: "transfer" */ './components/Timers');
 const Transfer = () => import(/* webpackChunkName: "transfer" */ './components/Transfer');
 
 Vue.use(VueRouter);
@@ -22,6 +23,7 @@ const routes = [
     { path: '/imbuing', component: Imbuing, meta: { title: 'Imbuing | Tibia Tools' } },
     { path: '/loot', component: Loot, meta: { title: 'Loot | Tibia Tools' } },
     { path: '/spells', component: Spells, meta: { title: 'Spells | Tibia Tools' } },
+    { path: '/timers', component: Timers, meta: { title: 'Timers | Tibia Tools' } },
     { path: '/transfer', component: Transfer, meta: { title: 'Transfer | Tibia Tools' } }
 ];
 

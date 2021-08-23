@@ -20,7 +20,7 @@
                         <li v-for="tool in tools">
                             <img v-bind:src="tool.icon" alt="" width="18px" height="18px">
                             <span>
-                                <strong>{{ tool.name }}</strong>: {{ tool.description }}
+                                <strong>{{ tool.name }}</strong>: <span v-html="tool.description"></span>
                             </span>
                         </li>
                     </ul>
@@ -94,7 +94,7 @@
                     },
                     {
                         name: 'Healing calculator',
-                        description: 'In progress...',
+                        description: '(<span class="red">in progress</span>)',
                         icon: 'icons/healing.svg',
                         icon_white: 'icons/healing_white.svg',
                         link: '/healing'
@@ -122,10 +122,17 @@
                     },
                     {
                         name: 'Spells list',
-                        description: 'Filter list by vocation or level, find where you can buy chosen spell.',
+                        description: 'Filter list by vocation or level, find where you can buy chosen spell. (<span class="red">in progress</span>)',
                         icon: 'icons/spells.svg',
                         icon_white: 'icons/spells_white.svg',
                         link: '/spells'
+                    },
+                    {
+                        name: 'Timers',
+                        description: 'Boss cooldown timers. (<span class="red">in progress</span>)',
+                        icon: 'icons/timers.svg',
+                        icon_white: 'icons/timers_white.svg',
+                        link: '/timers'
                     },
                     {
                         name: 'Transfer',
