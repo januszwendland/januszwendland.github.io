@@ -7,16 +7,16 @@
             </h2>
         </div>
         <div class="card-content">
-            <div class="row row-wrap timers-row">
-                <div v-for="boss in bosses" class="timers-boss">
-                    <img v-bind:src="boss.img" alt="" width="64px" height="64px">
-                    <div class="timers-text">
-                        <h3>{{ boss.name }}</h3>
-                        <div class="timers-time">00:00:00</div>
+            <div class="row row-wrap">
+                <div v-for="timer in timers" class="timer">
+                    <img v-bind:src="timer.img" alt="" width="64px" height="64px">
+                    <div class="timer-text">
+                        <h3>{{ timer.name }}</h3>
+                        <div class="timer-time">{{ timer.time }}</div>
                     </div>
-                    <div class="timers-controls">
-                        <img src="icons/start.svg" alt="Start timer" width="32px" height="32px" v-show="!boss.on">
-                        <img src="icons/stop.svg" alt="Stop timer" width="32px" height="32px" v-show="boss.on">
+                    <div class="timer-controls" v-on:click="setTimer(timer)">
+                        <img src="icons/start.svg" alt="Start timer" width="32px" height="32px" v-show="!timer.on">
+                        <img src="icons/stop.svg" alt="Stop timer" width="32px" height="32px" v-show="timer.on">
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
 <style scoped lang="scss">
 @import '../../scss/variables.scss';
 
-.timers-boss {
+.timer {
     border: 1px solid $gray;
     border-radius: 0.3rem;
     overflow: hidden;
@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
 }
-.timers-text {
+.timer-text {
     padding: 0 0 0 0.75rem;
     text-align: center;
     h3 {
@@ -47,11 +47,11 @@
         margin: 0 0 0.25rem;
     }
 }
-.timers-time {
+.timer-time {
     font-weight: 700;
     font-size: 1.12rem;
 }
-.timers-controls {
+.timer-controls {
     opacity: 0;
     position: absolute;
     top: 0;
@@ -70,11 +70,11 @@
 }
 
 @media (max-width: 767.98px) {
-    .timers-boss {
+    .timer-boss {
         width: 100%;
         margin: 0 0 0.5rem;
     }
-    .timers-text {
+    .timer-text {
         width: 100%;
     }
 }
@@ -95,12 +95,56 @@
 
         data: function () {
             return {
-                bosses: {
-                    'Oberon': { name: 'Grand Master Oberon', img: 'img/timers/grand-master-oberon.gif', time: 20, on: false },
-                    'Scarlett': { name: 'Scarlett Etzel', img: 'img/timers/scarlett-etzel.gif', time: 20, on: false },
-                    'Urmahlullu': { name: 'Urmahlullu', img: 'img/timers/urmahlullu.gif', time: 20, on: false }
+                timers: [
+                    { name: 'Grand Master Oberon', img: 'img/timers/grand-master-oberon.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                    { name: 'Scarlett Etzel', img: 'img/timers/scarlett-etzel.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                    { name: 'Urmahlullu', img: 'img/timers/urmahlullu.gif', cooldown: 20, on: false, time: '00:00:00', interval: null }
+                ]
+            }
+        },
+
+        methods: {
+            formatNumber: function (number) {
+                return number > 9 ? number : '0' + number;
+            },
+            showTime: function (timer) {
+                let temp =  (Vue.ls.get(timer.name.replaceAll(' ', '')) - Date.now()) / 1000,
+                    hours = this.formatNumber(Math.floor(temp / 3600)),
+                    minutes = this.formatNumber(Math.floor((temp - (hours * 3600)) / 60)),
+                    seconds = this.formatNumber(Math.ceil(temp - (hours * 3600) - (minutes * 60)));
+
+                timer.on = true;
+                timer.time = hours + ':' + minutes + ':' + seconds;
+            },
+            setTimers: function (timers) {
+                timers.forEach(timer => {
+                    let name = timer.name.replaceAll(' ', '');
+
+                    if (Vue.ls.get(name)) {
+                        this.showTime(timer);
+                        timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
+                    }
+                });
+            },
+            setTimer: function (timer) {
+                let name = timer.name.replaceAll(' ', ''),
+                    time = timer.cooldown * 60 * 60 * 1000;
+
+                if (timer.on) {
+                    timer.on = false;
+                    clearInterval(timer.interval);
+                    Vue.ls.remove(name);
+                    timer.time = '00:00:00';
+                } else {
+                    Vue.ls.set(name, Date.now() + time, time);
+                    this.showTime(timer);
+                    timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
                 }
             }
+        },
+
+        mounted: function () {
+            this.setTimers(this.timers);
         }
     }
 </script>
