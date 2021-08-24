@@ -70,7 +70,7 @@
 }
 
 @media (max-width: 767.98px) {
-    .timer-boss {
+    .timer {
         width: 100%;
         margin: 0 0 0.5rem;
     }
