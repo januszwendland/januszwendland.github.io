@@ -113,7 +113,7 @@
 </template>
 
 <style scoped lang="scss">
-@import '../../scss/style.scss';
+@import '../../scss/variables.scss';
 
 .server-info-icon {
     vertical-align: middle;
@@ -149,7 +149,7 @@
                 },
                 servers: {
                     'Adra': { location: 'Europe', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
-                    'Alumbra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Alumbra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
                     'Antica': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Ardera ': { location: 'North America', type: 'retro hardcore pvp', green: true, blocked: true, locked: false, premium: true },
                     'Astera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
@@ -167,7 +167,7 @@
                     'Emera': { location: 'North America', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
                     'Epoca': { location: 'Europe', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Estela': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
-                    'Famosa': { location: 'Europe', type: 'optional pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Famosa': { location: 'Europe', type: 'optional pvp', green: true, blocked: true, locked: false, premium: false },
                     'Fera': { location: 'North America', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
                     'Ferobra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Fervora': { location: 'Europe', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
@@ -184,11 +184,11 @@
                     'Kalibra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
                     'Karna': { location: 'Europe', type: 'optional pvp', green: true, blocked: true, locked: false, premium: false },
                     'Kenora': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
-                    'Libertabra': { location: 'South America', type: 'retro hardcore pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Libertabra': { location: 'South America', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
                     'Lobera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Luminera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
                     'Lutabra': { location: 'South America', type: 'retro open pvp', green: false, blocked: false, locked: false, premium: false },
-                    'Marcia': { location: 'Europe', type: 'open pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Marcia': { location: 'Europe', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },
                     'Menera': { location: 'North America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
                     'Mercera': { location: 'North America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
                     'Mitigera': { location: 'North America', type: 'optional pvp', green: true, blocked: false, locked: false, premium: false },
@@ -205,7 +205,7 @@
                     'Premia': { location: 'Europe', type: 'open pvp', green: false, blocked: false, locked: false, premium: true },
                     'Quelibra': { location: 'South America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Quintera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
-                    'Ragna': { location: 'Europe', type: 'retro hardcore pvp', green: true, blocked: true, locked: false, premium: false },
+                    'Ragna': { location: 'Europe', type: 'retro hardcore pvp', green: true, blocked: false, locked: false, premium: false },
                     'Refugia': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
                     'Reinobra': { location: 'South America', type: 'optional pvp', green: false, blocked: true, locked: false, premium: false },
                     'Relania': { location: 'Europe', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
@@ -215,7 +215,7 @@
                     'Serenebra': { location: 'South America', type: 'optional pvp', green: false, blocked: false, locked: false, premium: false },
                     'Solidera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
                     'Talera': { location: 'North America', type: 'open pvp', green: false, blocked: false, locked: false, premium: false },
-                    'Tembra': { location: 'South America', type: 'optional pvp', green: true, blocked: true, locked: false, premium: true },
+                    'Tembra': { location: 'South America', type: 'optional pvp', green: true, blocked: true, locked: false, premium: false },
                     'Unica': { location: 'Europe', type: 'retro open pvp', green: true, blocked: false, locked: false, premium: false },
                     'Unisera': { location: 'North America', type: 'open pvp', green: true, blocked: false, locked: false, premium: false },
                     'Utobra': { location: 'South America', type: 'open pvp', green: true, blocked: true, locked: false, premium: false },

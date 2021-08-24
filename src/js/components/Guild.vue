@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <article class="card">
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/guild.svg" alt="" width="18px" height="18px">
@@ -77,7 +77,7 @@
                 <div class="loader" role="status"></div>
             </div>
         </div>
-    </div>
+    </article>
 </template>
 
 <style lang="scss">

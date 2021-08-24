@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <article class="card">
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/loot.svg" alt="" width="18px" height="18px">
@@ -76,7 +76,7 @@
                 </div>
             </template>
         </div>
-    </div>
+    </article>
 </template>
 
 <style lang="scss">

@@ -4,7 +4,7 @@
             <h1>Tibia Tools</h1>
         </nav>
         <main class="main" v-show="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
-            <article class="card" v-bind:class="{ 'collapsed' : collapsed }">
+            <section class="card" v-bind:class="{ 'collapsed' : collapsed }">
                 <div class="card-header">
                     <h2 class="card-title">Tools Description</h2>
                     <button class="card-collapse-btn" title="Collapse card"
@@ -25,7 +25,7 @@
                         </li>
                     </ul>
                 </div>
-            </article>
+            </section>
             <nav class="tools-nav">
                 <template v-for="tool in tools">
                     <router-link v-bind:to="tool.link">
@@ -94,7 +94,7 @@
                     },
                     {
                         name: 'Healing calculator',
-                        description: '(<span class="red">in progress</span>)',
+                        description: '<span class="red">(in progress)</span>',
                         icon: 'icons/healing.svg',
                         icon_white: 'icons/healing_white.svg',
                         link: '/healing'
@@ -122,14 +122,14 @@
                     },
                     {
                         name: 'Spells list',
-                        description: 'Filter list by vocation or level, find where you can buy chosen spell. (<span class="red">in progress</span>)',
+                        description: 'Filter list by vocation or level, find where you can buy chosen spell. <span class="red">(in progress)</span>',
                         icon: 'icons/spells.svg',
                         icon_white: 'icons/spells_white.svg',
                         link: '/spells'
                     },
                     {
                         name: 'Timers',
-                        description: 'Boss cooldown timers. (<span class="red">in progress</span>)',
+                        description: 'Boss cooldown timers. <span class="red">(in progress)</span>',
                         icon: 'icons/timers.svg',
                         icon_white: 'icons/timers_white.svg',
                         link: '/timers'

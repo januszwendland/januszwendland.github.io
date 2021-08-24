@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <article class="card">
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/imbuing.svg" alt="" width="18px" height="18px">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </article>
 </template>
 
 <script>

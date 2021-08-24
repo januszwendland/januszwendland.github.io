@@ -1,9 +1,9 @@
 <template>
-    <div class="card">
+    <article class="card">
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/spells.svg" alt="" width="18px" height="18px">
-                Spells list (<span class="red">in progress</span>)
+                <span>Spells list <span class="red">(in progress)</span></span>
             </h2>
         </div>
         <div class="card-content">
@@ -41,7 +41,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </article>
 </template>
 
 <script>

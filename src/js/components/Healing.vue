@@ -1,12 +1,12 @@
 <template>
-    <div class="card">
+    <article class="card">
         <div class="card-header">
             <h2 class="card-title">
                 <img src="icons/healing.svg" alt="" width="18px" height="18px">
-                Healing calculator (<span class="red">in progress</span>)
+                <span>Healing calculator <span class="red">(in progress)</span></span>
             </h2>
         </div>
-    </div>
+    </article>
 </template>
 
 <script>

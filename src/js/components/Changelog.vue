@@ -1,9 +1,9 @@
 <template>
-    <div class="popup">
+    <article class="popup">
         <button class="popup-close" title="Close popup"
             v-on:click="$emit('close')"></button>
         <p>In progress...</p>
-    </div>
+    </article>
 </template>
 
 <script>
