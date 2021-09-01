@@ -81,15 +81,17 @@
             axios
                 .get('https://api.tibiadata.com/v2/characters/' + this.name.replace(' ', '+') + '.json')
                 .then(response => {
-                    this.last = response.data.characters.data.last_login[0].date.substring(0, 10);
-                    this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
+                    if (!response.data.characters.error) {
+                        this.last = response.data.characters.data.last_login[0].date.substring(0, 10);
+                        this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
 
-                    if (this.days > 13) {
-                        this.red = true;
-                    } else if (this.days > 6) {
-                        this.orange = true;
-                    } else {
-                        this.green = true;
+                        if (this.days > 13) {
+                            this.red = true;
+                        } else if (this.days > 6) {
+                            this.orange = true;
+                        } else {
+                            this.green = true;
+                        }
                     }
 
                     this.$emit('loader', false);
