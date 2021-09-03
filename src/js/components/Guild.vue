@@ -12,6 +12,7 @@
                 <input placeholder="Guild name" v-model="guildName">
                 <button>Check</button>
             </form>
+            <small>This tool depends on <a href="https://tibiadata.com/" rel="noopener" target="_blank">TibiaData API</a></small>
             <template v-if="guild">
                 <div class="mt">
                     <small>

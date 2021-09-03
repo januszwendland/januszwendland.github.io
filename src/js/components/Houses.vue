@@ -18,6 +18,7 @@
                         v-bind:value="server">{{ server }}</option>
                 </select>
             </div>
+            <small>This tool depends on <a href="https://tibiadata.com/" rel="noopener" target="_blank">TibiaData API</a></small>
             <div class="mt"
                 v-if="selectedServer">
                 <div class="filters-pills">
