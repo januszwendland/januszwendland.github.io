@@ -7,7 +7,7 @@
     "url": "git+https://github.com/januszwendland/tibia.git"
   },
   "author": "Janusz Wendland",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/januszwendland/tibia/issues"
   },
