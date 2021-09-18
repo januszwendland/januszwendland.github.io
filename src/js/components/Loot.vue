@@ -22,7 +22,7 @@
                         v-bind:class="{ 'balance-green': player.loot > player.supplies, 'balance-orange': player.loot === player.supplies, 'balance-red': player.loot < player.supplies }">
                         <h3 class="mt ellipsis">
                             {{ player.name }}
-                            <img src="icons/remove.svg" alt="" width="24px" height="24px"
+                            <img src="icons/remove.svg" alt="" width="24px" height="24px" title="Remove player"
                                 v-on:click="removePlayer(index)">
                         </h3>
                         <div class="input-group left mts">
@@ -48,8 +48,9 @@
                 <div class="mt">
                     <p class="loot-transfer"
                         v-for="row in transfer">
-                        <strong>{{ row.from }}</strong> should transfer <strong>{{ row.gold }}</strong> gp to <strong>{{ row.to }}</strong>.
+                        <strong>{{ row.from }}</strong> should transfer <strong>{{ formatNumber(row.gold) }}</strong> gp to <strong>{{ row.to }}</strong>.
                         <img src="icons/copy.svg" alt="" width="24px" height="24px"
+                            v-bind:title="'transfer ' + row.gold + ' to ' + row.to"
                             v-on:click="copyToClipboard('transfer ' + row.gold + ' to ' + row.to)">
                     </p>
                 </div>
@@ -63,14 +64,14 @@
                         <div class="badge"
                             v-bind:class="{ 'green': teamBalance > 0, 'orange': teamBalance === 0, 'red': teamBalance < 0 }">
                             Team balance
-                            <span>{{ teamBalance }}</span>
+                            <span>{{ formatNumber(teamBalance) }}</span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="badge"
                             v-bind:class="{ 'green': playerBalance > 0, 'orange': playerBalance === 0, 'red': playerBalance < 0 }">
                             Each player balance
-                            <span>{{ playerBalance }}</span>
+                            <span>{{ formatNumber(playerBalance) }}</span>
                         </div>
                     </div>
                 </div>
@@ -247,6 +248,9 @@ h3 {
                 finally {
                     document.body.removeChild(textarea);
                 }
+            },
+            formatNumber: function (number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
         }
     }
