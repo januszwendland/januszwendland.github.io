@@ -178,10 +178,7 @@
                 if (Vue.ls.get('chars')) {
                     this.chars = Vue.ls.get('chars');
 
-                    console.log(this.chars.length);
-
                     if (this.chars.length) {
-                        console.log('True?');
                         this.activeChar = this.chars[0];
                         this.setTimers();
                     } else {
