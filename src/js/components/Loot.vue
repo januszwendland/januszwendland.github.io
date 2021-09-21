@@ -82,18 +82,6 @@
 
 <style lang="scss">
 @import '../../scss/variables';
-
-h3 {
-    img {
-        vertical-align: middle;
-        margin: 0 0 0 5px;
-        cursor: pointer;
-        transition: transform 0.3s;
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-}
     
 .ellipsis {
     text-overflow: ellipsis;

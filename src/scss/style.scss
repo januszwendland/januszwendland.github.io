@@ -40,6 +40,18 @@ h3 {
     font-weight: 800;
     text-transform: uppercase;
     padding: 0 1rem;
+    img {
+        vertical-align: middle;
+        margin: 0 0 0 5px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    &.pointer {
+        cursor: pointer;
+    }
 }
 
 a {
@@ -161,6 +173,17 @@ input {
 .col-25 {
     width: 25%;
 }
+.col-50 {
+    width: 50%;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+        margin: 0 0.5rem 0.5rem 0;
+    }
+}
 
 .loader-wrapper {
     position: fixed;
@@ -279,10 +302,7 @@ input {
     }
 }
 .filters-imgs {
-    display: flex;
-    flex-wrap: wrap;
     img {
-        margin: 0 0.5rem 0.5rem 0;
         cursor: pointer;
         opacity: 0.7;
         transition: opacity 0.3s;
@@ -609,7 +629,8 @@ tr {
             margin: 0;
         }
     }
-    .col-25 {
+    .col-25,
+    .col-50 {
         width: 100%;
     }
     .hide-on-mobile {

@@ -7,7 +7,31 @@
             </h2>
         </div>
         <div class="card-content">
-            <div class="row row-wrap">
+            <div class="row">
+                <div class="col col-50">
+                    <form class="input-group large right"
+                        v-on:submit.prevent="addChar">
+                        <input placeholder="Character name" v-model="name">
+                        <button>Add</button>
+                    </form>
+                    <small>Add your character, you can add multiple characters.</small>
+                </div>
+            </div>
+            <div class="flex mt">
+                <h3 class="pointer"
+                    v-for="char in chars"
+                    v-on:click="setActiveChar(char)"
+                    v-bind:class="{ 'green': char === activeChar }">
+                    {{ char }}
+                    <img src="icons/remove.svg" alt="" width="24px" height="24px" title="Remove char"
+                        v-on:click.stop="removeChar(char)">
+                </h3>
+            </div>
+            <small v-if="activeChar">
+                You can remove character by clicking on 'x' icon.<br>
+                Active character have <strong class="green">green</strong> color.
+            </small>
+            <div class="flex mt" v-if="activeChar">
                 <div v-for="timer in timers" class="timer">
                     <img v-bind:src="timer.img" alt="" width="64px" height="64px">
                     <div class="timer-text">
@@ -99,7 +123,10 @@
                     { name: 'Grand Master Oberon', img: 'img/timers/grand-master-oberon.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                     { name: 'Scarlett Etzel', img: 'img/timers/scarlett-etzel.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                     { name: 'Urmahlullu', img: 'img/timers/urmahlullu.gif', cooldown: 20, on: false, time: '00:00:00', interval: null }
-                ]
+                ],
+                chars: [],
+                activeChar: null,
+                name: null
             }
         },
 
@@ -108,7 +135,8 @@
                 return number > 9 ? number : '0' + number;
             },
             showTime: function (timer) {
-                let temp =  (Vue.ls.get(timer.name.replaceAll(' ', '')) - Date.now()) / 1000,
+                let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_'),
+                    temp =  (Vue.ls.get(name) - Date.now()) / 1000,
                     hours = this.formatNumber(Math.floor(temp / 3600)),
                     minutes = this.formatNumber(Math.floor((temp - (hours * 3600)) / 60)),
                     seconds = this.formatNumber(Math.ceil(temp - (hours * 3600) - (minutes * 60)));
@@ -116,35 +144,99 @@
                 timer.on = true;
                 timer.time = hours + ':' + minutes + ':' + seconds;
             },
-            setTimers: function (timers) {
-                timers.forEach(timer => {
-                    let name = timer.name.replaceAll(' ', '');
+            resetTimer: function (timer) {
+                timer.on = false;
+                timer.time = '00:00:00';
+                clearInterval(timer.interval);
+            },
+            setTimers: function () {
+                this.timers.forEach(timer => {
+                    let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
 
                     if (Vue.ls.get(name)) {
                         this.showTime(timer);
                         timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
+                    } else {
+                        this.resetTimer(timer);
                     }
                 });
             },
             setTimer: function (timer) {
-                let name = timer.name.replaceAll(' ', ''),
+                let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_'),
                     time = timer.cooldown * 60 * 60 * 1000;
 
                 if (timer.on) {
-                    timer.on = false;
-                    clearInterval(timer.interval);
+                    this.resetTimer(timer);
                     Vue.ls.remove(name);
-                    timer.time = '00:00:00';
                 } else {
                     Vue.ls.set(name, Date.now() + time, time);
                     this.showTime(timer);
                     timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
                 }
+            },
+            checkChars: function () {
+                if (Vue.ls.get('chars')) {
+                    this.chars = Vue.ls.get('chars');
+
+                    console.log(this.chars.length);
+
+                    if (this.chars.length) {
+                        console.log('True?');
+                        this.activeChar = this.chars[0];
+                        this.setTimers();
+                    } else {
+                        this.activeChar = null;
+                    }
+                }
+            },
+            addChar: function () {
+                if (this.name && !this.chars.includes(this.name)) {
+                    this.chars.push(this.name);
+                    Vue.ls.set('chars', this.chars);
+
+                    if (!this.activeChar) {
+                        this.setActiveChar(this.name);
+                    }
+
+                    this.name = null;
+                } else if (this.chars.includes(this.name)) {
+                    alert('Character already added!');
+                }
+            },
+            removeChar: function (char) {
+                this.chars = this.chars.filter(item => item !== char);
+                Vue.ls.set('chars', this.chars);
+
+                this.timers.forEach(timer => {
+                    let name = char.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
+
+                    this.resetTimer(timer);
+                    Vue.ls.remove(name);
+                });
+
+                this.checkChars();
+            },
+            setActiveChar: function (char) {
+                if (this.activeChar !== char) {
+                    this.activeChar = char;
+
+                    this.timers.forEach(timer => {
+                        this.resetTimer(timer);
+                    });
+
+                    this.setTimers();
+                }
             }
         },
 
         mounted: function () {
-            this.setTimers(this.timers);
+            this.checkChars();
+        },
+
+        beforeUnmount: function () {
+            this.timers.forEach(timer => {
+                clearInterval(timer.interval);
+            });
         }
     }
 </script>
