@@ -166,18 +166,18 @@
                         { name: 'Count of the Core', img: 'img/timers/count-of-the-core.gif', cooldown: 4, on: false, time: '00:00:00', interval: null },
                         { name: 'Duke of the Depths', img: 'img/timers/duke-of-the-depths.gif', cooldown: 4, on: false, time: '00:00:00', interval: null }
                     ],
-                    'Werelions bosses': [
-                        { name: 'Katex Blood Tongue', img: 'img/timers/katex-blood-tongue.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
-                        { name: 'Srezz Yellow Eyes', img: 'img/timers/srezz-yellow-eyes.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
-                        { name: 'Utua Stone Sting', img: 'img/timers/utua-stone-sting.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
-                        { name: 'Yirkas Blue Scales', img: 'img/timers/yirkas-blue-scales.gif', cooldown: 4, on: false, time: '00:00:00', interval: null }
-                    ],
                     'Werebosses': [
                         { name: 'Black Vixen', img: 'img/timers/black-vixen.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                         { name: 'Bloodback', img: 'img/timers/bloodback.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                         { name: 'Darkfang', img: 'img/timers/darkfang.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                         { name: 'Shadowpelt', img: 'img/timers/shadowpelt.gif', cooldown: 4, on: false, time: '00:00:00', interval: null },
                         { name: 'Sharpclaw', img: 'img/timers/sharpclaw.gif', cooldown: 4, on: false, time: '00:00:00', interval: null }
+                    ],
+                    'Werelions bosses': [
+                        { name: 'Katex Blood Tongue', img: 'img/timers/katex-blood-tongue.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Srezz Yellow Eyes', img: 'img/timers/srezz-yellow-eyes.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Utua Stone Sting', img: 'img/timers/utua-stone-sting.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Yirkas Blue Scales', img: 'img/timers/yirkas-blue-scales.gif', cooldown: 4, on: false, time: '00:00:00', interval: null }
                     ]
                 },
                 chars: [],
