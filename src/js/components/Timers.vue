@@ -14,7 +14,10 @@
                         <input placeholder="Character name" v-model="name">
                         <button>Add</button>
                     </form>
-                    <small>Add your character, you can add multiple characters.</small>
+                    <small>
+                        Add your character, you can add multiple characters.<br>
+                        This tools use browser local storage, if you clear browser data, use incognito mode or change browser it will not work.
+                    </small>
                 </div>
             </div>
             <div class="flex mt">
