@@ -31,19 +31,24 @@
                 You can remove character by clicking on 'x' icon.<br>
                 Active character have <strong class="green">green</strong> color.
             </small>
-            <div class="flex mt" v-if="activeChar">
-                <div v-for="timer in timers" class="timer">
-                    <img v-bind:src="timer.img" alt="" width="64px" height="64px">
-                    <div class="timer-text">
-                        <h3>{{ timer.name }}</h3>
-                        <div class="timer-time">{{ timer.time }}</div>
-                    </div>
-                    <div class="timer-controls" v-on:click="setTimer(timer)">
-                        <img src="icons/start.svg" alt="Start timer" width="32px" height="32px" v-show="!timer.on">
-                        <img src="icons/stop.svg" alt="Stop timer" width="32px" height="32px" v-show="timer.on">
+            <template v-for="(category, name) in timers" v-if="activeChar">
+                <h3 class="mt">{{ name }}</h3>
+                <div class="flex">
+                    <div class="timer"
+                        v-for="timer in category"
+                        v-bind:class="{ 'active': timer.on }">
+                        <img v-bind:src="timer.img" alt="" width="64px" height="64px">
+                        <div class="timer-text">
+                            <h3>{{ timer.name }}</h3>
+                            <div class="timer-time">{{ timer.time }}</div>
+                        </div>
+                        <div class="timer-controls" v-on:click="setTimer(timer)">
+                            <img src="icons/start.svg" alt="Start timer" width="32px" height="32px" v-show="!timer.on">
+                            <img src="icons/stop.svg" alt="Stop timer" width="32px" height="32px" v-show="timer.on">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
     </article>
 </template>
@@ -60,6 +65,9 @@
     position: relative;
     display: flex;
     align-items: center;
+    &.active {
+        background: rgba($green, 0.3);
+    }
 }
 .timer-text {
     padding: 0 0 0 0.75rem;
@@ -119,11 +127,43 @@
 
         data: function () {
             return {
-                timers: [
-                    { name: 'Grand Master Oberon', img: 'img/timers/grand-master-oberon.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
-                    { name: 'Scarlett Etzel', img: 'img/timers/scarlett-etzel.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
-                    { name: 'Urmahlullu', img: 'img/timers/urmahlullu.gif', cooldown: 20, on: false, time: '00:00:00', interval: null }
-                ],
+                timers: {
+                    'Various': [
+                        { name: 'Kroazur', img: 'img/timers/kroazur.gif', cooldown: 2, on: false, time: '00:00:00', interval: null },
+                        { name: 'Oberon', img: 'img/timers/oberon.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Scarlett Etzel', img: 'img/timers/scarlett-etzel.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Urmahlullu', img: 'img/timers/urmahlullu.gif', cooldown: 20, on: false, time: '00:00:00', interval: null }
+                    ],
+                    'Cults of Tibia': [
+                        { name: 'Essence of Malice', img: 'img/timers/essence-of-malice.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'False God', img: 'img/timers/false-god.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Sandking', img: 'img/timers/sandking.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Souldespoiler', img: 'img/timers/souldespoiler.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Voidborn', img: 'img/timers/voidborn.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Source of Corruption', img: 'img/timers/source-of-corruption.gif', cooldown: 20, on: false, time: '00:00:00', interval: null }
+                    ],
+                    'Forgotten Knowledge': [
+                        { name: 'Dragonking Zyrtarch', img: 'img/timers/dragonking-zyrtarch.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Lady Tenebris', img: 'img/timers/lady-tenebris.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Lloyd', img: 'img/timers/lloyd.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Melting Frozen Horror', img: 'img/timers/melting-frozen-horror.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Time Guardian', img: 'img/timers/time-guardian.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Thorn Knight', img: 'img/timers/thorn-knight.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Last Lore Keeper', img: 'img/timers/last-lore-keeper.gif', cooldown: 336, on: false, time: '00:00:00', interval: null }
+                    ],
+                    'Pirats': [
+                        { name: 'Ratmiral Blackwhiskers', img: 'img/timers/ratmiral-blackwhiskers.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Tentugly\'s Head', img: 'img/timers/tentuglys-head.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                    ],
+                    'Warzones': [
+                        { name: 'Deathstrike', img: 'img/timers/deathstrike.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Gnomevil', img: 'img/timers/gnomevil.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Abyssador', img: 'img/timers/abyssador.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
+                        { name: 'Baron from Below', img: 'img/timers/baron-from-below.gif', cooldown: 4, on: false, time: '00:00:00', interval: null },
+                        { name: 'Count of the Core', img: 'img/timers/count-of-the-core.gif', cooldown: 4, on: false, time: '00:00:00', interval: null },
+                        { name: 'Duke of the Depths', img: 'img/timers/duke-of-the-depths.gif', cooldown: 4, on: false, time: '00:00:00', interval: null }
+                    ]
+                },
                 chars: [],
                 activeChar: null,
                 name: null
@@ -150,16 +190,18 @@
                 clearInterval(timer.interval);
             },
             setTimers: function () {
-                this.timers.forEach(timer => {
-                    let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
+                for (const [key, arr] of Object.entries(this.timers)) {
+                    arr.forEach(timer => {
+                        let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
 
-                    if (Vue.ls.get(name)) {
-                        this.showTime(timer);
-                        timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
-                    } else {
-                        this.resetTimer(timer);
-                    }
-                });
+                        if (Vue.ls.get(name)) {
+                            this.showTime(timer);
+                            timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
+                        } else {
+                            this.resetTimer(timer);
+                        }
+                    });
+                };
             },
             setTimer: function (timer) {
                 let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_'),
@@ -204,12 +246,14 @@
                 this.chars = this.chars.filter(item => item !== char);
                 Vue.ls.set('chars', this.chars);
 
-                this.timers.forEach(timer => {
-                    let name = char.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
+                for (const [key, arr] of Object.entries(this.timers)) {
+                    arr.forEach(timer => {
+                        let name = char.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
 
-                    this.resetTimer(timer);
-                    Vue.ls.remove(name);
-                });
+                        this.resetTimer(timer);
+                        Vue.ls.remove(name);
+                    });
+                };
 
                 this.checkChars();
             },
@@ -217,9 +261,11 @@
                 if (this.activeChar !== char) {
                     this.activeChar = char;
 
-                    this.timers.forEach(timer => {
-                        this.resetTimer(timer);
-                    });
+                    for (const [key, arr] of Object.entries(this.timers)) {
+                        arr.forEach(timer => {
+                            this.resetTimer(timer);
+                        });
+                    };
 
                     this.setTimers();
                 }
@@ -231,9 +277,11 @@
         },
 
         beforeUnmount: function () {
-            this.timers.forEach(timer => {
-                clearInterval(timer.interval);
-            });
+            for (const [key, arr] of Object.entries(this.timers)) {
+                arr.forEach(timer => {
+                    clearInterval(timer.interval);
+                });
+            };
         }
     }
 </script>
