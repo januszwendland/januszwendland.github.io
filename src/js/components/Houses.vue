@@ -40,7 +40,8 @@
                         <th>Name</th>
                         <th class="hide-on-mobile">Rent</th>
                         <th class="hide-on-mobile">Size</th>
-                        <th>Status</th>
+                        <th>Current bid</th>
+                        <th>Time left</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,9 +51,10 @@
                         <td>
                             <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
                         </td>
-                        <td class="hide-on-mobile">{{ house.rent }}</td>
+                        <td class="hide-on-mobile">{{ formatNumber(house.rent) }}</td>
                         <td class="hide-on-mobile">{{ house.size }}</td>
-                        <td>{{ house.status }}</td>
+                        <td>{{ formatNumber(house.auction.current_bid) }}</td>
+                        <td>{{ house.auction.time_left || "-" }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -107,9 +109,9 @@
                     this.towns.forEach(town => { 
                         this.loader++;
                         axios
-                            .get('https://api.tibiadata.com/v2/houses/' + this.selectedServer + '/' + town + '.json')
+                            .get('https://api.tibiadata.com/v3/houses/' + this.selectedServer + '/' + town)
                             .then(response => {
-                                server[town] = response.data.houses.houses.filter(a => a.status !== 'rented');
+                                server[town] = response.data.houses.house_list.filter(a => a.rented !== true);
 
                                 if (response.data.houses.error) {
                                     alert(response.data.houses.error);
@@ -126,6 +128,9 @@
                 } else {
                     this.filterByTown = town;
                 }
+            },
+            formatNumber: function (number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
         }
     }

@@ -1,10 +1,10 @@
 <template>
     <tr class="member"
         v-bind:class="{ 'green': green, 'orange': orange, 'red': red }">
-        <td class="hide-on-mobile">{{ rank }}</td>
+        <td class="hide-on-mobile">{{ member.rank }}</td>
         <td>
             <a target="_blank"
-                v-bind:href="href">{{ member.name }}</a>
+                v-bind:href="href">{{ name }}</a>
         </td>
         <td>{{ vocation }}</td>
         <td>{{ level }}</td>
@@ -15,11 +15,12 @@
 
 <script>
     import axios from 'axios';
+    import he from 'he';
 
     export default {
         name: 'Member',
 
-        props: ['member', 'rank'],
+        props: ['member'],
 
         data: function () {
             return {
@@ -37,7 +38,7 @@
         },
 
         mounted: function () {
-            this.name = this.member.name;
+            this.name = he.decode(this.member.name);
             this.level = this.member.level;
             this.href = "https://www.tibia.com/community/?subtopic=characters&name=" + this.name.replace(' ', '+');
 
@@ -79,10 +80,10 @@
             this.$emit('loader', true);
 
             axios
-                .get('https://api.tibiadata.com/v2/characters/' + this.name.replace(' ', '+') + '.json')
+                .get('https://api.tibiadata.com/v3/character/' + this.name.replace(' ', '+'))
                 .then(response => {
                     if (!response.data.characters.error) {
-                        this.last = response.data.characters.data.last_login[0].date.substring(0, 10);
+                        this.last = response.data.characters.character.last_login.substring(0, 10);
                         this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
 
                         if (this.days > 13) {

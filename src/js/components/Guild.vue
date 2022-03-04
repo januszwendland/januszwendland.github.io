@@ -62,14 +62,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <template v-for="rank in guild">
-                        <template v-for="character in rank.characters">
-                            <member
-                                v-bind:member="character"
-                                v-bind:rank="rank.rank_title"
-                                v-show="(vocation === null || filterMember(character.vocation)) && shareExp(character.level)"
-                                v-on:loader="setLoader" />
-                        </template>
+                    <template v-for="character in guild">
+                        <member
+                            v-bind:member="character"
+                            v-show="(vocation === null || filterMember(character.vocation)) && shareExp(character.level)"
+                            v-on:loader="setLoader" />
                     </template>
                     </tbody>
                 </table>
@@ -126,12 +123,12 @@
                     this.loader++;
 
                     axios
-                        .get('https://api.tibiadata.com/v2/guild/' + this.guildName.replace(' ', '+') + '.json')
+                        .get('https://api.tibiadata.com/v3/guild/' + this.guildName.replace(' ', '+'))
                         .then(response => {
-                            this.guild = response.data.guild.members;
+                            this.guild = response.data.guilds.guild.members;
 
-                            if (response.data.guild.error) {
-                                alert(response.data.guild.error);
+                            if (response.data.guilds.error) {
+                                alert(response.data.guilds.error);
                             }
 
                             this.loader--;
