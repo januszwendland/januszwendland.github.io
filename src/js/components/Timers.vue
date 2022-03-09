@@ -2,7 +2,7 @@
     <article class="card">
         <div class="card-header">
             <h2 class="card-title">
-                <img src="icons/timers.svg" alt="" width="18px" height="18px">
+                <img src="icons/timers.svg" alt="" width="18" height="18">
                 <span>TIMERS <span class="red">(in progress)</span></span>
             </h2>
         </div>
@@ -26,7 +26,7 @@
                     v-on:click="setActiveChar(char)"
                     v-bind:class="{ 'green': char === activeChar }">
                     {{ char }}
-                    <img src="icons/remove.svg" alt="" width="24px" height="24px" title="Remove char"
+                    <img src="icons/remove.svg" alt="" width="24" height="24" title="Remove char"
                         v-on:click.stop="removeChar(char)">
                 </h3>
             </div>
@@ -40,14 +40,17 @@
                     <div class="timer"
                         v-for="timer in category"
                         v-bind:class="{ 'active': timer.on }">
-                        <img v-bind:src="timer.img" alt="" width="64px" height="64px">
+                        <img alt=""
+                            v-bind:width="timer.width || 64"
+                            v-bind:height="timer.height || 64"
+                            v-bind:src="timer.img">
                         <div class="timer-text">
                             <h3>{{ timer.name }}</h3>
                             <div class="timer-time">{{ timer.time }}</div>
                         </div>
                         <div class="timer-controls" v-on:click="setTimer(timer)">
-                            <img src="icons/start.svg" alt="Start timer" width="32px" height="32px" v-show="!timer.on">
-                            <img src="icons/stop.svg" alt="Stop timer" width="32px" height="32px" v-show="timer.on">
+                            <img src="icons/start.svg" alt="Start timer" width="32" height="32" v-show="!timer.on">
+                            <img src="icons/stop.svg" alt="Stop timer" width="32" height="32" v-show="timer.on">
                         </div>
                     </div>
                 </div>
@@ -131,6 +134,10 @@
         data: function () {
             return {
                 timers: {
+                    'Tasks': [
+                        { name: 'Warzones 1-3', img: 'img/timers/warzones-1-3.gif', cooldown: 20, on: false, time: '00:00:00', interval: null, width: 32, height: 32 },
+                        { name: 'Warzones 4-6', img: 'img/timers/warzones-4-6.gif', cooldown: 20, on: false, time: '00:00:00', interval: null, width: 32, height: 32 }
+                    ],
                     'Various': [
                         { name: 'Kroazur', img: 'img/timers/kroazur.gif', cooldown: 2, on: false, time: '00:00:00', interval: null },
                         { name: 'Oberon', img: 'img/timers/oberon.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },

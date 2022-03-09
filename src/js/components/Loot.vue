@@ -2,7 +2,7 @@
     <article class="card">
         <div class="card-header">
             <h2 class="card-title">
-                <img src="icons/loot.svg" alt="" width="18px" height="18px">
+                <img src="icons/loot.svg" alt="" width="18" height="18">
                 Party loot splitter
             </h2>
         </div>
@@ -22,7 +22,7 @@
                         v-bind:class="{ 'balance-green': player.loot > player.supplies, 'balance-orange': player.loot === player.supplies, 'balance-red': player.loot < player.supplies }">
                         <h3 class="mt ellipsis">
                             {{ player.name }}
-                            <img src="icons/remove.svg" alt="" width="24px" height="24px" title="Remove player"
+                            <img src="icons/remove.svg" alt="" width="24" height="24" title="Remove player"
                                 v-on:click="removePlayer(index)">
                         </h3>
                         <div class="input-group left mts">
@@ -49,7 +49,7 @@
                     <p class="loot-transfer"
                         v-for="row in transfer">
                         <strong>{{ row.from }}</strong> should transfer <strong>{{ formatNumber(row.gold) }}</strong> gp to <strong>{{ row.to }}</strong>.
-                        <img src="icons/copy.svg" alt="" width="24px" height="24px"
+                        <img src="icons/copy.svg" alt="" width="24" height="24"
                             v-bind:title="'transfer ' + row.gold + ' to ' + row.to"
                             v-on:click="copyToClipboard('transfer ' + row.gold + ' to ' + row.to)">
                     </p>

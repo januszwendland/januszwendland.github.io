@@ -18,7 +18,7 @@
                 <div class="card-content" v-if="!collapsed">
                     <ul class="tools">
                         <li v-for="tool in tools">
-                            <img v-bind:src="tool.icon" alt="" width="18px" height="18px">
+                            <img v-bind:src="tool.icon" alt="" width="18" height="18">
                             <span>
                                 <strong>{{ tool.name }}</strong>: <span v-html="tool.description"></span>
                             </span>
@@ -29,7 +29,7 @@
             <nav class="tools-nav">
                 <template v-for="tool in tools">
                     <router-link v-bind:to="tool.link">
-                        <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24px" height="24px">
+                        <img v-bind:src="tool.icon_white" v-bind:alt="tool.name" width="24" height="24">
                         <span>{{ tool.name }}</span>
                     </router-link>
                 </template>
@@ -38,7 +38,7 @@
         </main>
         <footer class="footer">
             <a href="https://www.tibia.com" rel="noopener" target="_blank">
-                <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100px" height="70px">
+                <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100" height="70">
             </a>
             <ul class="footer-btns">
                 <li>
