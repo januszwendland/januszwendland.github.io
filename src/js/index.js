@@ -50,6 +50,4 @@ router.afterEach((to, from) => {
 app.use(router);
 app.use(Vue3Storage, { namespace: "tibiaTools_" });
 
-app.config.compilerOptions.whitespace = 'preserve';
-
 app.mount('#app');

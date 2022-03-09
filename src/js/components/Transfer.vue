@@ -73,8 +73,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <template v-if="checkServer(key, server)">
-                        <tr v-for="(server, key) in servers">
+                    <template v-for="(server, key) in servers">
+                        <tr v-if="checkServer(key, server)">
                             <td>
                                 {{ key }}
                                 <span class="server-info-icon hide-on-mobile"

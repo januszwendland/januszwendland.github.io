@@ -17,8 +17,8 @@
     "prod": "set NODE_ENV=production && webpack --mode production"
   },
   "devDependencies": {
-    "axios": "^0.26.0",
-    "css-loader": "^6.7.0",
+    "axios": "^0.26.1",
+    "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",

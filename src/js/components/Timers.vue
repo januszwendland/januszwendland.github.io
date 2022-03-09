@@ -154,7 +154,7 @@
                         { name: 'Thorn Knight', img: 'img/timers/thorn-knight.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                         { name: 'Last Lore Keeper', img: 'img/timers/last-lore-keeper.gif', cooldown: 336, on: false, time: '00:00:00', interval: null }
                     ],
-                    'Pirats': [
+                    'Pirates': [
                         { name: 'Ratmiral Blackwhiskers', img: 'img/timers/ratmiral-blackwhiskers.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                         { name: 'Tentugly\'s Head', img: 'img/timers/tentuglys-head.gif', cooldown: 20, on: false, time: '00:00:00', interval: null },
                     ],

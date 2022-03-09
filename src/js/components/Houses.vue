@@ -29,10 +29,10 @@
                 </div>
                 <small class="filters-info">Filter by town.</small>
             </div>
-            <template v-if="selectedServer && (town != null && town.length)">
-                <div
-                    v-for="(town, name) in server"
-                    v-show="!filterByTown || filterByTown === name">
+            <template
+                v-for="(town, name) in server"
+                v-show="!filterByTown || filterByTown === name">
+                <div v-if="selectedServer && (town != null && town.length)">
                     <h3 class="mt">{{ name }}:</h3>
                     <table class="mt table-fixed">
                         <thead>
@@ -45,8 +45,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <template v-if="house.status !== 'rented'">
-                            <tr v-for="house in town">
+                        <template v-for="house in town">
+                            <tr v-if="house.status !== 'rented'">
                                 <td>
                                     <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
                                 </td>
