@@ -4,7 +4,7 @@
             v-on:click="$emit('close')"></button>
         <p>
             Find me on Discord: <strong>Czit#6666</strong><br>
-            Find me in Tibia: <strong>Tvnu</strong>
+            Find me in Tibia: <strong>Cite</strong>
         </p>
     </article>
 </template>
