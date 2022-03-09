@@ -2,7 +2,7 @@
     <article class="card">
         <div class="card-header">
             <h2 class="card-title">
-                <img src="icons/guild.svg" alt="" width="18px" height="18px">
+                <img src="icons/guild.svg" alt="" width="18" height="18">
                 Check guild
             </h2>
         </div>

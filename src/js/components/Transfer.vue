@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">
-                <img src="icons/transfer.svg" alt="" width="18px" height="18px">
+                <img src="icons/transfer.svg" alt="" width="18" height="18">
                 Where can I transfer?
             </h2>
         </div>
@@ -33,24 +33,24 @@
                             {{ selectedServer }}
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].premium">
-                                <img alt="" title="Premium" src="icons/premium.svg" width="18px" height="18px">
+                                <img alt="" title="Premium" src="icons/premium.svg" width="18" height="18">
                             </span>
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].blocked">
-                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18px" height="18px">
+                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18" height="18">
                             </span>
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="servers[selectedServer].locked">
-                                <img alt="" title="Server locked" src="icons/locked.svg" width="18px" height="18px">
+                                <img alt="" title="Server locked" src="icons/locked.svg" width="18" height="18">
                             </span>
                         </td>
                         <td class="center">
-                            <img alt="" width="30px" height="30px"
+                            <img alt="" width="30" height="30"
                                 v-bind:src="location[servers[selectedServer].location]"
                                 v-bind:title="servers[selectedServer].location">
                         </td>
                         <td class="center">
-                            <img alt="" width="30px" height="30px"
+                            <img alt="" width="30" height="30"
                                 v-bind:src="types[servers[selectedServer].type]"
                                 v-bind:title="servers[selectedServer].type">
                         </td>
@@ -78,24 +78,24 @@
                             {{ key }}
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="server.premium">
-                                <img alt="" title="Premium" src="icons/premium.svg" width="18px" height="18px">
+                                <img alt="" title="Premium" src="icons/premium.svg" width="18" height="18">
                             </span>
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="server.blocked">
-                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18px" height="18px">
+                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18" height="18">
                             </span>
                             <span class="server-info-icon hide-on-mobile"
                                 v-if="server.locked">
-                                <img alt="" title="Server locked" src="icons/locked.svg" width="18px" height="18px">
+                                <img alt="" title="Server locked" src="icons/locked.svg" width="18" height="18">
                             </span>
                         </td>
                         <td class="center">
-                            <img alt="" width="30px" height="30px"
+                            <img alt="" width="30" height="30"
                                 v-bind:src="location[server.location]"
                                 v-bind:title="server.location">
                         </td>
                         <td class="center">
-                            <img alt="" width="30px" height="30px"
+                            <img alt="" width="30" height="30"
                                 v-bind:src="types[server.type]"
                                 v-bind:title="server.type">
                         </td>
