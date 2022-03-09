@@ -127,8 +127,8 @@
                         .then(response => {
                             this.guild = response.data.guilds.guild.members;
 
-                            if (response.data.guilds.error) {
-                                alert(response.data.guilds.error);
+                            if (!response.data.guilds.guild.members) {
+                                alert('This guild does not exist!');
                             }
 
                             this.loader--;

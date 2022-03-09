@@ -113,10 +113,6 @@
                             .then(response => {
                                 server[town] = response.data.houses.house_list.filter(a => a.rented !== true);
 
-                                if (response.data.houses.error) {
-                                    alert(response.data.houses.error);
-                                }
-
                                 this.loader--;
                             })
                     });

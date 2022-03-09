@@ -82,7 +82,7 @@
             axios
                 .get('https://api.tibiadata.com/v3/character/' + this.name.replace(' ', '+'))
                 .then(response => {
-                    if (!response.data.characters.error) {
+                    if (response.data.characters.character.last_login) {
                         this.last = response.data.characters.character.last_login.substring(0, 10);
                         this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
 
