@@ -34,26 +34,28 @@
                 You can remove character by clicking on 'x' icon.<br>
                 Active character have <strong class="green">green</strong> color.
             </small>
-            <template v-for="(category, name) in timers" v-if="activeChar">
-                <h3 class="mt">{{ name }}</h3>
-                <div class="flex">
-                    <div class="timer"
-                        v-for="timer in category"
-                        v-bind:class="{ 'active': timer.on }">
-                        <img alt=""
-                            v-bind:width="timer.width || 64"
-                            v-bind:height="timer.height || 64"
-                            v-bind:src="timer.img">
-                        <div class="timer-text">
-                            <h3>{{ timer.name }}</h3>
-                            <div class="timer-time">{{ timer.time }}</div>
-                        </div>
-                        <div class="timer-controls" v-on:click="setTimer(timer)">
-                            <img src="icons/start.svg" alt="Start timer" width="32" height="32" v-show="!timer.on">
-                            <img src="icons/stop.svg" alt="Stop timer" width="32" height="32" v-show="timer.on">
+            <template v-if="activeChar">
+                <template v-for="(category, name) in timers">
+                    <h3 class="mt">{{ name }}</h3>
+                    <div class="flex">
+                        <div class="timer"
+                            v-for="timer in category"
+                            v-bind:class="{ 'active': timer.on }">
+                            <img alt=""
+                                v-bind:width="timer.width || 64"
+                                v-bind:height="timer.height || 64"
+                                v-bind:src="timer.img">
+                            <div class="timer-text">
+                                <h3>{{ timer.name }}</h3>
+                                <div class="timer-time">{{ timer.time }}</div>
+                            </div>
+                            <div class="timer-controls" v-on:click="setTimer(timer)">
+                                <img src="icons/start.svg" alt="Start timer" width="32" height="32" v-show="!timer.on">
+                                <img src="icons/stop.svg" alt="Stop timer" width="32" height="32" v-show="timer.on">
+                            </div>
                         </div>
                     </div>
-                </div>
+                </template>
             </template>
         </div>
     </article>
@@ -119,15 +121,6 @@
 </style>
 
 <script>
-    import Vue from 'vue';
-    import Storage from 'vue-ls';
-
-    let options = {
-        namespace: 'tibiaTools_'
-    };
-
-    Vue.use(Storage, options);
-
     export default {
         name: 'Timers',
 
@@ -199,7 +192,7 @@
             },
             showTime: function (timer) {
                 let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_'),
-                    temp =  (Vue.ls.get(name) - Date.now()) / 1000,
+                    temp =  (this.$storage.getStorageSync(name) - Date.now()) / 1000,
                     hours = this.formatNumber(Math.floor(temp / 3600)),
                     minutes = this.formatNumber(Math.floor((temp - (hours * 3600)) / 60)),
                     seconds = this.formatNumber(Math.ceil(temp - (hours * 3600) - (minutes * 60)));
@@ -217,7 +210,7 @@
                     arr.forEach(timer => {
                         let name = this.activeChar.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
 
-                        if (Vue.ls.get(name)) {
+                        if (this.$storage.getStorageSync(name)) {
                             this.showTime(timer);
                             timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
                         } else {
@@ -232,16 +225,16 @@
 
                 if (timer.on) {
                     this.resetTimer(timer);
-                    Vue.ls.remove(name);
+                    this.$storage.removeStorageSync(name);
                 } else {
-                    Vue.ls.set(name, Date.now() + time, time);
+                    this.$storage.setStorageSync(name, Date.now() + time, time);
                     this.showTime(timer);
                     timer.interval = setInterval(() => { this.showTime(timer) }, 1000);
                 }
             },
             checkChars: function () {
-                if (Vue.ls.get('chars')) {
-                    this.chars = Vue.ls.get('chars');
+                if (this.$storage.getStorageSync('chars')) {
+                    this.chars = this.$storage.getStorageSync('chars');
 
                     if (this.chars.length) {
                         this.activeChar = this.chars[0];
@@ -254,7 +247,7 @@
             addChar: function () {
                 if (this.name && !this.chars.includes(this.name)) {
                     this.chars.push(this.name);
-                    Vue.ls.set('chars', this.chars);
+                    this.$storage.setStorageSync('chars', this.chars);
 
                     if (!this.activeChar) {
                         this.setActiveChar(this.name);
@@ -267,14 +260,14 @@
             },
             removeChar: function (char) {
                 this.chars = this.chars.filter(item => item !== char);
-                Vue.ls.set('chars', this.chars);
+                this.$storage.setStorageSync('chars', this.chars);
 
                 for (const [key, arr] of Object.entries(this.timers)) {
                     arr.forEach(timer => {
                         let name = char.replaceAll(' ', '_') + '_' + timer.name.replaceAll(' ', '_');
 
                         this.resetTimer(timer);
-                        Vue.ls.remove(name);
+                        this.$storage.removeStorageSync(name);
                     });
                 };
 

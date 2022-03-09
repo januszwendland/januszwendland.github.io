@@ -29,36 +29,37 @@
                 </div>
                 <small class="filters-info">Filter by town.</small>
             </div>
-            <div
-                v-for="(town, name) in server"
-                v-if="selectedServer && (town != null && town.length)"
-                v-show="!filterByTown || filterByTown === name">
-                <h3 class="mt">{{ name }}:</h3>
-                <table class="mt table-fixed">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th class="hide-on-mobile">Rent</th>
-                        <th class="hide-on-mobile">Size</th>
-                        <th>Current bid</th>
-                        <th>Time left</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr
-                        v-for="house in town"
-                        v-if="house.status !== 'rented'">
-                        <td>
-                            <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
-                        </td>
-                        <td class="hide-on-mobile">{{ formatNumber(house.rent) }}</td>
-                        <td class="hide-on-mobile">{{ house.size }}</td>
-                        <td>{{ formatNumber(house.auction.current_bid) }}</td>
-                        <td>{{ house.auction.time_left || "-" }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <template v-if="selectedServer && (town != null && town.length)">
+                <div
+                    v-for="(town, name) in server"
+                    v-show="!filterByTown || filterByTown === name">
+                    <h3 class="mt">{{ name }}:</h3>
+                    <table class="mt table-fixed">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="hide-on-mobile">Rent</th>
+                            <th class="hide-on-mobile">Size</th>
+                            <th>Current bid</th>
+                            <th>Time left</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template v-if="house.status !== 'rented'">
+                            <tr v-for="house in town">
+                                <td>
+                                    <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
+                                </td>
+                                <td class="hide-on-mobile">{{ formatNumber(house.rent) }}</td>
+                                <td class="hide-on-mobile">{{ house.size }}</td>
+                                <td>{{ formatNumber(house.auction.current_bid) }}</td>
+                                <td>{{ house.auction.time_left || "-" }}</td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
             <div class="loader-wrapper" v-if="loader > 0">
                 <div class="loader" role="status"></div>
             </div>

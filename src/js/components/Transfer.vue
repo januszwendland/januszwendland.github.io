@@ -73,38 +73,40 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(server, key) in servers" v-if="checkServer(key, server)">
-                        <td>
-                            {{ key }}
-                            <span class="server-info-icon hide-on-mobile"
-                                v-if="server.premium">
-                                <img alt="" title="Premium" src="icons/premium.svg" width="18" height="18">
-                            </span>
-                            <span class="server-info-icon hide-on-mobile"
-                                v-if="server.blocked">
-                                <img alt="" title="Server blocked" src="icons/blocked.svg" width="18" height="18">
-                            </span>
-                            <span class="server-info-icon hide-on-mobile"
-                                v-if="server.locked">
-                                <img alt="" title="Server locked" src="icons/locked.svg" width="18" height="18">
-                            </span>
-                        </td>
-                        <td class="center">
-                            <img alt="" width="30" height="30"
-                                v-bind:src="location[server.location]"
-                                v-bind:title="server.location">
-                        </td>
-                        <td class="center">
-                            <img alt="" width="30" height="30"
-                                v-bind:src="types[server.type]"
-                                v-bind:title="server.type">
-                        </td>
-                        <td class="center hide-on-mobile">
-                            <img alt=""
-                                v-bind:src="battleEye[server.green].img"
-                                v-bind:title="battleEye[server.green].title">
-                        </td>
-                    </tr>
+                    <template v-if="checkServer(key, server)">
+                        <tr v-for="(server, key) in servers">
+                            <td>
+                                {{ key }}
+                                <span class="server-info-icon hide-on-mobile"
+                                    v-if="server.premium">
+                                    <img alt="" title="Premium" src="icons/premium.svg" width="18" height="18">
+                                </span>
+                                <span class="server-info-icon hide-on-mobile"
+                                    v-if="server.blocked">
+                                    <img alt="" title="Server blocked" src="icons/blocked.svg" width="18" height="18">
+                                </span>
+                                <span class="server-info-icon hide-on-mobile"
+                                    v-if="server.locked">
+                                    <img alt="" title="Server locked" src="icons/locked.svg" width="18" height="18">
+                                </span>
+                            </td>
+                            <td class="center">
+                                <img alt="" width="30" height="30"
+                                    v-bind:src="location[server.location]"
+                                    v-bind:title="server.location">
+                            </td>
+                            <td class="center">
+                                <img alt="" width="30" height="30"
+                                    v-bind:src="types[server.type]"
+                                    v-bind:title="server.type">
+                            </td>
+                            <td class="center hide-on-mobile">
+                                <img alt=""
+                                    v-bind:src="battleEye[server.green].img"
+                                    v-bind:title="battleEye[server.green].title">
+                            </td>
+                        </tr>
+                    </template>
                     </tbody>
                 </table>
             </template>

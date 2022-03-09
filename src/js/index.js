@@ -1,10 +1,11 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-
+import { createApp } from 'vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
+import Vue3Storage from 'vue3-storage';
 import App from './App';
 
 import '../scss/style.scss';
 
+const Home = () => import(/* webpackChunkName: "home" */ './components/Home');
 const Guild = () => import(/* webpackChunkName: "guild" */ './components/Guild');
 const Healing = () => import(/* webpackChunkName: "healing" */ './components/Healing');
 const Houses = () => import(/* webpackChunkName: "houses" */ './components/Houses');
@@ -14,9 +15,8 @@ const Spells = () => import(/* webpackChunkName: "spells" */ './components/Spell
 const Timers = () => import(/* webpackChunkName: "transfer" */ './components/Timers');
 const Transfer = () => import(/* webpackChunkName: "transfer" */ './components/Transfer');
 
-Vue.use(VueRouter);
-
 const routes = [
+    { path: '/', component: Home, meta: { title: 'Tibia Tools' } },
     { path: '/guild', component: Guild, meta: { title: 'Guild | Tibia Tools' } },
     { path: '/healing', component: Healing, meta: { title: 'Healing | Tibia Tools' } },
     { path: '/houses', component: Houses, meta: { title: 'Houses | Tibia Tools' } },
@@ -27,21 +27,29 @@ const routes = [
     { path: '/transfer', component: Transfer, meta: { title: 'Transfer | Tibia Tools' } }
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+    history: createWebHashHistory(),
     routes
 });
 
 const DEFAULT_TITLE = 'Tibia Tools';
 
-router.afterEach((to, from) => {
-    Vue.nextTick(() => {
-        document.title = to.meta.title || DEFAULT_TITLE;
-    });
-});
+let options = {
+    namespace: 'tibiaTools_'
+};
 
-new Vue({
-    el: '#app',
-    router,
+const app = createApp({
     components: { App },
     template: `<App/>`
 });
+
+router.afterEach((to, from) => {
+    document.title = to.meta.title || DEFAULT_TITLE;
+});
+
+app.use(router);
+app.use(Vue3Storage, { namespace: "tibiaTools_" });
+
+app.config.compilerOptions.whitespace = 'preserve';
+
+app.mount('#app');

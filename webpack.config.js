@@ -7,7 +7,7 @@ module.exports = {
     mode: environment,
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            vue: 'vue/dist/vue.esm-bundler.js'
         },
         extensions: ['*', '.js', '.vue', '.json']
     },
@@ -15,7 +15,15 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                loader: 'vue-loader',
+                options: {
+                    compilerOptions: {
+                        compatConfig: {
+                            MODE: 2,
+                            WATCH_ARRAY: false
+                        }
+                    }
+                }
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -28,7 +36,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true })
     ],
     entry: {
         'app': './src/js/index.js'

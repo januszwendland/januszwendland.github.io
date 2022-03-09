@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <nav class="top-nav">
-            <h1>Tibia Tools</h1>
+            <router-link to="/"><h1>Tibia Tools</h1></router-link>
         </nav>
         <main class="main" v-show="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
             <section class="card" v-bind:class="{ 'collapsed' : collapsed }">
@@ -160,10 +160,15 @@
         },
 
         watch: {
-            $route(to, from) {
-                if (to.path !== '/') {
-                    this.collapsed = true;
-                }
+            $route: {
+                handler(val, oldVal) {
+                    if (val.path !== '/') {
+                        this.collapsed = true;
+                    } else {
+                        this.collapsed = false;
+                    }
+                },
+                deep: true
             }
         }
     }
