@@ -48,7 +48,7 @@
                         <template v-for="house in town">
                             <tr v-if="house.status !== 'rented'">
                                 <td>
-                                    <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.houseid" target="_blank">{{ house.name }}</a>
+                                    <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.house_id" target="_blank">{{ house.name }}</a>
                                 </td>
                                 <td class="hide-on-mobile">{{ formatNumber(house.rent) }}</td>
                                 <td class="hide-on-mobile">{{ house.size }}</td>

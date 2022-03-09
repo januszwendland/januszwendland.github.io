@@ -43,7 +43,7 @@ const app = createApp({
     template: `<App/>`
 });
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
     document.title = to.meta.title || DEFAULT_TITLE;
 });
 

@@ -161,7 +161,7 @@
 
         watch: {
             $route: {
-                handler(val, oldVal) {
+                handler(val) {
                     if (val.path !== '/') {
                         this.collapsed = true;
                     } else {
