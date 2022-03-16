@@ -66,7 +66,7 @@
 
 .timer {
     border: 1px solid $gray;
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     overflow: hidden;
     margin: 0 0.5rem 0.5rem 0;
     padding: 0.75rem;

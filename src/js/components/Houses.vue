@@ -29,11 +29,9 @@
                 </div>
                 <small class="filters-info">Filter by town.</small>
             </div>
-            <template
-                v-for="(town, name) in server"
-                v-show="!filterByTown || filterByTown === name">
-                <div v-if="selectedServer && (town != null && town.length)">
-                    <h3 class="mt">{{ name }}:</h3>
+            <template v-for="(town, name) in server">
+                <template v-if="selectedServer && (town != null && town.length) && (!filterByTown || filterByTown === name)">
+                    <h3 class="mt">{{ name }}</h3>
                     <table class="mt table-fixed">
                         <thead>
                         <tr>
@@ -58,7 +56,7 @@
                         </template>
                         </tbody>
                     </table>
-                </div>
+                </template>
             </template>
             <div class="loader-wrapper" v-if="loader > 0">
                 <div class="loader" role="status"></div>

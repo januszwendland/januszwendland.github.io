@@ -80,7 +80,7 @@ input {
         width: 100%;
         padding: 0.75rem;
         font-size: 1rem;
-        border-radius: 0.3rem;
+        border-radius: 0.5rem;
         line-height: 1.5;
         border: 1px solid $gray;
         -moz-appearance: none;
@@ -98,7 +98,7 @@ input {
         white-space: nowrap;
         padding: 0.75rem;
         font-size: 1rem;
-        border-radius: 0.3rem;
+        border-radius: 0.5rem;
         line-height: 1.5;
         background-color: $bg;
         border-color: $gray;
@@ -136,25 +136,25 @@ input {
     &.left {
         label,
         button {
-            border-radius: 0.3rem 0 0 0.3rem;
+            border-radius: 0.5rem 0 0 0.5rem;
             border-width: 1px 0 1px 1px;
         }
         select,
         input,
         textarea {
-            border-radius: 0 0.3rem 0.3em 0;
+            border-radius: 0 0.5rem 0.5em 0;
         }
     }
     &.right {
         label,
         button {
-            border-radius: 0 0.3rem 0.3rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
             border-width: 1px 1px 1px 0;
         }
         select,
         input,
         textarea {
-            border-radius: 0.3rem 0 0 0.3rem;
+            border-radius: 0.5rem 0 0 0.5rem;
         }
     }
 }
@@ -283,7 +283,7 @@ input {
 .filters-pill {
     padding: 0.3rem 0.6rem;
     background-color: $gray-dark;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     margin: 0 0.5rem 0.5rem 0;
     cursor: pointer;
     color: white;
@@ -530,7 +530,7 @@ input {
         display: inline-flex;
         align-items: center;
         font-size: 1.3rem;
-        border-radius: 2rem;
+        border-radius: 0.5rem;
         transition: background-color 0.3s;
         text-decoration: none;
         &:hover {
@@ -555,10 +555,10 @@ table {
     border-collapse: collapse;
     a {
         text-decoration: none;
-        color: $pink;
+        color: $green;
         transition: color 0.3s;
         &:hover {
-            color: darken($color: $pink, $amount: 25%);
+            color: darken($color: $green, $amount: 25%);
         }
     }
 }
@@ -585,7 +585,7 @@ tr {
 .badge {
     padding: 0.75rem;
     color: white;
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -607,7 +607,7 @@ tr {
         display: block;
         background-color: white;
         padding: 0.3rem 1rem;
-        border-radius: 0.3rem;
+        border-radius: 0.5rem;
         color: $text;
     }
 }
