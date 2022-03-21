@@ -43,7 +43,8 @@
                         v-bind:src="imbuement.img"
                         v-bind:title="imbuement.name"
                         v-bind:class="{ 'selected': selectedIndex === index }"
-                        v-on:click="showImbuement(index)">
+                        v-on:click="showImbuement(index)"
+                        v-bind:key="index">
                 </div>
                 <small class="filters-info">Calculate price for specific imbuement.</small>
             </div>

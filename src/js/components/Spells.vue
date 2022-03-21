@@ -28,7 +28,7 @@
             </div>
             <table class="mt">
                 <tbody>
-                <tr v-for="spell in spells">
+                <tr v-for="(spell, index) in spells" v-bind:key="index">
                     <td>{{ spell.name }}</td>
                     <td class="hide-on-mobile">{{ spell.word }}</td>
                     <td class="hide-on-mobile">{{ spell.group }}</td>

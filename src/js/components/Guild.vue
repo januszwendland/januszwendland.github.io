@@ -62,7 +62,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <template v-for="character in guild">
+                    <template
+                        v-for="(character, index) in guild"
+                        v-bind:key="index">
+                        {{ key }}
                         <member
                             v-bind:member="character"
                             v-show="(vocation === null || filterMember(character.vocation)) && shareExp(character.level)"

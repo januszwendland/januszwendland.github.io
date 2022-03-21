@@ -13,8 +13,9 @@
                     v-model="selectedServer">
                     <option value="" disabled selected>Select...</option>
                     <option
-                        v-for="server, key in servers"
-                        v-bind:value="key">{{ key }}</option>
+                        v-for="(server, key) in servers"
+                        v-bind:value="key"
+                        v-bind:key="key">{{ key }}</option>
                 </select>
             </div>
             <template v-if="selectedServer">
@@ -73,7 +74,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <template v-for="(server, key) in servers">
+                    <template
+                        v-for="(server, key) in servers"
+                        v-bind:key="key">
                         <tr v-if="checkServer(key, server)">
                             <td>
                                 {{ key }}

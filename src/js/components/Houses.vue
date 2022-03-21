@@ -14,8 +14,9 @@
                     v-on:change="checkServer">
                     <option value="" disabled selected>Select...</option>
                     <option
-                        v-for="server in servers"
-                        v-bind:value="server">{{ server }}</option>
+                        v-for="(server, index) in servers"
+                        v-bind:value="server"
+                        v-bind:key="index">{{ server }}</option>
                 </select>
             </div>
             <small>This tool depends on <a href="https://tibiadata.com/" rel="noopener" target="_blank">TibiaData API</a></small>
@@ -23,13 +24,16 @@
                 v-if="selectedServer">
                 <div class="filters-pills">
                     <span class="filters-pill"
-                        v-for="town in towns"
+                        v-for="(town, index) in towns"
                         v-on:click="filter(town)"
-                        v-bind:class="{ 'selected': filterByTown === town }">{{ town }}</span>
+                        v-bind:class="{ 'selected': filterByTown === town }"
+                        v-bind:key="index">{{ town }}</span>
                 </div>
                 <small class="filters-info">Filter by town.</small>
             </div>
-            <template v-for="(town, name) in server">
+            <template
+                v-for="(town, name) in server"
+                v-bind:key="name">
                 <template v-if="selectedServer && (town != null && town.length) && (!filterByTown || filterByTown === name)">
                     <h3 class="mt">{{ name }}</h3>
                     <table class="mt table-fixed">
@@ -43,7 +47,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <template v-for="house in town">
+                        <template
+                            v-for="(house, index) in town"
+                            v-bind:key="index">
+                            {{ key }}
                             <tr v-if="house.status !== 'rented'">
                                 <td>
                                     <a v-bind:href="'https://www.tibia.com/community/?subtopic=houses&page=view&world=' + selectedServer + '&houseid=' + house.house_id" target="_blank">{{ house.name }}</a>

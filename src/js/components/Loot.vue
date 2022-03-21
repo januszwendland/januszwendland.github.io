@@ -19,7 +19,8 @@
                 <div class="row row-wrap">
                     <div class="col col-25"
                         v-for="(player, index) in logParsed"
-                        v-bind:class="{ 'balance-green': player.loot > player.supplies, 'balance-orange': player.loot === player.supplies, 'balance-red': player.loot < player.supplies }">
+                        v-bind:class="{ 'balance-green': player.loot > player.supplies, 'balance-orange': player.loot === player.supplies, 'balance-red': player.loot < player.supplies }"
+                        v-bind:key="index">
                         <h3 class="mt ellipsis">
                             {{ player.name }}
                             <img src="icons/remove.svg" alt="" width="24" height="24" title="Remove player"
@@ -47,7 +48,8 @@
                 </div>
                 <div class="mt">
                     <p class="loot-transfer"
-                        v-for="row in transfer">
+                        v-for="(row, index) in transfer"
+                        v-bind:key="index">
                         <strong>{{ row.from }}</strong> should transfer <strong>{{ formatNumber(row.gold) }}</strong> gp to <strong>{{ row.to }}</strong>.
                         <img src="icons/copy.svg" alt="" width="24" height="24"
                             v-bind:title="'transfer ' + row.gold + ' to ' + row.to"

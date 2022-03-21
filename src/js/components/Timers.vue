@@ -22,9 +22,10 @@
             </div>
             <div class="flex mt">
                 <h3 class="pointer"
-                    v-for="char in chars"
+                    v-for="(char, index) in chars"
                     v-on:click="setActiveChar(char)"
-                    v-bind:class="{ 'green': char === activeChar }">
+                    v-bind:class="{ 'green': char === activeChar }"
+                    v-bind:key="index">
                     {{ char }}
                     <img src="icons/remove.svg" alt="" width="24" height="24" title="Remove char"
                         v-on:click.stop="removeChar(char)">
@@ -35,12 +36,15 @@
                 Active character have <strong class="green">green</strong> color.
             </small>
             <template v-if="activeChar">
-                <template v-for="(category, name) in timers">
+                <template
+                    v-for="(category, name) in timers"
+                    v-bind:key="name">
                     <h3 class="mt">{{ name }}</h3>
                     <div class="flex">
                         <div class="timer"
-                            v-for="timer in category"
-                            v-bind:class="{ 'active': timer.on }">
+                            v-for="(timer, index) in category"
+                            v-bind:class="{ 'active': timer.on }"
+                            v-bind:key="index">
                             <img alt=""
                                 v-bind:width="timer.width || 64"
                                 v-bind:height="timer.height || 64"

@@ -372,6 +372,11 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+
+}
+.popup-content {
+    max-width: 90vh;
+    padding: 1rem;
     p {
         text-align: center;
         margin: 0;
@@ -655,9 +660,11 @@ tr {
     .footer {
         padding: 1rem;
     }
-    .popup {
+    .popup-content {
+        max-width: none;
         p {
             font-size: 1.8rem;
+            text-align: left;
         }
     }
     .tools-nav {
