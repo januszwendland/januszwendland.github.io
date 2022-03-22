@@ -38,7 +38,7 @@
             <small>Calculate based on gold token price.</small>
             <div class="mt">
                 <div class="flex filters-imgs">
-                    <img
+                    <img width="64" height="64"
                         v-for="(imbuement, index) in imbuements"
                         v-bind:src="imbuement.img"
                         v-bind:title="imbuement.name"
