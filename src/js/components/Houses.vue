@@ -269,6 +269,7 @@
                     });
                 }
 
+                this.isBidded = false;
                 this.server = serverFree;
             },
             filter: function(town) {
