@@ -304,23 +304,21 @@
                 }
             },
             showBidded: function() {
+                this.hoursLeft = false;
                 this.isBidded = !this.isBidded;
 
-                if (!this.hoursLeft) {
-                    if (this.isBidded) {
-                        this.server = this.serverBidded;
-                    } else {
-                        this.server = this.serverFree;
-                    }
+                if (this.isBidded) {
+                    this.server = this.serverBidded;
+                } else {
+                    this.server = this.serverFree;
                 }
             },
             showHours: function() {
+                this.isBidded = false;
                 this.hoursLeft = !this.hoursLeft;
 
                 if  (this.hoursLeft) {
                     this.server = this.serverHoursLeft;
-                } else if (this.isBidded) {
-                    this.server = this.serverBidded;
                 } else {
                     this.server = this.serverFree;
                 }
