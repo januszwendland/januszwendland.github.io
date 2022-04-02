@@ -37,8 +37,11 @@
                     <span class="filters-pill"
                         v-bind:class="{ 'selected': isBidded }"
                         v-on:click="showBidded()">Is bidded</span>
+                    <span class="filters-pill"
+                        v-bind:class="{ 'selected': hoursLeft }"
+                        v-on:click="showHours()">Hours left</span>
                 </div>
-                <small class="filters-info">Show only houses with bid</small>
+                <small class="filters-info">Other filers.</small>
             </div>
             <template
                 v-for="(town, name) in server"
@@ -242,8 +245,27 @@
                     'Venore': null,
                     'Yalahar' : null
                 },
+                serverHoursLeft: {
+                    'Ab\'Dendriel': null,
+                    'Ankrahmun': null,
+                    'Carlin': null,
+                    'Darashia': null,
+                    'Edron': null,
+                    'Farmine': null,
+                    'Gray Beach': null,
+                    'Issavi': null,
+                    'Kazordoon': null,
+                    'Liberty Bay': null,
+                    'Port Hope': null,
+                    'Rathleton': null,
+                    'Svargrond': null,
+                    'Thais': null,
+                    'Venore': null,
+                    'Yalahar' : null
+                },
                 filterByTown: null,
                 isBidded: false,
+                hoursLeft: false,
                 loader: 0
             }
         },
@@ -251,7 +273,8 @@
         methods: {
             checkServer: function() {
                 let serverFree = this.serverFree,
-                    serverBidded = this.serverBidded;
+                    serverBidded = this.serverBidded,
+                    serverHoursLeft = this.serverHoursLeft;
 
                 this.filterByTown = null;
 
@@ -263,6 +286,7 @@
                             .then(response => {
                                 serverFree[town] = response.data.houses.house_list.filter(a => a.rented !== true);
                                 serverBidded[town] = response.data.houses.house_list.filter(a => a.rented !== true).filter(a => a.auction.time_left !== '');
+                                serverHoursLeft[town] = response.data.houses.house_list.filter(a => a.rented !== true).filter(a => a.auction.time_left.match(/hours/));
 
                                 this.loader--;
                             })
@@ -282,7 +306,20 @@
             showBidded: function() {
                 this.isBidded = !this.isBidded;
 
-                if (this.isBidded) {
+                if (!this.hoursLeft) {
+                    if (this.isBidded) {
+                        this.server = this.serverBidded;
+                    } else {
+                        this.server = this.serverFree;
+                    }
+                }
+            },
+            showHours: function() {
+                this.hoursLeft = !this.hoursLeft;
+
+                if  (this.hoursLeft) {
+                    this.server = this.serverHoursLeft;
+                } else if (this.isBidded) {
                     this.server = this.serverBidded;
                 } else {
                     this.server = this.serverFree;
