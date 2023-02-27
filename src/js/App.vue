@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <nav class="top-nav">
-            <router-link to="/"><h1>Tibia Tools</h1></router-link>
+            <router-link to="/"><h1>TIBIA TOOLS</h1></router-link>
         </nav>
         <main class="main" v-show="!showContact && !showAbout && !showChangelog && !showPrivacyPolicy">
             <section class="card" v-bind:class="{ 'collapsed' : collapsed }">
