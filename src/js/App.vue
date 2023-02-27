@@ -37,27 +37,29 @@
             <router-view></router-view>
         </main>
         <footer class="footer">
-            <a href="https://www.tibia.com" rel="noopener" target="_blank">
-                <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100" height="70">
-            </a>
-            <ul class="footer-btns">
-                <li>
-                    <button v-on:click="showContact = true">Contact</button>
-                </li>
-                <li>
-                    <button v-on:click="showAbout = true">About</button>
-                </li>
-                <li>
-                    <button v-on:click="showChangelog = true">Changelog</button>
-                </li>
-                <li>
-                    <button v-on:click="showPrivacyPolicy = true">Privacy Policy</button>
-                </li>
-            </ul>
-            <p>
-                Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/" rel="noopener" target="_blank">CipSoft GmbH</a>.<br>
-                tibia.tools © All rights reserved.
-            </p>
+            <div class="footer-content">
+                <a href="https://www.tibia.com" rel="noopener" target="_blank">
+                    <img srcset="img/logo.webp, img/logo@2x.webp 2x" src="img/logo.webp" alt="Tibia logo" width="100" height="70">
+                </a>
+                <ul class="footer-btns">
+                    <li>
+                        <button v-on:click="showContact = true">Contact</button>
+                    </li>
+                    <li>
+                        <button v-on:click="showAbout = true">About</button>
+                    </li>
+                    <li>
+                        <button v-on:click="showChangelog = true">Changelog</button>
+                    </li>
+                    <li>
+                        <button v-on:click="showPrivacyPolicy = true">Privacy Policy</button>
+                    </li>
+                </ul>
+                <p>
+                    Tibia and TibiaME are trademarks of <a href="https://www.cipsoft.com/" rel="noopener" target="_blank">CipSoft GmbH</a>.<br>
+                    tibia.tools © All rights reserved.
+                </p>
+            </div>
         </footer>
         <contact v-if="showContact" v-on:close="closePopup" />
         <about v-if="showAbout" v-on:close="closePopup" />
