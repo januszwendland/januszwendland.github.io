@@ -80,10 +80,10 @@
             this.$emit('loader', true);
 
             axios
-                .get('https://api.tibiadata.com/v3/character/' + this.name.replace(' ', '+'))
+                .get('https://api.tibiadata.com/v4/character/' + this.name.replace(' ', '+'))
                 .then(response => {
-                    if (response.data.characters.character.last_login) {
-                        this.last = response.data.characters.character.last_login.substring(0, 10);
+                    if (response.data.character.character.last_login) {
+                        this.last = response.data.character.character.last_login.substring(0, 10);
                         this.days = (new Date(this.today) - new Date(this.last)) / (1000 * 60 * 60 * 24);
 
                         if (this.days > 13) {

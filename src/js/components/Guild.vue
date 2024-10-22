@@ -126,11 +126,11 @@
                     this.loader++;
 
                     axios
-                        .get('https://api.tibiadata.com/v3/guild/' + this.guildName.replace(' ', '+'))
+                        .get('https://api.tibiadata.com/v4/guild/' + this.guildName.replace(' ', '+'))
                         .then(response => {
-                            this.guild = response.data.guilds.guild.members;
+                            this.guild = response.data.guild.members;
 
-                            if (!response.data.guilds.guild.members) {
+                            if (!response.data.guild.members) {
                                 alert('This guild does not exist!');
                             }
 
